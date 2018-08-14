@@ -242,7 +242,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_refresh:
-				String url = listWeb.getUrl() + "&userType=0&jpmj=1&startBiz30day=50&startPrice=0&endPrice=50&level=1";
+				String url = listWeb.getUrl() + "&userType=0&jpmj=1&"+Constant.FILTER+"&level=1";
 				loadUrl(url);
 				break;
 			case R.id.btn_gosearch:

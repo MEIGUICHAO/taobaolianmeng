@@ -8,4 +8,6 @@ public interface Constant {
     String taoForwardUrl = "https://s.taobao.com/search?q=";
     String taoBackwardUrl = "&s_from=newHeader&ssid=s5-e&search_type=item&sourceId=tb.item&sort=sale-desc";
     String URL = "https://pub.alimama.com/promo/item/channel/index.htm?spm=a219t.7900221/1.1998910419.d07bd19c4.2a8f75a5Zm3POv&channel=nzjh";
+    String FILTER = "startBiz30day=" + 50 + "&startPrice=" + 0 + "&endPrice=" + 50;
+
 }
