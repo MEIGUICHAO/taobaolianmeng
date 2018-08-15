@@ -42,6 +42,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private HashMap<String, Float> titleMap;
 	protected String[] shops;
 	protected int index = 0;
+	protected int toPage = 1;
 	protected int randomtime = 1000;
 	protected String resultStr = "";
 	protected String rcresultStr = "";
@@ -55,7 +56,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected int searIndex;
 	protected int currentPShopSize;
 	protected String[] titlesArray;
+	protected String spRecordUrl;
+	protected String beginUrl;
+
+
 	private ArrayList<String> mTitleList;
+	private boolean pageNextStop = false;
 
 	protected enum SearchType
 	{
@@ -454,15 +460,42 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void lianmengArray(String array)
 		{
 			String[] split = array.split("###");
-			taoSearchList = new ArrayList<String>();
-			taoNameList = new ArrayList<String>();
+			if (null == taoSearchList) {
+				taoSearchList = new ArrayList<String>();
+			}
+			if (null == taoNameList) {
+				taoNameList = new ArrayList<String>();
+			}
 			searIndex = 0;
 			currentPShopSize = split.length - 1;
 			for (int i = 1; i < split.length; i++) {
 				taoSearchList.add(Constant.taoForwardUrl + getURLEncoderString(split[i]) + Constant.taoBackwardUrl);
                 taoNameList.add(split[i]);
 			}
-			foreachSearchTBLM();
+			if (pageNextStop) {
+				foreachSearchTBLM();
+			} else {
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						handlerJs("tblmShopList();");
+
+						getActivity().runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								toPage++;
+								String url = beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
+								LogUtil.e(Constant.TBLMTAG + url);
+								loadUrl(url);
+								pageNextStop = true;
+							}
+						});
+					}
+				}, 6000);
+			}
+
+
+//			foreachSearchTBLM();
 
 		}
 
@@ -488,8 +521,8 @@ public class WA_YundaFragment extends WA_BaseFragment
 					templeRecord = templeRecord + split[i];
 					int mLen = strLength(split[i]);
 					int splitLen = mLen / 6;
-					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
-					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
+//					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
+//					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
 					String titleArray1 = split[i].substring(0, splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
 					String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
@@ -519,6 +552,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 			LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
 		}
 
+
+		@JavascriptInterface
+		public void pageNextStop()
+		{
+			pageNextStop = true;
+		}
 
 		@JavascriptInterface
 		public void getSplitTitle(String[] array)
@@ -553,6 +592,16 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 		}
 
+
+		@JavascriptInterface
+		public void getMinPricesUrl(String url)
+		{
+			if (!minUrlRecord.contains(url)) {
+				minUrlRecord = minUrlRecord + "###" + url;
+				LogUtil.e(Constant.TBLMTAG + "minUrl" + "\n" + url);
+			}
+
+		}
 
 		@JavascriptInterface
 		public void afterSameResult()
@@ -625,6 +674,9 @@ public class WA_YundaFragment extends WA_BaseFragment
             public void run() {
 				if (searIndex < currentPShopSize) {
 					SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
+					if (searIndex == currentPShopSize - 1) {
+						SharedPreferencesUtils.putValue(getActivity(),spRecordUrl, minUrlRecord);
+					}
 					loadUrl(taoSearchList.get(searIndex));
 				}
 

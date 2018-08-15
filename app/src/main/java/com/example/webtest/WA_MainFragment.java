@@ -37,6 +37,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private LocalMethod mLocalMethod;
 	private WA_Parameters parameter;
 	private String injectJS;
+	private boolean FIRST_TIME = true;
 
 	/**  通过静态方法实例化自动化Fragment*/
 	public static void start(Activity mContext, int containerRsID, WA_Parameters parameter)
@@ -242,7 +243,13 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_refresh:
-				String url = listWeb.getUrl() + "&userType=0&jpmj=1&"+Constant.FILTER+"&level=1";
+				beginUrl = listWeb.getUrl();
+				String url = beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
+				if (FIRST_TIME) {
+					FIRST_TIME = false;
+					spRecordUrl = url;
+					minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), url);
+				}
 				loadUrl(url);
 				break;
 			case R.id.btn_gosearch:
@@ -294,14 +301,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		LogUtil.e("!!!!!!" + name + currentPShopSize + "-" + searIndex);
 		if (searIndex < currentPShopSize) {
             LogUtil.e("!!!!!!" + name);
-            handlerJs("findSameStyle(\""+name+"\");",1500);
+            handlerJs("findSameStyle(\""+name+"\");",Constant.WebListenerTime);
             searIndex++;
         }
 	}
 
 	private void jsGoSameStyle() {
 		if (searIndex < currentPShopSize){
-			handlerJs("jsGoSameUrl(\"" + titlesArray + "\");", 1500);
+			handlerJs("jsGoSameUrl(\"" + titlesArray + "\");", Constant.WebListenerTime);
 
         }
 	}

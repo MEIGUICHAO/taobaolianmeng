@@ -34,6 +34,7 @@ public class WA_BaseFragment extends Fragment
 	protected Button btn_str_result;
 	protected MyWebView listWeb;
 	protected int SwitchMethod = -1;
+	protected String minUrlRecord = "";
 
 
 

@@ -6,15 +6,21 @@
 function tblmShopList(){
     var boxContent = document.getElementsByClassName("box-content");
     localMethod.JI_LOG(boxContent.length);
+    if(boxContent.length<1){
+        localMethod.pageNextStop();
+    }
     var text = "123";
     for(var i=0;i<boxContent.length;i++){
         var as = boxContent[i].getElementsByTagName("a");
-        localMethod.JI_LOG("!!!!!!!"+i);
-        localMethod.JI_LOG(as.length);
+//        localMethod.JI_LOG("!!!!!!!"+i);
+//        localMethod.JI_LOG(as.length);
         var title = as[0].getAttribute("title");
         text = text +"###"+ title;
     }
     localMethod.JI_LOG(text);
+    if(boxContent.length<100){
+        localMethod.pageNextStop();
+    }
     localMethod.lianmengArray(text);
 
 
@@ -84,9 +90,10 @@ function jsGoSameUrl(array){
         localMethod.titleArrayList(mTitleStr,minPricesTitle);
     }
 
-    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+"\n"+"minPricesUrl:"+minPricesUrl;
+    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
+    +"\n"+"minPricesUrl:"+minPricesUrl;
     localMethod.TBLM_LOG(minSameRecord);
-//    localMethod.JI_LOG(minSameRecord);
+    localMethod.getMinPricesUrl(minPricesUrl+"");
 
     }
     localMethod.afterSameResult();
@@ -102,6 +109,7 @@ function jsGoSameUrl(array){
 function findSameStyle(name){
     try{
         var rowTitle = document.getElementsByClassName("row row-2 title");
+        var nids = document.getElementsByClassName("J_ClickStat");
         var titls = rowTitle[0].getElementsByClassName("H");
         var titles=new Array();
         for(var i=0;i<titls.length;i++){
@@ -113,29 +121,33 @@ function findSameStyle(name){
         var text = "";
         var tongkuan = false;
         var notBreak = true;
-                            localMethod.JI_LOG("11111111");
+        var nid = nids[0].getAttribute("trace-pid");
+        var link = "https://s.taobao.com/search?type=samestyle&app=i2i&rec_type=1&uniqpid="+nid+"&sort=sale-desc";
+        localMethod.goSameUrl(link);
 
-        for(var i=0;i<as.length;i++){
-            if(tongkuan){
-                if(as[i].innerText=="找同款"&&as[i]!=""){
-                                            localMethod.JI_LOG("33333333");
-
-                    var link = as[i]+"&sort=sale-desc";
-                    localMethod.JI_LOG(link);
-
-                    localMethod.goSameUrl(link);
-                    notBreak = false;
-                    break;
-                }
-            } else if(name==as[i].innerText){
-                                        localMethod.JI_LOG("22222222");
-
-                tongkuan = true;
-            }
-        }
-        if(notBreak){
-            localMethod.noSame();
-        }
+//                            localMethod.JI_LOG("11111111");
+//
+//        for(var i=0;i<as.length;i++){
+//            if(tongkuan){
+//                if(as[i].innerText=="找同款"&&as[i]!=""){
+//                                            localMethod.JI_LOG("33333333");
+//
+//                    var link = as[i]+"&sort=sale-desc";
+//                    localMethod.JI_LOG(link);
+//
+//                    localMethod.goSameUrl(link);
+//                    notBreak = false;
+//                    break;
+//                }
+//            } else if(name==as[i].innerText){
+//                                        localMethod.JI_LOG("22222222");
+//
+//                tongkuan = true;
+//            }
+//        }
+//        if(notBreak){
+//            localMethod.noSame();
+//        }
 
     }catch(err){
         localMethod.JI_LOG("error:"+err.message);
