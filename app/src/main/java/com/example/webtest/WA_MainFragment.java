@@ -226,12 +226,12 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			public void onClick(View view) {
 
 				for (int i = 0; i < shops.length; i++) {
-					String str = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"zjl","");
-					String rcstr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"rc","");
-					String titlestr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"title","");
-					Log.e("resultStr!!! ",str );
-					Log.e("rcstr!!! ",rcstr );
-					Log.e("titlestr!!! ",titlestr );
+//					String str = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"zjl","");
+//					String rcstr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"rc","");
+//					String titlestr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"title","");
+//					Log.e("resultStr!!! ",str );
+//					Log.e("rcstr!!! ",rcstr );
+//					Log.e("titlestr!!! ",titlestr );
 				}
 
 			}

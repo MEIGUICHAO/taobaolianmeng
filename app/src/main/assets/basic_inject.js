@@ -40,9 +40,11 @@ function jsGoSameUrl(array){
 //    var text ="\n";
     var maxPrices = 0;
     var minPrices = 100000;
+    var minPricesTitle = "";
     var averPrices = 0;
     var averNum = 0;
     var minPricesUrl = "";
+    var mTitleStr = "123";
 
 
 
@@ -59,6 +61,7 @@ function jsGoSameUrl(array){
                 }
                 if(parseFloat(price)<parseFloat(minPrices)){
                     minPrices = price;
+                    minPricesTitle = itemnames[i].innerText;
                     minPricesUrl = mUrl[i].getElementsByTagName("a")[0];
 
                 }
@@ -68,6 +71,7 @@ function jsGoSameUrl(array){
                     mTitle = itemnames[i].innerText.replace(array[j],"");
                 }
                 localMethod.JI_LOG("mTitle:"+i+mTitle);
+                mTitleStr = mTitleStr + "###" + mTitle;
 
     //                localMethod.titleSave(itemnames[i].innerText);
     //                text = text + itemnames[i].innerText +"#####"+paids[i].innerText + "\n";
@@ -76,12 +80,13 @@ function jsGoSameUrl(array){
             }
         }
     }
+    if(mTitleStr!="123"){
+        localMethod.titleArrayList(mTitleStr,minPricesTitle);
+    }
 
-//        localMethod.sameResult(text);
     var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+"\n"+"minPricesUrl:"+minPricesUrl;
-//        localMethod.sameResultRecord(url);
-//        localMethod.minSameRecord(minSameRecord,minPricesUrl+"");
-    localMethod.JI_LOG(minSameRecord);
+    localMethod.TBLM_LOG(minSameRecord);
+//    localMethod.JI_LOG(minSameRecord);
 
     }
     localMethod.afterSameResult();

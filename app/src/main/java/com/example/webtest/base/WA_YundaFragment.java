@@ -3,6 +3,7 @@ package com.example.webtest.base;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import static android.content.ContentValues.TAG;
 
@@ -53,6 +55,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected int searIndex;
 	protected int currentPShopSize;
 	protected String[] titlesArray;
+	private ArrayList<String> mTitleList;
 
 	protected enum SearchType
 	{
@@ -466,6 +469,58 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		@JavascriptInterface
+		public void titleArrayList(String titles,String minPricesTitle)
+		{
+			String[] split = titles.split("###");
+			LogUtil.e(Constant.TBLMTAG + "minPricesTitle"+minPricesTitle);
+			String templeRecord = "123";
+			mTitleList = new ArrayList<String>();
+			for (int i = 0; i <titlesArray.length; i++) {
+				mTitleList.add(titlesArray[i]);
+			}
+
+			int foreachSize = 5;
+			if (split.length < 5) {
+				foreachSize = split.length;
+			}
+			for (int i = 1; i < foreachSize; i++) {
+				if (!templeRecord.contains(split[i])) {
+					templeRecord = templeRecord + split[i];
+					int mLen = strLength(split[i]);
+					int splitLen = mLen / 6;
+					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
+					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
+					String titleArray1 = split[i].substring(0, splitLen);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
+					String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
+					String titleArray3 = split[i].substring(2 * splitLen, mLen/2);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
+					mTitleList.add(titleArray1);
+					mTitleList.add(titleArray2);
+					mTitleList.add(titleArray3);
+				}
+			}
+
+			int[] ints = randomArray(mTitleList.size());
+			String mTtile = "";
+			for (int j = 0; j < mTitleList.size(); j++) {
+				if (strLength(mTtile) + strLength(mTitleList.get(ints[j]))< 120) {
+					if (ints[j] < mTitleList.size()) {
+						mTtile = mTtile + mTitleList.get(ints[j]);
+					}
+				} else if (strLength(mTtile) < 100) {
+					continue;
+				} else {
+					break;
+				}
+			}
+			SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+			LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+		}
+
+
+		@JavascriptInterface
 		public void getSplitTitle(String[] array)
 		{
 			titlesArray = array;
@@ -520,9 +575,14 @@ public class WA_YundaFragment extends WA_BaseFragment
 		@JavascriptInterface
 		public void JI_LOG(String content)
 		{
-//			Log.e(TAG, "JI_LOG: " + content);
 			LogUtil.e(TAG, "JI_LOG: " + content);
-//			Toast.makeText(mContext, content, Toast.LENGTH_SHORT).show();
+		}
+
+
+		@JavascriptInterface
+		public void TBLM_LOG(String content)
+		{
+			LogUtil.e(Constant.TBLMTAG + content);
 		}
 
 		@JavascriptInterface
@@ -563,8 +623,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 		getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-				SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
-                loadUrl(taoSearchList.get(searIndex));
+				if (searIndex < currentPShopSize) {
+					SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
+					loadUrl(taoSearchList.get(searIndex));
+				}
 
             }
         });
@@ -605,22 +667,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 	}
 
 	private void putSp(String str) {
-		if (str.contains("------title")){
-//			titleresultStr = titleresultStr + str;
-//			Log.e("titlestr: ",titleresultStr);
-
-			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"title", str);
-		} else if (str.contains("------zjl")){
-//			resultStr = resultStr + str;
-//			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, TAOBAOJZL, resultStr);
-//			Log.e("resultStr: ",resultStr);
-			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"zjl", str);
-		} else if (str.contains("------rc")){
-//			rcresultStr = rcresultStr + str;
-//			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, TAOBAORC, rcresultStr);
-//			Log.e("rcresultStr: ",rcresultStr);
-			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"rc", str);
-		}
+//		if (str.contains("------title")){
+//			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"title", str);
+//		} else if (str.contains("------zjl")){
+//			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"zjl", str);
+//		} else if (str.contains("------rc")){
+//			SharedPreferencesUtils.putValue(getActivity(), TAOBAO, shops[index]+"rc", str);
+//		}
 	}
 
 	private void sortTitleMap(Map map,String str) {
@@ -685,6 +738,66 @@ public class WA_YundaFragment extends WA_BaseFragment
 		} catch (Exception e) {
 			Log.e("Exception：", e.toString());
 		}
+	}
+
+
+
+	public int strLength(String value) {
+		if (TextUtils.isEmpty(value)) {
+			return 0;
+		}
+		int valueLength = 0;
+		String chinese = "[\u0391-\uFFE5]";
+		/* 获取字段值的长度，如果含中文字符，则每个中文字符长度为2，否则为1 */
+		for (int i = 0; i < value.length(); i++) {
+			/* 获取一个字符 */
+			String temp = value.substring(i, i + 1);
+			/* 判断是否为中文字符 */
+			if (temp.matches(chinese)) {
+				/* 中文字符长度为2 */
+				valueLength += 2;
+			} else {
+				/* 其他字符长度为1 */
+				valueLength += 1;
+			}
+		}
+		return valueLength;
+	}
+
+	public int[] randomArray(int size){
+		int splitNum = 30;
+		int max = mTitleList.size() - 1;
+		if (null == mTitleList || mTitleList.size() < 1) {
+			max = size;
+		}
+		int len = max - 0 + 1;
+
+		if (splitNum > len) {
+			splitNum = len;
+		}
+		if(max < 0 || splitNum > len){
+			return null;
+		}
+
+		//初始化给定范围的待选数组
+		int[] source = new int[len];
+		for (int i = 0; i < 0+len; i++){
+			source[i-0] = i;
+		}
+
+		int[] result = new int[splitNum];
+
+		Random rd = new Random();
+		int index = 0;
+		for (int i = 0; i < result.length; i++) {
+			//待选数组0到(len-2)随机一个下标
+			index = Math.abs(rd.nextInt() % len--);
+			//将随机到的数放入结果集
+			result[i] = source[index];
+			//将待选数组中被随机到的数，用待选数组(len-1)下标对应的数替换
+			source[index] = source[len];
+		}
+		return result;
 	}
 
 
