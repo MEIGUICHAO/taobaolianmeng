@@ -301,7 +301,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 	private void jsGoSameStyle() {
 		if (searIndex < currentPShopSize){
-            handlerJs("jsGoSameUrl();", 1500);
+			handlerJs("jsGoSameUrl(\"" + titlesArray + "\");", 1500);
 
         }
 	}

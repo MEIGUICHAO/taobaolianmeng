@@ -52,6 +52,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected ArrayList<String> taoNameList;
 	protected int searIndex;
 	protected int currentPShopSize;
+	protected String[] titlesArray;
 
 	protected enum SearchType
 	{
@@ -462,6 +463,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 		}
 
+
+
+		@JavascriptInterface
+		public void getSplitTitle(String[] array)
+		{
+			titlesArray = array;
+		}
 
 
 		@JavascriptInterface

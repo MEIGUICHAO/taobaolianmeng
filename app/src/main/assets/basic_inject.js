@@ -24,18 +24,20 @@ function tblmShopList(){
 
 
 
-function jsGoSameUrl(url){
+function jsGoSameUrl(array){
 
     var itemnames = document.getElementsByClassName("info1__itemname");
     var prices = document.getElementsByClassName("info2__price");
     var paids = document.getElementsByClassName("info3__npaid");
+    var comments = document.getElementsByClassName("info3__ncomments");
     var mUrl = document.getElementsByClassName("info1__itemname");
+    localMethod.JI_LOG("array"+array.length);
     try{
     var pay = paids[5].innerText.replace("人付款","");
     }catch(e){
         localMethod.afterSameResult();
     }
-    var text = url + "\n";
+//    var text ="\n";
     var maxPrices = 0;
     var minPrices = 100000;
     var averPrices = 0;
@@ -44,11 +46,11 @@ function jsGoSameUrl(url){
 
 
 
-
     if(paids.length>20&&pay>3){
 
-        for(var i=0;i<itemnames.length;i++){
-            if(paids[i].innerText.replace("人付款","")>10){
+    for(var i=0;i<itemnames.length;i++){
+        if(comments[i].innerText!=""){
+            if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>2){
                 var price = prices[i].innerText.replace("￥","");
                 averPrices = accAdd(averPrices,price);
                 averNum = averNum +1;
@@ -61,19 +63,25 @@ function jsGoSameUrl(url){
 
                 }
 
+                var mTitle = "";
+                for(var j=0;j<array.length;j++){
+                    mTitle = itemnames[i].innerText.replace(array[j],"");
+                }
+                localMethod.JI_LOG("mTitle:"+i+mTitle);
 
-//                localMethod.titleSave(itemnames[i].innerText);
-                text = text + itemnames[i].innerText +"#####"+paids[i].innerText + "\n";
-//                localMethod.sameResultForSort(itemnames[i].innerText,paids[i].innerText.replace("人付款",""));
+    //                localMethod.titleSave(itemnames[i].innerText);
+    //                text = text + itemnames[i].innerText +"#####"+paids[i].innerText + "\n";
+    //                localMethod.sameResultForSort(itemnames[i].innerText,paids[i].innerText.replace("人付款",""));
 
             }
         }
+    }
 
 //        localMethod.sameResult(text);
-        var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+"\n"+"sameUrl:"+url+"\n"+"minPricesUrl:"+minPricesUrl;
+    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+"\n"+"minPricesUrl:"+minPricesUrl;
 //        localMethod.sameResultRecord(url);
 //        localMethod.minSameRecord(minSameRecord,minPricesUrl+"");
-        localMethod.JI_LOG(minSameRecord);
+    localMethod.JI_LOG(minSameRecord);
 
     }
     localMethod.afterSameResult();
@@ -88,6 +96,14 @@ function jsGoSameUrl(url){
 
 function findSameStyle(name){
     try{
+        var rowTitle = document.getElementsByClassName("row row-2 title");
+        var titls = rowTitle[0].getElementsByClassName("H");
+        var titles=new Array();
+        for(var i=0;i<titls.length;i++){
+            titles[i] = titls[i].innerText;
+        }
+        localMethod.getSplitTitle(titles);
+
         var as = document.getElementsByTagName("a");
         var text = "";
         var tongkuan = false;
