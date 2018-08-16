@@ -344,6 +344,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
 			switch (SwitchMethod) {
+				case Constant.NEXT_PAGE_LOAD:
+                    SwitchMethod = -1;
+//                    String name = taoNameList.get(searIndex);
+					handlerJs("tblmShopList();", 8000);
+					break;
 				case Constant.FIND_SAMESTYLE_FROM_TBLM:
                     SwitchMethod = -1;
 //                    String name = taoNameList.get(searIndex);

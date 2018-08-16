@@ -476,10 +476,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 			if (pageNextStop) {
 				foreachSearchTBLM();
 			} else {
-				handler.postDelayed(new Runnable() {
+				getActivity().runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						handlerJs("tblmShopList();");
+//						handlerJs("tblmShopList();");
+						SwitchMethod = Constant.NEXT_PAGE_LOAD;
 
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
@@ -491,7 +492,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 							}
 						});
 					}
-				}, Constant.TBLM_WAIT_TIME);
+				});
 			}
 
 
