@@ -19,4 +19,5 @@ public interface Constant {
     String MIN_URL_RECORD = "MIN_URL_RECORD";
 
     String SHOP_LIST = "SHOP_LIST";
+    String MIN_NAME_RECORD = "MIN_NAME_RECORD";
 }

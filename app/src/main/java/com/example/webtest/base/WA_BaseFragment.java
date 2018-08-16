@@ -35,6 +35,7 @@ public class WA_BaseFragment extends Fragment
 	protected MyWebView listWeb;
 	protected int SwitchMethod = -1;
 	protected String minUrlRecord = "";
+	protected String minUrlShopNameRecord = "";
 	protected String spShopRecordKey = "";
 
 

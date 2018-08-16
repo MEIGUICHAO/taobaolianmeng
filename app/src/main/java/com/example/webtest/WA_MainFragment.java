@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private WA_Parameters parameter;
 	private String injectJS;
 	private boolean FIRST_TIME = true;
+	private String before10secUrl;
+	private int oldindex;
 
 	/**  通过静态方法实例化自动化Fragment*/
 	public static void start(Activity mContext, int containerRsID, WA_Parameters parameter)
@@ -221,7 +224,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				String url = initBeginUrl();
                 spShopRecordKey = url + Constant.SHOP_LIST;
                 if (btn_biao1.getText().toString().equals("缓存")) {
-                    minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), url);
+                    minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey);
                     String shops = SharedPreferencesUtils.getValue(getActivity(), spShopRecordKey);
                     String[] split = shops.split("###");
                     taoSearchList = new ArrayList<String>();
@@ -234,6 +237,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     if (FIRST_TIME) {
                         FIRST_TIME = false;
                         spRecordMinUrlKey = url+Constant.MIN_URL_RECORD;
+						minUrlShopNameRecordKey = url+Constant.MIN_NAME_RECORD;
                     }
                     loadUrl(url);
                     handler.postDelayed(new Runnable() {
@@ -264,7 +268,12 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				break;
 			case R.id.btn_search:
 				String mUrl = initBeginUrl();
-				spRecordMinUrlKey = mUrl+Constant.MIN_URL_RECORD;
+				if (TextUtils.isEmpty(spRecordMinUrlKey)) {
+					spRecordMinUrlKey = mUrl+Constant.MIN_URL_RECORD;
+				}
+				if (TextUtils.isEmpty(minUrlShopNameRecordKey)) {
+					minUrlShopNameRecordKey = mUrl+Constant.MIN_NAME_RECORD;
+				}
 				String[] minUrls = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey).split("###");
 				String urlResutl1 = "================================================" + "\n";
 				String urlResutl2 = "================================================" + "\n";
@@ -316,9 +325,23 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private class MyListWebViewClient extends WebViewClient
 	{
 		@Override
-		public void onPageFinished(WebView view, String url)
+		public void onPageFinished(WebView view, final String url)
 		{
 			view.loadUrl("javascript:" + injectJS);
+
+			before10secUrl = url;
+			oldindex = searIndex;
+
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					if (oldindex == searIndex && before10secUrl.equals(url)) {
+						foreachSearchTBLM();
+					}
+				}
+			}, 20000);
+
+
 
 			switch (SwitchMethod) {
 				case Constant.FIND_SAMESTYLE_FROM_TBLM:

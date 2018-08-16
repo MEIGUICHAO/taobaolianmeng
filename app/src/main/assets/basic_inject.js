@@ -93,7 +93,7 @@ function jsGoSameUrl(array){
     var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
     +"\n"+"minPricesUrl:"+minPricesUrl;
     localMethod.TBLM_LOG(minSameRecord);
-    localMethod.getMinPricesUrl(minPricesUrl+"");
+    localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
 
     }
     localMethod.afterSameResult();

@@ -54,7 +54,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected int searIndex;
 	protected int currentPShopSize;
 	protected String[] titlesArray;
-	protected String spRecordMinUrlKey;
+	protected String spRecordMinUrlKey,minUrlShopNameRecordKey;
 	protected String beginUrl;
 
 
@@ -594,7 +594,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		@JavascriptInterface
-		public void getMinPricesUrl(String url)
+		public void getMinPricesUrl(String url,String name)
 		{
 			if (!minUrlRecord.contains(url)) {
                 if (TextUtils.isEmpty(minUrlRecord)) {
@@ -603,9 +603,18 @@ public class WA_YundaFragment extends WA_BaseFragment
                     minUrlRecord = minUrlRecord + "###" + url;
                 }
 				LogUtil.e(Constant.TBLMTAG + "minUrl" + "\n" + url);
+
+
+				if (TextUtils.isEmpty(minUrlShopNameRecord)) {
+					minUrlShopNameRecord = name;
+				} else {
+					minUrlShopNameRecord = minUrlShopNameRecord + "###" + name;
+				}
+				LogUtil.e(Constant.TBLMTAG + "minUrlShopNameRecord" + "\n" + name);
 			}
 
 		}
+
 
 		@JavascriptInterface
 		public void afterSameResult()
@@ -693,6 +702,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 					SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
 					if (searIndex == currentPShopSize - 1) {
 						SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey, minUrlRecord);
+						SharedPreferencesUtils.putValue(getActivity(), minUrlShopNameRecordKey, minUrlShopNameRecord);
 					}
 					loadUrl(taoSearchList.get(searIndex));
 				}
