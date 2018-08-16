@@ -21,6 +21,8 @@ import com.example.webtest.io.LogUtil;
 import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -193,13 +195,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				listWeb.goBack();
 			}
 		});
-		btnSearch.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				TAOBAO = shops[0];
-				goSearch(shops[index],randomtime);
-			}
-		});
+		btnSearch.setOnClickListener(this);
 		btnGosearch.setOnClickListener(this);
 		btnGosearchworld.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -222,8 +218,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_refresh:
-                beginUrl = listWeb.getUrl();
-                String url = beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
+				String url = initBeginUrl();
                 spShopRecordKey = url + Constant.SHOP_LIST;
                 if (btn_biao1.getText().toString().equals("缓存")) {
                     minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), url);
@@ -267,10 +262,54 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			case R.id.btn_str_result:
 				foreachSearchTBLM();
 				break;
+			case R.id.btn_search:
+				String mUrl = initBeginUrl();
+				spRecordMinUrlKey = mUrl+Constant.MIN_URL_RECORD;
+				String[] minUrls = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey).split("###");
+				String urlResutl1 = "================================================" + "\n";
+				String urlResutl2 = "================================================" + "\n";
+				String urlResutl3 = "================================================" + "\n";
+				String urlResutl4 = "================================================" + "\n";
+				String urlResutl5 = "================================================" + "\n";
+				String urlResutl6 = "================================================" + "\n";
+				for (int i = 0; i < minUrls.length; i++) {
+					if (i < 50) {
+						urlResutl1 = urlResutl1 + minUrls[i] + "\n";
+					}
+					if (i >= 50 && i < 100) {
+						urlResutl2 = urlResutl2 + minUrls[i] + "\n";
+					}
+					if (i >= 100 && i < 150) {
+						urlResutl3 = urlResutl3 + minUrls[i] + "\n";
+					}
+					if (i >= 150 && i < 200) {
+						urlResutl4 = urlResutl4 + minUrls[i] + "\n";
+					}
+					if (i >= 200 && i < 250) {
+						urlResutl5 = urlResutl5 + minUrls[i] + "\n";
+					}
+					if (i >= 250 && i < 300) {
+						urlResutl6 = urlResutl6 + minUrls[i] + "\n";
+					}
+				}
+				LogUtil.e(urlResutl1);
+				LogUtil.e(urlResutl2);
+				LogUtil.e(urlResutl3);
+				LogUtil.e(urlResutl4);
+				LogUtil.e(urlResutl5);
+				LogUtil.e(urlResutl6);
+
+
+				break;
 
 		}
 
 
+	}
+
+	private String initBeginUrl() {
+		beginUrl = listWeb.getUrl();
+		return beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
 	}
 
 	/** ListWebView加载完注入基本JS函数 */

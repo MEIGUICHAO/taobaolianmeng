@@ -7,7 +7,7 @@ public class LogUtil {
 
     //可以全局控制是否打印log日志
     private static boolean isPrintLog = true;
-    private static int LOG_MAXLENGTH = 2000;
+    private static int LOG_MAXLENGTH = 8000;
 
 
     public static void v(String msg) {
@@ -98,7 +98,21 @@ public class LogUtil {
     }
 
     public static void e(String msg) {
-        e("LogUtil", msg);
+        if (isPrintLog) {
+            int strLength = msg.length();
+            int start = 0;
+            int end = LOG_MAXLENGTH;
+            for (int i = 0; i < 100; i++) {
+                if (strLength > end) {
+                    Log.e("" + i, msg.substring(start, end));
+                    start = end;
+                    end = end + LOG_MAXLENGTH;
+                } else {
+                    Log.e("" + i, msg.substring(start, strLength));
+                    break;
+                }
+            }
+        }
     }
     public static void e(String tagName, String msg) {
         if (isPrintLog) {
