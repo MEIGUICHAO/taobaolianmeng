@@ -20,20 +20,20 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="市场" />
+            android:text="刷新" />
 
         <Button
             android:id="@+id/btn_check"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="检测" />
+            android:text="同款" />
         <Button
             android:id="@+id/btn_biao1"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="标题" />
+            android:text="缓存" />
         <Button
             android:id="@+id/btn_str_result"
             android:layout_weight="1"

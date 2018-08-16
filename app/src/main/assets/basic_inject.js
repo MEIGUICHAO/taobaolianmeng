@@ -106,7 +106,7 @@ function jsGoSameUrl(array){
 
 
 
-function findSameStyle(name){
+function findSameStyle(){
     try{
         var rowTitle = document.getElementsByClassName("row row-2 title");
         var nids = document.getElementsByClassName("J_ClickStat");

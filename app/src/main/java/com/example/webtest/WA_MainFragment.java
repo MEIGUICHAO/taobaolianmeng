@@ -2,17 +2,13 @@ package com.example.webtest;
 
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,6 +20,8 @@ import com.example.webtest.base.WA_YundaFragment;
 import com.example.webtest.io.LogUtil;
 import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
+
+import java.util.ArrayList;
 
 /**
  * @desc 自动化Fragment主调页面
@@ -216,48 +214,60 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			}
 		});
 		btn_check.setOnClickListener(this);
-		btn_biao1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				biao1();
-			}
-		});
-		btn_str_result.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-
-				for (int i = 0; i < shops.length; i++) {
-//					String str = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"zjl","");
-//					String rcstr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"rc","");
-//					String titlestr = SharedPreferencesUtils.getValue(getActivity(),TAOBAO,shops[i]+"title","");
-//					Log.e("resultStr!!! ",str );
-//					Log.e("rcstr!!! ",rcstr );
-//					Log.e("titlestr!!! ",titlestr );
-				}
-
-			}
-		});
+		btn_biao1.setOnClickListener(this);
+		btn_str_result.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.btn_refresh:
-				beginUrl = listWeb.getUrl();
-				String url = beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
-				if (FIRST_TIME) {
-					FIRST_TIME = false;
-					spRecordUrl = url;
-					minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), url);
-				}
-				loadUrl(url);
+                beginUrl = listWeb.getUrl();
+                String url = beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
+                spShopRecordKey = url + Constant.SHOP_LIST;
+                if (btn_biao1.getText().toString().equals("缓存")) {
+                    minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), url);
+                    String shops = SharedPreferencesUtils.getValue(getActivity(), spShopRecordKey);
+                    String[] split = shops.split("###");
+                    taoSearchList = new ArrayList<String>();
+                    for (int i = 0; i < split.length; i++) {
+						taoSearchList.add(split[i]);
+                    }
+                    foreachSearchTBLM();
+
+                } else {
+                    if (FIRST_TIME) {
+                        FIRST_TIME = false;
+                        spRecordMinUrlKey = url+Constant.MIN_URL_RECORD;
+                    }
+                    loadUrl(url);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            handlerJs("tblmShopList();");
+                        }
+                    }, Constant.TBLM_WAIT_TIME);
+
+                }
 				break;
 			case R.id.btn_gosearch:
-				handlerJs("tblmShopList();");
+			    listWeb.reload();
+
 				break;
 			case R.id.btn_check:
 				findSameStyle();
 				break;
+			case R.id.btn_biao1:
+                if (btn_biao1.getText().toString().equals("缓存")) {
+                    btn_biao1.setText("重新");
+                } else {
+                    btn_biao1.setText("缓存");
+                }
+				break;
+			case R.id.btn_str_result:
+				foreachSearchTBLM();
+				break;
+
 		}
 
 
@@ -284,6 +294,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
 					break;
+
 			}
 
 			super.onPageFinished(view, url);
@@ -297,11 +308,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	}
 
 	private void findSameStyle() {
-		String name  = taoNameList.get(searIndex);
-		LogUtil.e("!!!!!!" + name + currentPShopSize + "-" + searIndex);
+//		String name  = taoNameList.get(searIndex);
+		LogUtil.e("!!!!!!"  + currentPShopSize + "-" + searIndex);
 		if (searIndex < currentPShopSize) {
-            LogUtil.e("!!!!!!" + name);
-            handlerJs("findSameStyle(\""+name+"\");",Constant.WebListenerTime);
+//            LogUtil.e("!!!!!!" + name);
+            handlerJs("findSameStyle();",Constant.WebListenerTime);
             searIndex++;
         }
 	}
