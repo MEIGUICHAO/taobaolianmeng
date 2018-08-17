@@ -467,12 +467,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 			}
 			searIndex = 0;
 			currentPShopSize = split.length - 1;
-            if (toPage != 2) {
-                for (int i = 1; i < split.length; i++) {
-                    taoSearchList.add(Constant.taoForwardUrl + getURLEncoderString(split[i]) + Constant.taoBackwardUrl);
-                    taoNameList.add(split[i]);
-                }
-            }
+
+			for (int i = 1; i < split.length; i++) {
+				taoSearchList.add(Constant.taoForwardUrl + getURLEncoderString(split[i]) + Constant.taoBackwardUrl);
+				taoNameList.add(split[i]);
+			}
 			if (pageNextStop) {
 				foreachSearchTBLM();
 			} else {
