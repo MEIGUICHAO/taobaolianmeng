@@ -39,13 +39,17 @@ function editTitleAndShangjiaNow(){
 }
 
 
-function shangjiaAfterEditTitle(title){
-
+function showKeyboardAdfterShangjia(title){
 
     var titles = document.getElementsByClassName("texbox title-box");
     var titleBeginName = titles[0].getElementsByTagName("input");
-
     titleBeginName[0].value = title;
+
+    localMethod.showKeyboardAdfterShangjia();
+
+}
+
+function shangjiaAfterEditTitle(){
 
     var checkboxs = document.getElementsByClassName("checkbox-wrap");
     var comfirs = document.getElementsByClassName("blue");

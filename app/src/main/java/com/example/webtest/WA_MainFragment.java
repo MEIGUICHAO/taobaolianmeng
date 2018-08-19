@@ -356,7 +356,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					handlerJs("jsCangkuGoNextPage();", 2000);
 					break;
 				case Constant.EDIT_DETAIL_COMPLETE:
-					if (shangjiaIndex < 2) {
+					if (shangjiaIndex < xiajiaRecordList.size()) {
 						handler.postDelayed(new Runnable() {
 							@Override
 							public void run() {

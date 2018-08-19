@@ -589,6 +589,38 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 
 		@JavascriptInterface
+		public void showKeyboardAdfterShangjia()
+		{
+
+			new Thread( new Runnable( ) {
+				@Override
+				public void run() {
+					try {
+						Thread.sleep( 1000 );
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+
+					// “旋转”的拼音
+//				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N,KeyEvent.KEYCODE_SPACE,KeyEvent.KEYCODE_Z,KeyEvent.KEYCODE_H,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N};
+					int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL};
+					for( int keycode : keyCodeArray ){
+						try {
+							typeIn( keycode );
+							Thread.sleep( 1000 );
+							handlerJs("shangjiaAfterEditTitle();", 3000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+							handlerJs("shangjiaAfterEditTitle();", 3000);
+						}
+					}
+				}
+			}).start( );
+
+
+		}
+
+		@JavascriptInterface
 		public void getSplitTitle(String[] array)
 		{
 			titlesArray = array;
@@ -599,7 +631,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void editByOriginalTitle(String originalTitle)
 		{
 
-			handlerJs("shangjiaAfterEditTitle(\"" + originalTitle + "\")",1000);
+			String mTitle = SharedPreferencesUtils.getValue(getActivity(), originalTitle);
+			if (TextUtils.isEmpty(mTitle)) {
+				mTitle = originalTitle;
+			}
+			handlerJs("showKeyboardAdfterShangjia(\"" + mTitle + "\")",1000);
 
 		}
 
