@@ -34,4 +34,8 @@ public interface Constant {
 
     int EDIT_DETAIL = 0x4;
 
+    int CANGKU_NEXT_PAGE_LOAD = 0x5;
+
+    int EDIT_DETAIL_COMPLETE = 0x6;
+
 }

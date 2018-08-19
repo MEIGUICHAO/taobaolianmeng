@@ -211,6 +211,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             	handlerJs("editTitleAndShangjiaNow();");
                 break;
             case R.id.btn_getchecked:
+				SwitchMethod = Constant.CANGKU_NEXT_PAGE_LOAD;
             	handlerJs("jsCangkuGoNextPage();");
                 break;
             case R.id.btn_gosearchworld:
@@ -327,6 +328,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		public void onPageFinished(WebView view, final String url)
 		{
 			view.loadUrl("javascript:" + injectJS);
+			LogUtil.e("SwitchMethod:" + SwitchMethod);
 
 			before10secUrl = url;
 			oldindex = searIndex;
@@ -347,9 +349,29 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
 			switch (SwitchMethod) {
+				case Constant.CANGKU_NEXT_PAGE_LOAD:
+                    if (NEXT_PAGE_END) {
+                        SwitchMethod = -1;
+                    }
+					handlerJs("jsCangkuGoNextPage();", 2000);
+					break;
+				case Constant.EDIT_DETAIL_COMPLETE:
+					if (shangjiaIndex < 2) {
+						handler.postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								goEditDetailsUrl();
+							}
+						}, 1000);
+					} else {
+						xiajiaRecordList.clear();
+						shangjiaIndex = 0;
+					}
+					break;
 				case Constant.EDIT_DETAIL:
-					SwitchMethod = -1;
-					handlerJs("editTitleAndShangjiaNow();", 5000);
+					shangjiaIndex++;
+					SwitchMethod = Constant.EDIT_DETAIL_COMPLETE;
+					handlerJs("editTitleAndShangjiaNow();", 2000);
 					break;
 				case Constant.NEXT_PAGE_LOAD:
                     SwitchMethod = -1;

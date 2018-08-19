@@ -28,35 +28,44 @@ function tblmShopList(){
 }
 
 function editTitleAndShangjiaNow(){
-    localMethod.JI_LOG("11111111");
     var titles = document.getElementsByClassName("texbox title-box");
-        localMethod.JI_LOG("titles:"+titles.length);
     var titleBeginName = titles[0].getElementsByTagName("input");
-        localMethod.JI_LOG("11111111");
 
     localMethod.JI_LOG(titleBeginName[0].value);
-    localMethod.JI_LOG("11111111");
+    var mTitle = titleBeginName[0].value;
+    titleBeginName[0].value = "";
+    titleBeginName[0].focus();
+    localMethod.editByOriginalTitle(mTitle+"");
+}
+
+
+function shangjiaAfterEditTitle(title){
+
+
+    var titles = document.getElementsByClassName("texbox title-box");
+    var titleBeginName = titles[0].getElementsByTagName("input");
+
+    titleBeginName[0].value = title;
+
     var checkboxs = document.getElementsByClassName("checkbox-wrap");
-        localMethod.JI_LOG("11111111");
     var comfirs = document.getElementsByClassName("blue");
-        localMethod.JI_LOG("comfirs");
-        localMethod.JI_LOG("checkboxs"+checkboxs.length);
     var radiosIndex = 0;
-        for(var i=0;i<checkboxs.length;i++){
-            if(checkboxs[i].innerText=="立刻上架定时上架放入仓库"){
-                radiosIndex = i;
-                break;
-            }
-                    localMethod.JI_LOG(checkboxs[i].innerText);
+    for(var i=0;i<checkboxs.length;i++){
+        if(checkboxs[i].innerText=="立刻上架定时上架放入仓库"){
+            localMethod.JI_LOG(checkboxs[i].innerText);
+            radiosIndex = i;
+            break;
         }
+    }
     var radios = checkboxs[radiosIndex].getElementsByTagName("input");
-        localMethod.JI_LOG("radios");
     radios[0].click();
-        localMethod.JI_LOG("11111111");
     localMethod.JI_LOG(comfirs.length);
-        localMethod.JI_LOG("11111111");
-    comfirs[1].click();
-        localMethod.JI_LOG("11111111");
+    for(var i=0;i<comfirs.length;i++){
+        if(comfirs[i].innerText=="发 布"){
+            comfirs[i].click();
+            break
+        }
+    }
 }
 
 
@@ -68,7 +77,6 @@ function jsCangkuGoNextPage(){
     var cangkuCidIds = "";
     for(var j=0;j<selectors.length;j++){
         var itemids = selectors[j].getAttribute("itemids");
-            localMethod.JI_LOG("itemids："+itemids.innerText);
         var icat = itemCates[j].getAttribute("data-param").split("&cid=")[1].split("&title=")[0];
         if(cangkuCidIds==""){
             cangkuCidIds = itemids+"@@@"+icat;
@@ -76,8 +84,10 @@ function jsCangkuGoNextPage(){
             cangkuCidIds = cangkuCidIds + "###" +itemids+"@@@"+icat;
         }
     }
-    localMethod.JI_LOG("11111111");
     localMethod.cangkuList(cangkuCidIds+"");
+    if(selectors.length<20){
+        localMethod.cangkuForeach();
+    }
 
 
     var nexts = document.getElementsByClassName("next-page");

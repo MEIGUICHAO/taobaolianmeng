@@ -69,21 +69,25 @@
 
         <Button
             android:layout_weight="1"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="back" />
         <Button
             android:layout_weight="1"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="市场" />
         <Button
             android:layout_weight="1"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="搜索" />
         <Button
             android:layout_weight="1"
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="go" />
@@ -91,6 +95,7 @@
             android:id="@+id/btn_back"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:text="标题" />
 

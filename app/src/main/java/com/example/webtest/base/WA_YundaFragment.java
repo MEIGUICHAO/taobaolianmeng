@@ -62,11 +62,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private boolean pageNextStop = false;
     private boolean PU_SHOP_LIST = true;
     protected boolean IS_CANGKU = false;
-    private ArrayList<String> xiajiaRecordList;
-    private int shangjiaIndex;
+	protected ArrayList<String> xiajiaRecordList;
+	protected int shangjiaIndex;
+	protected boolean NEXT_PAGE_END = false;
 
 
-    protected enum SearchType
+	protected enum SearchType
 	{
 		All, Shop, Mall
 	}
@@ -387,9 +388,16 @@ public class WA_YundaFragment extends WA_BaseFragment
             for (int i = 0; i < split.length; i++) {
                 xiajiaRecordList.add(split[i]);
             }
-            goEditDetailsUrl();
 		}
 
+
+
+		@JavascriptInterface
+		public void cangkuForeach()
+		{
+			NEXT_PAGE_END = true;
+			goEditDetailsUrl();
+		}
 
 
 		@JavascriptInterface
@@ -588,6 +596,14 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		@JavascriptInterface
+		public void editByOriginalTitle(String originalTitle)
+		{
+
+			handlerJs("shangjiaAfterEditTitle(\"" + originalTitle + "\")",1000);
+
+		}
+
+		@JavascriptInterface
 		public void noSame()
 		{
 			getActivity().runOnUiThread(new Runnable() {
@@ -702,7 +718,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 	}
 
-    private void goEditDetailsUrl() {
+	protected void goEditDetailsUrl() {
 
 		String itemId = xiajiaRecordList.get(shangjiaIndex);
 		final String url = Constant.uploadUrl_CATID + itemId.split("@@@")[1] + Constant.uploadUrl_ITEMID + itemId.split("@@@")[0];
@@ -832,7 +848,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 				// “旋转”的拼音
 //				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N,KeyEvent.KEYCODE_SPACE,KeyEvent.KEYCODE_Z,KeyEvent.KEYCODE_H,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N};
-				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_DEL};
+				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL};
 				for( int keycode : keyCodeArray ){
 					try {
 						typeIn( keycode );
