@@ -603,15 +603,15 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 					// “旋转”的拼音
 //				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N,KeyEvent.KEYCODE_SPACE,KeyEvent.KEYCODE_Z,KeyEvent.KEYCODE_H,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N};
-					int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL};
+					int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_DEL};
 					for( int keycode : keyCodeArray ){
 						try {
 							typeIn( keycode );
-							Thread.sleep( 1000 );
-							handlerJs("shangjiaAfterEditTitle();", 3000);
+							Thread.sleep( 200 );
+							handlerJs("shangjiaAfterEditTitle();", 1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
-							handlerJs("shangjiaAfterEditTitle();", 3000);
+							handlerJs("shangjiaAfterEditTitle();", 1000);
 						}
 					}
 				}
