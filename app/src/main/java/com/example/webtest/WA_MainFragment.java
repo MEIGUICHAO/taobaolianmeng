@@ -41,6 +41,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private boolean FIRST_TIME = true;
 	private String before10secUrl;
 	private int oldindex;
+	private boolean IS_INIT_LOAD = true;
+
 
 	/**  通过静态方法实例化自动化Fragment*/
 	public static void start(Activity mContext, int containerRsID, WA_Parameters parameter)
@@ -192,26 +194,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btnRefresh.setOnClickListener(this);
 
 
-		btnBack.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				listWeb.goBack();
-			}
-		});
+		btnBack.setOnClickListener(this);
 		btnSearch.setOnClickListener(this);
 		btnGosearch.setOnClickListener(this);
-		btnGosearchworld.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				goSearchWord();
-			}
-		});
-		btnGetchecked.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				goGetChecked();
-			}
-		});
+		btnGosearchworld.setOnClickListener(this);
+		btnGetchecked.setOnClickListener(this);
 		btn_check.setOnClickListener(this);
 		btn_biao1.setOnClickListener(this);
 		btn_str_result.setOnClickListener(this);
@@ -220,6 +207,16 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+            case R.id.btn_back:
+            	handlerJs("editTitleAndShangjiaNow();");
+                break;
+            case R.id.btn_getchecked:
+            	handlerJs("jsCangkuGoNextPage();");
+                break;
+            case R.id.btn_gosearchworld:
+				IS_CANGKU = true;
+				listWeb.loadUrl(Constant.CANGKU_URL);
+                break;
 			case R.id.btn_refresh:
 				String url = initBeginUrl();
                 spShopRecordKey = url + Constant.SHOP_LIST;
@@ -317,7 +314,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	}
 
 	private String initBeginUrl() {
-		beginUrl = listWeb.getUrl();
+		if (TextUtils.isEmpty(beginUrl)) {
+			beginUrl = listWeb.getUrl();
+		}
 		return beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
 	}
 
@@ -331,19 +330,27 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 			before10secUrl = url;
 			oldindex = searIndex;
-
-			handler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					if (oldindex == searIndex && before10secUrl.equals(url)) {
-						foreachSearchTBLM();
+			if (!IS_CANGKU&&!IS_INIT_LOAD) {
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						if (oldindex == searIndex && before10secUrl.equals(url)) {
+							foreachSearchTBLM();
+						}
 					}
-				}
-			}, 20000);
+				}, 20000);
+			}
+			if (IS_INIT_LOAD) {
+				IS_INIT_LOAD = false;
+			}
 
 
 
 			switch (SwitchMethod) {
+				case Constant.EDIT_DETAIL:
+					SwitchMethod = -1;
+					handlerJs("editTitleAndShangjiaNow();", 5000);
+					break;
 				case Constant.NEXT_PAGE_LOAD:
                     SwitchMethod = -1;
 //                    String name = taoNameList.get(searIndex);

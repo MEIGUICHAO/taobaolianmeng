@@ -61,6 +61,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private ArrayList<String> mTitleList;
 	private boolean pageNextStop = false;
     private boolean PU_SHOP_LIST = true;
+    protected boolean IS_CANGKU = false;
+    private ArrayList<String> xiajiaRecordList;
+    private int shangjiaIndex;
+
 
     protected enum SearchType
 	{
@@ -372,6 +376,23 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 
 		@JavascriptInterface
+		public void cangkuList(String cangkuids)
+		{
+
+            if (null == xiajiaRecordList || xiajiaRecordList.size() < 1) {
+                xiajiaRecordList = new ArrayList<String>();
+                shangjiaIndex = 0;
+            }
+            final String[] split = cangkuids.split("###");
+            for (int i = 0; i < split.length; i++) {
+                xiajiaRecordList.add(split[i]);
+            }
+            goEditDetailsUrl();
+		}
+
+
+
+		@JavascriptInterface
 		public void showKeyboard()
 		{
 //			listWeb.requestFocus(View.FOCUS_DOWN);
@@ -681,7 +702,21 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 	}
 
-	protected void foreachSearchTBLM() {
+    private void goEditDetailsUrl() {
+
+		String itemId = xiajiaRecordList.get(shangjiaIndex);
+		final String url = Constant.uploadUrl_CATID + itemId.split("@@@")[1] + Constant.uploadUrl_ITEMID + itemId.split("@@@")[0];
+
+		getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SwitchMethod = Constant.EDIT_DETAIL;
+                listWeb.loadUrl(url);
+            }
+        });
+    }
+
+    protected void foreachSearchTBLM() {
 		getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
