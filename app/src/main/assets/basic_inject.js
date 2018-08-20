@@ -99,6 +99,8 @@ function jsCangkuGoNextPage(){
         var as = nexts[0].getElementsByTagName("a");
         localMethod.JI_LOG(as[0].innerText)
         as[0].click();
+    } else {
+        localMethod.cangkuForeach();
     }
 
 }
