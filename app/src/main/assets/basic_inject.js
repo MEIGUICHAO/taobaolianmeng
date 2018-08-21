@@ -211,6 +211,7 @@ function find3WaySameStyle(){
             for(var j=0;j<titls.length;j++){
                 var position =links.length;
                 titles[position] = titls[j].innerText;
+                localMethod.JI_LOG(titles[position]);
             }
          }
         localMethod.JI_LOG("find3WaySameStyle~~~~~~~~");

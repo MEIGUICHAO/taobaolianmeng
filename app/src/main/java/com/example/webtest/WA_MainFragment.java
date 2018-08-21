@@ -370,11 +370,16 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					link3WayIndex++;
 					if (link3WayIndex < links3WayList.size()) {
 						loadUrl(links3WayList.get(link3WayIndex));
+					} else if (shopIndex < shops.length) {
+						SwitchMethod = Constant.DEFAULT_WAY;
+						loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
 					} else {
 						SwitchMethod = -1;
 					}
 					break;
 				case Constant.DEFAULT_WAY:
+				case Constant.SALES_DESC:
+				case Constant.RENQI_WAY:
 					handlerJs("find3WaySameStyle();", 1000);
 					break;
 				case Constant.CANGKU_NEXT_PAGE_LOAD:

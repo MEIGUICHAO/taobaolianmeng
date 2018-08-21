@@ -44,7 +44,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected String[] shops;
 	protected int shopIndex = 0;
 	protected int index = 0;
-	protected int toPage = 1;
+	protected int toPage = 13;
 	protected int randomtime = 1000;
 	protected String resultStr = "";
 	protected String rcresultStr = "";
@@ -650,11 +650,22 @@ public class WA_YundaFragment extends WA_BaseFragment
 							break;
 						case Constant.RENQI_WAY:
 							SwitchMethod = Constant.WAY3_SAMESTYTLE;
-							Set set = new HashSet(titles3WayList);
+							LogUtil.e("links3WayList b4:" + links3WayList.size());
+							Set set = new HashSet(links3WayList);
 							ArrayList<String> tempList = new ArrayList(set);
-							titles3WayList = tempList;
+							links3WayList = tempList;
 							link3WayIndex = 0;
+							String linksCache = "";
+							for (int i = 0; i < links3WayList.size(); i++) {
+								if (TextUtils.isEmpty(linksCache)) {
+									linksCache = links3WayList.get(i);
+								} else {
+									linksCache = linksCache + "###" + links3WayList.get(i);
+								}
+							}
+							SharedPreferencesUtils.putValue(getActivity(),Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]),linksCache);
 							shopIndex++;
+							LogUtil.e("links3WayList:" + links3WayList.size());
 							loadUrl(links3WayList.get(link3WayIndex));
 							break;
 					}
