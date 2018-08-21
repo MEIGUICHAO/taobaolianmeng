@@ -183,6 +183,66 @@ function jsGoSameUrl(array){
 
 
 
+
+
+
+function findSameStyleBy3Way(){
+    try{
+        var rowTitle = document.getElementsByClassName("row row-2 title");
+        var nids = document.getElementsByClassName("J_ClickStat");
+        var titles=new Array();
+        for(var i=0;i<nids.length;i++){
+            var titls = rowTitle[i].getElementsByClassName("H");
+            for(var i=0;i<titls.length;i++){
+                titles[accAdd(titls.length,i)] = titls[i].innerText;
+             }
+        }
+
+
+
+        localMethod.getSplitTitle(titles);
+
+        var as = document.getElementsByTagName("a");
+        var text = "";
+        var tongkuan = false;
+        var notBreak = true;
+        var nid = nids[0].getAttribute("trace-pid");
+        var link = "https://s.taobao.com/search?type=samestyle&app=i2i&rec_type=1&uniqpid="+nid+"&sort=sale-desc";
+        localMethod.goSameUrl(link);
+
+//                            localMethod.JI_LOG("11111111");
+//
+//        for(var i=0;i<as.length;i++){
+//            if(tongkuan){
+//                if(as[i].innerText=="找同款"&&as[i]!=""){
+//                                            localMethod.JI_LOG("33333333");
+//
+//                    var link = as[i]+"&sort=sale-desc";
+//                    localMethod.JI_LOG(link);
+//
+//                    localMethod.goSameUrl(link);
+//                    notBreak = false;
+//                    break;
+//                }
+//            } else if(name==as[i].innerText){
+//                                        localMethod.JI_LOG("22222222");
+//
+//                tongkuan = true;
+//            }
+//        }
+//        if(notBreak){
+//            localMethod.noSame();
+//        }
+
+    }catch(err){
+        localMethod.JI_LOG("error:"+err.message);
+        localMethod.noSame();
+    }
+
+//                    localMethod.noSame();
+}
+
+
 function findSameStyle(){
     try{
         var rowTitle = document.getElementsByClassName("row row-2 title");
@@ -233,6 +293,8 @@ function findSameStyle(){
 
 //                    localMethod.noSame();
 }
+
+
 
 //标题组合
 function titleCombination(){
@@ -322,6 +384,17 @@ function check(){
 }
 
 
+//减法函数
+function accSub(arg1,arg2){
+     var r1,r2,m,n;
+     try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+     try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+     m=Math.pow(10,Math.max(r1,r2));
+     //last modify by deeka
+     //动态控制精度长度
+     n=(r1>=r2)?r1:r2;
+     return ((arg2*m-arg1*m)/m).toFixed(n);
+}
 
 /**
  ** 加法函数，用来得到精确的加法结果

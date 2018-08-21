@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import com.example.webtest.base.Constant;
 import com.example.webtest.base.MyWebView;
+import com.example.webtest.base.Shops;
 import com.example.webtest.base.WA_YundaFragment;
 import com.example.webtest.io.LogUtil;
 import com.example.webtest.io.SharedPreferencesUtils;
@@ -38,7 +39,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private LocalMethod mLocalMethod;
 	private WA_Parameters parameter;
 	private String injectJS;
-	private boolean FIRST_TIME = true;
 	private String before10secUrl;
 	private int oldindex;
 	private boolean IS_INIT_LOAD = true;
@@ -71,7 +71,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			parameter = (WA_Parameters) bundle.getSerializable(ARG_CODE);
 		}
 		Resources res = getResources();
-		shops = res.getStringArray(R.array.classify);
+//		shops = res.getStringArray(R.array.classify);
 	}
 
 	@Override
@@ -219,6 +219,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				listWeb.loadUrl(Constant.CANGKU_URL);
                 break;
 			case R.id.btn_refresh:
+				FOREACH_MODE = false;
 				String url = initBeginUrl();
                 spShopRecordKey = url + Constant.SHOP_LIST;
                 if (btn_biao1.getText().toString().equals("缓存")) {
@@ -251,8 +252,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			    listWeb.reload();
 
 				break;
-			case R.id.btn_check:
-				findSameStyle();
+			case R.id.btn_check://遍历模式
+				btn_check.setBackgroundResource(android.R.color.holo_orange_light);
+				foreachShop();
 				break;
 			case R.id.btn_biao1:
                 if (btn_biao1.getText().toString().equals("缓存")) {
@@ -265,12 +267,17 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				foreachSearchTBLM();
 				break;
 			case R.id.btn_search:
-				String mUrl = initBeginUrl();
-				if (TextUtils.isEmpty(spRecordMinUrlKey)) {
-					spRecordMinUrlKey = mUrl+Constant.MIN_URL_RECORD;
-				}
-				if (TextUtils.isEmpty(minUrlShopNameRecordKey)) {
-					minUrlShopNameRecordKey = mUrl+Constant.MIN_NAME_RECORD;
+				if (FOREACH_MODE) {
+					spRecordMinUrlKey = md5Password(Shops.shops) + Constant.MIN_URL_RECORD;
+					minUrlShopNameRecordKey = md5Password(Shops.shops) + Constant.MIN_NAME_RECORD;
+				} else {
+					String mUrl = initBeginUrl();
+					if (TextUtils.isEmpty(spRecordMinUrlKey)) {
+						spRecordMinUrlKey = mUrl+Constant.MIN_URL_RECORD;
+					}
+					if (TextUtils.isEmpty(minUrlShopNameRecordKey)) {
+						minUrlShopNameRecordKey = mUrl+Constant.MIN_NAME_RECORD;
+					}
 				}
 				String[] minUrls = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey).split("###");
 				String urlResutl1 = "================================================" + "\n";
@@ -314,12 +321,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 	}
 
+
+
 	private String initBeginUrl() {
 		if (TextUtils.isEmpty(beginUrl)) {
 			beginUrl = listWeb.getUrl();
 		}
 		return beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
 	}
+
 
 	/** ListWebView加载完注入基本JS函数 */
 	private class MyListWebViewClient extends WebViewClient

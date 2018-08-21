@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="同款" />
+            android:text="遍历" />
         <Button
             android:id="@+id/btn_biao1"
             android:layout_weight="1"

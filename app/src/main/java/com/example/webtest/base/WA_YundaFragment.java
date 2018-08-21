@@ -39,6 +39,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private HashMap<String, Float> rcMap;
 	private HashMap<String, Float> titleMap;
 	protected String[] shops;
+	protected int shopIndex = 0;
 	protected int index = 0;
 	protected int toPage = 1;
 	protected int randomtime = 1000;
@@ -65,6 +66,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected ArrayList<String> xiajiaRecordList;
 	protected int shangjiaIndex;
 	protected boolean NEXT_PAGE_END = false;
+	protected boolean FOREACH_MODE;
+	protected boolean FIRST_TIME = true;
+
+
 
 
 	protected enum SearchType
@@ -781,9 +786,47 @@ public class WA_YundaFragment extends WA_BaseFragment
     }
 
     protected void foreachSearchTBLM() {
+		if (FOREACH_MODE) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+
+					if (PU_SHOP_LIST) {
+						String spShopRecord = "";
+						for (int i = 0; i <taoSearchList.size() ; i++) {
+							if (TextUtils.isEmpty(spShopRecordKey)) {
+								spShopRecord = taoSearchList.get(i);
+							} else {
+								spShopRecord = spShopRecord + "###" + taoSearchList.get(i);
+							}
+						}
+						SharedPreferencesUtils.putValue(getActivity(),spShopRecordKey,spShopRecord);
+						PU_SHOP_LIST = false;
+						currentPShopSize = taoSearchList.size();
+					}
+					if (searIndex < currentPShopSize) {
+						PU_SHOP_LIST = true;
+
+						SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
+						if (searIndex == currentPShopSize - 1) {
+							SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey, minUrlRecord);
+							SharedPreferencesUtils.putValue(getActivity(), minUrlShopNameRecordKey, minUrlShopNameRecord);
+						}
+						loadUrl(taoSearchList.get(searIndex));
+					} else if (shopIndex < shops.length) {
+						PU_SHOP_LIST = true;
+						searIndex = 0;
+						taoSearchList.clear();
+						foreachShop();
+					}
+				}
+			});
+			return;
+		}
 		getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+				LogUtil.e("~~~~~~~正常");
                 if (PU_SHOP_LIST) {
                     String spShopRecord = "";
                     for (int i = 0; i <taoSearchList.size() ; i++) {
@@ -808,6 +851,33 @@ public class WA_YundaFragment extends WA_BaseFragment
 
             }
         });
+	}
+
+	public void foreachShop() {
+		if (FIRST_TIME) {
+			FOREACH_MODE = true;
+			shops = Shops.shops.split("\n");
+			FIRST_TIME = false;
+			spRecordMinUrlKey = md5Password(Shops.shops) + Constant.MIN_URL_RECORD;
+			minUrlShopNameRecordKey = md5Password(Shops.shops) + Constant.MIN_NAME_RECORD;
+		}
+		String url = initForeachModeUrl();
+		LogUtil.e("~~~~~~~~~~url:\n"+url);
+		loadUrl(url);
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				handlerJs("tblmShopList();");
+			}
+		}, Constant.TBLM_WAIT_TIME);
+
+	}
+
+
+	private String initForeachModeUrl() {
+		beginUrl = Constant.SearchUrl+shops[shopIndex];
+		shopIndex++;
+		return beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
 	}
 
 	public int getWordCount(String s)
