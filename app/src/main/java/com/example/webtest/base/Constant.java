@@ -2,6 +2,14 @@ package com.example.webtest.base;
 
 public interface Constant {
 
+    String SEIZE_STR = "@@##$$%%^^";
+
+
+    String default_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR;
+    String salesDesc_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR+"&sort=sale-desc";
+    String renqi_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR+"&sort=renqi";
+
+
 
     int FIND_SAMESTYLE_FROM_TBLM = 0x1;
     int GO_SAMESTYLE_URL = 0x2;
@@ -41,5 +49,12 @@ public interface Constant {
     int CANGKU_NEXT_PAGE_LOAD = 0x5;
 
     int EDIT_DETAIL_COMPLETE = 0x6;
+
+    int DEFAULT_WAY = 0x7;
+
+    int SALES_DESC = 0x8;
+
+    int RENQI_WAY = 0x9;
+    int WAY3_SAMESTYTLE = 0x10;
 
 }

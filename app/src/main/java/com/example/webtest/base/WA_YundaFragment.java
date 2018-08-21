@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.webtest.io.LogUtil;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import static android.content.ContentValues.TAG;
 
@@ -68,8 +71,9 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected boolean NEXT_PAGE_END = false;
 	protected boolean FOREACH_MODE;
 	protected boolean FIRST_TIME = true;
-
-
+	protected ArrayList<String> titles3WayList;
+	protected ArrayList<String> links3WayList;
+	protected int link3WayIndex;
 
 
 	protected enum SearchType
@@ -628,6 +632,67 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		}
+
+		@JavascriptInterface
+		public void nextWay3Way()
+		{
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					switch (SwitchMethod) {
+						case Constant.DEFAULT_WAY:
+							SwitchMethod = Constant.SALES_DESC;
+							loadUrl(Constant.salesDesc_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+							break;
+						case Constant.SALES_DESC:
+							SwitchMethod = Constant.RENQI_WAY;
+							loadUrl(Constant.renqi_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+							break;
+						case Constant.RENQI_WAY:
+							SwitchMethod = Constant.WAY3_SAMESTYTLE;
+							Set set = new HashSet(titles3WayList);
+							ArrayList<String> tempList = new ArrayList(set);
+							titles3WayList = tempList;
+							link3WayIndex = 0;
+							shopIndex++;
+							loadUrl(links3WayList.get(link3WayIndex));
+							break;
+					}
+				}
+			});
+		}
+
+
+		@JavascriptInterface
+		public void get3WaySplitTitle(String[] array)
+		{
+			if (null == titles3WayList) {
+				titles3WayList = new ArrayList<String>();
+			}
+			if (SwitchMethod == Constant.DEFAULT_WAY) {
+				titles3WayList.clear();
+			}
+			for (int i = 0; i < array.length; i++) {
+				titles3WayList.add(array[i]);
+			}
+		}
+
+		@JavascriptInterface
+		public void go3WaySameUrl(String[] array)
+		{
+			if (null == links3WayList) {
+				links3WayList = new ArrayList<String>();
+			}
+
+			if (SwitchMethod == Constant.DEFAULT_WAY) {
+				links3WayList.clear();
+			}
+			for (int i = 0; i < array.length; i++) {
+				links3WayList.add(array[i]);
+			}
+		}
+
+
 
 		@JavascriptInterface
 		public void getSplitTitle(String[] array)

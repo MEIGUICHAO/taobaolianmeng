@@ -58,9 +58,15 @@ public class WA_BaseFragment extends Fragment
 		return js;
 	}
 
-	protected void loadUrl( String url)
+	protected void loadUrl(final String url)
 	{
-		listWeb.loadUrl(url);
+
+		getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				listWeb.loadUrl(url);
+			}
+		});
 	}
 
 	/** Load JS代码，然后会自动执行doAutoTest()里的内容 */

@@ -186,60 +186,44 @@ function jsGoSameUrl(array){
 
 
 
-function findSameStyleBy3Way(){
+function find3WaySameStyle(){
     try{
+        localMethod.JI_LOG("find3WaySameStyle~~~~~~~~");
         var rowTitle = document.getElementsByClassName("row row-2 title");
         var nids = document.getElementsByClassName("J_ClickStat");
         var titles=new Array();
+        var links=new Array();
+                localMethod.JI_LOG("nids~~~~~~~~："+nids.length);
+
         for(var i=0;i<nids.length;i++){
-            var titls = rowTitle[i].getElementsByClassName("H");
-            for(var i=0;i<titls.length;i++){
-                titles[accAdd(titls.length,i)] = titls[i].innerText;
+            localMethod.JI_LOG("find3WaySameStyle:"+i);
+            var nid = nids[i].getAttribute("trace-pid");
+             if(nid!=""){
+                var position =links.length;
+                var mlink =  "https://s.taobao.com/search?type=samestyle&app=i2i&rec_type=1&uniqpid="+nid+"&sort=sale-desc";
+                links[position] =mlink;
+                localMethod.JI_LOG(links[position]);
              }
         }
 
+        for(var i=0;i<rowTitle.length;i++){
+            var titls = rowTitle[i].getElementsByClassName("H");
+            for(var j=0;j<titls.length;j++){
+                var position =links.length;
+                titles[position] = titls[j].innerText;
+            }
+         }
+        localMethod.JI_LOG("find3WaySameStyle~~~~~~~~");
 
+        localMethod.get3WaySplitTitle(titles);
+        localMethod.go3WaySameUrl(links);
+        localMethod.nextWay3Way();
 
-        localMethod.getSplitTitle(titles);
-
-        var as = document.getElementsByTagName("a");
-        var text = "";
-        var tongkuan = false;
-        var notBreak = true;
-        var nid = nids[0].getAttribute("trace-pid");
-        var link = "https://s.taobao.com/search?type=samestyle&app=i2i&rec_type=1&uniqpid="+nid+"&sort=sale-desc";
-        localMethod.goSameUrl(link);
-
-//                            localMethod.JI_LOG("11111111");
-//
-//        for(var i=0;i<as.length;i++){
-//            if(tongkuan){
-//                if(as[i].innerText=="找同款"&&as[i]!=""){
-//                                            localMethod.JI_LOG("33333333");
-//
-//                    var link = as[i]+"&sort=sale-desc";
-//                    localMethod.JI_LOG(link);
-//
-//                    localMethod.goSameUrl(link);
-//                    notBreak = false;
-//                    break;
-//                }
-//            } else if(name==as[i].innerText){
-//                                        localMethod.JI_LOG("22222222");
-//
-//                tongkuan = true;
-//            }
-//        }
-//        if(notBreak){
-//            localMethod.noSame();
-//        }
 
     }catch(err){
         localMethod.JI_LOG("error:"+err.message);
-        localMethod.noSame();
     }
 
-//                    localMethod.noSame();
 }
 
 

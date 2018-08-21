@@ -42,6 +42,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private String before10secUrl;
 	private int oldindex;
 	private boolean IS_INIT_LOAD = true;
+	private boolean IS_3WAT;
 
 
 	/**  通过静态方法实例化自动化Fragment*/
@@ -206,9 +207,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 	@Override
 	public void onClick(View v) {
+		IS_3WAT = false;
 		switch (v.getId()) {
-            case R.id.btn_back:
-            	handlerJs("editTitleAndShangjiaNow();");
+            case R.id.btn_back://3way
+				IS_3WAT = true;
+				shopIndex = 0;
+				shops = Shops.shops.split("\n");
+				SwitchMethod = Constant.DEFAULT_WAY;
+				loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
                 break;
             case R.id.btn_getchecked:
 				SwitchMethod = Constant.CANGKU_NEXT_PAGE_LOAD;
@@ -342,7 +348,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 			before10secUrl = url;
 			oldindex = searIndex;
-			if (!IS_CANGKU&&!IS_INIT_LOAD) {
+			if (!IS_CANGKU&&!IS_INIT_LOAD&&!IS_3WAT) {
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
@@ -359,6 +365,18 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
 			switch (SwitchMethod) {
+				case Constant.WAY3_SAMESTYTLE:
+
+					link3WayIndex++;
+					if (link3WayIndex < links3WayList.size()) {
+						loadUrl(links3WayList.get(link3WayIndex));
+					} else {
+						SwitchMethod = -1;
+					}
+					break;
+				case Constant.DEFAULT_WAY:
+					handlerJs("find3WaySameStyle();", 1000);
+					break;
 				case Constant.CANGKU_NEXT_PAGE_LOAD:
                     if (NEXT_PAGE_END) {
                         SwitchMethod = -1;

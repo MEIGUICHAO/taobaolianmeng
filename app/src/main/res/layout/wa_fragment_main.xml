@@ -95,9 +95,8 @@
             android:id="@+id/btn_back"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-            android:text="标题" />
+            android:text="3way" />
 
 
     </LinearLayout>
