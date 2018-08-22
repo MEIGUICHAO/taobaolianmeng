@@ -310,38 +310,43 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	}
 
 	private void foreachMinurlResult(String[] minUrls) {
-		String urlResutl1 = "================================================" + "\n";
-		String urlResutl2 = "================================================" + "\n";
-		String urlResutl3 = "================================================" + "\n";
-		String urlResutl4 = "================================================" + "\n";
-		String urlResutl5 = "================================================" + "\n";
-		String urlResutl6 = "================================================" + "\n";
+		ArrayList<String> minUrlsResultList = new ArrayList<String>();
+		ArrayList<Integer> numsList = new ArrayList<Integer>();
+		for (int i = 0; i < 100; i++) {
+			if (i == 0) {
+				numsList.add(50);
+			} else {
+				numsList.add(numsList.get(i - 1) + 50);
+			}
+		}
+
+		String temple = "================================================" + "\n";
 		for (int i = 0; i < minUrls.length; i++) {
-            if (i < 50) {
-                urlResutl1 = urlResutl1 + minUrls[i] + "\n";
-            }
-            if (i >= 50 && i < 100) {
-                urlResutl2 = urlResutl2 + minUrls[i] + "\n";
-            }
-            if (i >= 100 && i < 150) {
-                urlResutl3 = urlResutl3 + minUrls[i] + "\n";
-            }
-            if (i >= 150 && i < 200) {
-                urlResutl4 = urlResutl4 + minUrls[i] + "\n";
-            }
-            if (i >= 200 && i < 250) {
-                urlResutl5 = urlResutl5 + minUrls[i] + "\n";
-            }
-            if (i >= 250 && i < 300) {
-                urlResutl6 = urlResutl6 + minUrls[i] + "\n";
-            }
+			int one = i / 50;
+
+			if (one > 0) {
+				int two = one + 1;
+				if (i == one * 50) {
+					temple = "================================================" + "\n";
+				}
+				if (i >= one * 50 && i < two * 50) {
+					temple = temple + minUrls[i] + "\n";
+
+					if (i == two * 50 - 1) {
+						minUrlsResultList.add(temple);
+					}
+				}
+			} else if (one==0) {
+				temple = temple + minUrls[i] + "\n";
+				if (i == numsList.get(one) - 1) {
+					minUrlsResultList.add(temple);
+				}
+			}
         }
-		LogUtil.e(urlResutl1);
-		LogUtil.e(urlResutl2);
-		LogUtil.e(urlResutl3);
-		LogUtil.e(urlResutl4);
-		LogUtil.e(urlResutl5);
-		LogUtil.e(urlResutl6);
+
+		for (int i = 0; i < minUrlsResultList.size(); i++) {
+			LogUtil.e(minUrlsResultList.get(i));
+		}
 	}
 
 
