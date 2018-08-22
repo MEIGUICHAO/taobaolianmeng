@@ -332,13 +332,22 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				if (i >= one * 50 && i < two * 50) {
 					temple = temple + minUrls[i] + "\n";
 
-					if (i == two * 50 - 1) {
+					if (minUrls.length < two * 50 - 1) {
+						if (i == minUrls.length - 1) {
+							minUrlsResultList.add(temple);
+						}
+					} else if (i == two * 50 - 1) {
 						minUrlsResultList.add(temple);
 					}
 				}
 			} else if (one==0) {
 				temple = temple + minUrls[i] + "\n";
-				if (i == numsList.get(one) - 1) {
+				if (minUrls.length < numsList.get(one) - 1) {
+					if (i == minUrls.length - 1) {
+						minUrlsResultList.add(temple);
+					}
+
+				} else if (i == numsList.get(one) - 1) {
 					minUrlsResultList.add(temple);
 				}
 			}
@@ -347,6 +356,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		for (int i = 0; i < minUrlsResultList.size(); i++) {
 			LogUtil.e(minUrlsResultList.get(i));
 		}
+
 	}
 
 

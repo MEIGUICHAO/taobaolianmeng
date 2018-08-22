@@ -858,12 +858,21 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void after3WaySameResult()
 		{
 			if (SameLoadFinish) {
-				SameLoadFinish = false;
 				link3WayIndex++;
 				if (link3WayIndex < links3WayList.size()) {
 					LogUtil.e("link3WayIndex:" + link3WayIndex);
 					SwitchMethod = Constant.WAY3_SAMESTYTLE;
-					loadUrl(links3WayList.get(link3WayIndex));
+
+					SameLoadFinish = false;
+					SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+
+					handler.postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							loadUrl(links3WayList.get(link3WayIndex));
+						}
+					}, 1500);
+
 //						handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
 				} else {
 					if (shopIndex < shops.length ) {
