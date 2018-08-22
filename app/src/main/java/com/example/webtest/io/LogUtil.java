@@ -104,11 +104,11 @@ public class LogUtil {
             int end = LOG_MAXLENGTH;
             for (int i = 0; i < 100; i++) {
                 if (strLength > end) {
-                    Log.e("" + i, msg.substring(start, end));
+                    Log.e("tblm" + i, msg.substring(start, end));
                     start = end;
                     end = end + LOG_MAXLENGTH;
                 } else {
-                    Log.e("" + i, msg.substring(start, strLength));
+                    Log.e("tblm" + i, msg.substring(start, strLength));
                     break;
                 }
             }

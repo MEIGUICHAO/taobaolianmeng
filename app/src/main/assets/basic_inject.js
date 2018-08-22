@@ -49,6 +49,16 @@ function showKeyboardAdfterShangjia(title){
 
 }
 
+function showKeyboard3Way(){
+
+    var titles = document.getElementsByClassName("search-combobox-input");
+//    var titleBeginName = titles[0].getElementsByTagName("input");
+    titles[0].focus();
+
+    localMethod.showKeyboard3Way();
+
+}
+
 function shangjiaAfterEditTitle(){
 
     var checkboxs = document.getElementsByClassName("checkbox-wrap");
@@ -180,43 +190,53 @@ function jsGoSameUrl(array){
 
 
 }
+//search-popupmenu-content search-menu-content
+//search-menuitem ks-component-child563
+//item-wrapper
+//item-text
+
+function findKeyShopName(){
+    var items = document.getElementsByClassName("item-wrapper");
+    localMethod.JI_LOG("items:"+items.length);
+    var itemArray = new Array();
+    for(var i=0;i<items.length;i++){
+        var keyShopName = items[i].getAttribute("data-key").replace("q=","").split("&suggest=")[0];
+        localMethod.JI_LOG("keyShopName:"+keyShopName);
+        itemArray[i] = keyShopName;
+    }
+    localMethod.afterShopName(itemArray);
 
 
-
-
+}
 
 
 function find3WaySameStyle(){
     try{
-        localMethod.JI_LOG("find3WaySameStyle~~~~~~~~");
         var rowTitle = document.getElementsByClassName("row row-2 title");
         var nids = document.getElementsByClassName("J_ClickStat");
         var titles=new Array();
         var links=new Array();
-                localMethod.JI_LOG("nids~~~~~~~~："+nids.length);
 
         for(var i=0;i<nids.length;i++){
-            localMethod.JI_LOG("find3WaySameStyle:"+i);
             var nid = nids[i].getAttribute("trace-pid");
              if(nid!=""){
                 var position =links.length;
                 var mlink =  "https://s.taobao.com/search?type=samestyle&app=i2i&rec_type=1&uniqpid="+nid+"&sort=sale-desc";
                 links[position] =mlink;
-                localMethod.JI_LOG(links[position]);
              }
         }
 
-        for(var i=0;i<rowTitle.length;i++){
-            var titls = rowTitle[i].getElementsByClassName("H");
-            for(var j=0;j<titls.length;j++){
-                var position =links.length;
-                titles[position] = titls[j].innerText;
-                localMethod.JI_LOG(titles[position]);
-            }
-         }
+//        for(var i=0;i<rowTitle.length;i++){
+//            var titls = rowTitle[i].getElementsByClassName("H");
+//            for(var j=0;j<titls.length;j++){
+//                var position =links.length;
+//                titles[position] = titls[j].innerText;
+//                localMethod.JI_LOG(titles[position]);
+//            }
+//         }
         localMethod.JI_LOG("find3WaySameStyle~~~~~~~~");
 
-        localMethod.get3WaySplitTitle(titles);
+//        localMethod.get3WaySplitTitle(titles);
         localMethod.go3WaySameUrl(links);
         localMethod.nextWay3Way();
 

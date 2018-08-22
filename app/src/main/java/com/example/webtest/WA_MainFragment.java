@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -212,6 +213,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             case R.id.btn_back://3way
 				IS_3WAT = true;
 				shopIndex = 0;
+				allSameList = new ArrayList<String>();
 				shops = Shops.shops.split("\n");
 				SwitchMethod = Constant.DEFAULT_WAY;
 				loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
@@ -331,7 +333,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 	private String initBeginUrl() {
 		if (TextUtils.isEmpty(beginUrl)) {
-			beginUrl = listWeb.getUrl();
+			beginUrl = listWeb.getUrl().replace("&toPage=1", "");
 		}
 		return beginUrl + "&userType=0&jpmj=1&" + Constant.FILTER + "&level=1" + "&toPage=" + toPage + "&perPageSize=100";
 	}
@@ -345,6 +347,12 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		{
 			view.loadUrl("javascript:" + injectJS);
 			LogUtil.e("SwitchMethod:" + SwitchMethod);
+			try {
+				LogUtil.e("shopName:" + shops[shopIndex]);
+			} catch (Exception e) {
+				LogUtil.e(e.toString());
+			}
+
 
 			before10secUrl = url;
 			oldindex = searIndex;
@@ -368,19 +376,25 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				case Constant.WAY3_SAMESTYTLE:
 
 					link3WayIndex++;
-					if (link3WayIndex < links3WayList.size()) {
+					if (link3WayIndex < 2) {
+//					if (link3WayIndex < links3WayList.size()) {
 						loadUrl(links3WayList.get(link3WayIndex));
 					} else if (shopIndex < shops.length) {
 						SwitchMethod = Constant.DEFAULT_WAY;
 						loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-					} else {
+					} else  {
 						SwitchMethod = -1;
 					}
 					break;
 				case Constant.DEFAULT_WAY:
 				case Constant.SALES_DESC:
 				case Constant.RENQI_WAY:
-					handlerJs("find3WaySameStyle();", 1000);
+					if (SwitchMethod == Constant.DEFAULT_WAY) {
+						handlerJs("showKeyboard3Way();", 1000);
+					} else {
+
+						handlerJs("find3WaySameStyle();", 1000);
+					}
 					break;
 				case Constant.CANGKU_NEXT_PAGE_LOAD:
                     if (NEXT_PAGE_END) {

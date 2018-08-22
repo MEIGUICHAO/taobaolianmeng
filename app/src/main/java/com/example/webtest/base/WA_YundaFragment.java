@@ -16,6 +16,7 @@ import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -64,8 +65,8 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 	private ArrayList<String> mTitleList;
 	private boolean pageNextStop = false;
-    private boolean PU_SHOP_LIST = true;
-    protected boolean IS_CANGKU = false;
+	private boolean PU_SHOP_LIST = true;
+	protected boolean IS_CANGKU = false;
 	protected ArrayList<String> xiajiaRecordList;
 	protected int shangjiaIndex;
 	protected boolean NEXT_PAGE_END = false;
@@ -74,6 +75,8 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected ArrayList<String> titles3WayList;
 	protected ArrayList<String> links3WayList;
 	protected int link3WayIndex;
+	protected ArrayList<String> allSameList;
+
 
 
 	protected enum SearchType
@@ -389,14 +392,14 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void cangkuList(String cangkuids)
 		{
 
-            if (null == xiajiaRecordList || xiajiaRecordList.size() < 1) {
-                xiajiaRecordList = new ArrayList<String>();
-                shangjiaIndex = 0;
-            }
-            final String[] split = cangkuids.split("###");
-            for (int i = 0; i < split.length; i++) {
-                xiajiaRecordList.add(split[i]);
-            }
+			if (null == xiajiaRecordList || xiajiaRecordList.size() < 1) {
+				xiajiaRecordList = new ArrayList<String>();
+				shangjiaIndex = 0;
+			}
+			final String[] split = cangkuids.split("###");
+			for (int i = 0; i < split.length; i++) {
+				xiajiaRecordList.add(split[i]);
+			}
 		}
 
 
@@ -632,6 +635,59 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		}
+		@JavascriptInterface
+		public void showKeyboard3Way()
+		{
+
+			new Thread( new Runnable( ) {
+				@Override
+				public void run() {
+//					try {
+//						Thread.sleep( 500 );
+//					} catch (InterruptedException e1) {
+//						e1.printStackTrace();
+//					}
+					int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_DEL};
+					for (int i = 0; i < keyCodeArray.length; i++) {
+						try {
+							typeIn(keyCodeArray[i]);
+							if (i == keyCodeArray.length - 1) {
+								handler.postDelayed(new Runnable() {
+									@Override
+									public void run() {
+										handlerJs("findKeyShopName();");
+									}
+								}, 1200);
+
+							} else {
+								Thread.sleep(200);
+							}
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+							if (i == keyCodeArray.length - 1) {
+//								handlerJs("shangjiaAfterEditTitle();", 1000);
+							}
+						}
+					}
+				}
+			}).start( );
+
+
+		}
+
+		@JavascriptInterface
+		public void afterShopName(String[] arry){
+
+			LogUtil.e("afterShopName:" + arry.length);
+			for (int i = 0; i < arry.length; i++) {
+				String[] split = URLDecoderString(arry[i]).split(" ");
+				for (int j = 0; j < split.length; j++) {
+					LogUtil.e("afterShopName:" + split[j]);
+				}
+
+			}
+			handlerJs("find3WaySameStyle();", 1000);
+		}
 
 		@JavascriptInterface
 		public void nextWay3Way()
@@ -650,7 +706,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 							break;
 						case Constant.RENQI_WAY:
 							SwitchMethod = Constant.WAY3_SAMESTYTLE;
-							LogUtil.e("links3WayList b4:" + links3WayList.size());
+
 							Set set = new HashSet(links3WayList);
 							ArrayList<String> tempList = new ArrayList(set);
 							links3WayList = tempList;
@@ -666,7 +722,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 							SharedPreferencesUtils.putValue(getActivity(),Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]),linksCache);
 							shopIndex++;
 							LogUtil.e("links3WayList:" + links3WayList.size());
-							loadUrl(links3WayList.get(link3WayIndex));
+							if (links3WayList.size() > 0) {
+								loadUrl(links3WayList.get(link3WayIndex));
+							} else {
+								SwitchMethod = Constant.DEFAULT_WAY;
+								loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+							}
 							break;
 					}
 				}
@@ -691,6 +752,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 		@JavascriptInterface
 		public void go3WaySameUrl(String[] array)
 		{
+			LogUtil.e("links3WayList b4:" + array.length);
 			if (null == links3WayList) {
 				links3WayList = new ArrayList<String>();
 			}
@@ -699,7 +761,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 				links3WayList.clear();
 			}
 			for (int i = 0; i < array.length; i++) {
-				links3WayList.add(array[i]);
+				allSameList.add(array[i]);
+				HashSet set = new HashSet(allSameList);
+				if (set.size() == allSameList.size()) {
+					links3WayList.add(array[i]);
+				} else {
+					allSameList = new ArrayList<String>(set);
+				}
 			}
 		}
 
@@ -763,11 +831,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void getMinPricesUrl(String url,String name)
 		{
 			if (!minUrlRecord.contains(url)) {
-                if (TextUtils.isEmpty(minUrlRecord)) {
-                    minUrlRecord = url;
-                } else {
-                    minUrlRecord = minUrlRecord + "###" + url;
-                }
+				if (TextUtils.isEmpty(minUrlRecord)) {
+					minUrlRecord = url;
+				} else {
+					minUrlRecord = minUrlRecord + "###" + url;
+				}
 				LogUtil.e(Constant.TBLMTAG + "minUrl" + "\n" + url);
 
 
@@ -853,15 +921,15 @@ public class WA_YundaFragment extends WA_BaseFragment
 		final String url = Constant.uploadUrl_CATID + itemId.split("@@@")[1] + Constant.uploadUrl_ITEMID + itemId.split("@@@")[0];
 
 		getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                SwitchMethod = Constant.EDIT_DETAIL;
-                listWeb.loadUrl(url);
-            }
-        });
-    }
+			@Override
+			public void run() {
+				SwitchMethod = Constant.EDIT_DETAIL;
+				listWeb.loadUrl(url);
+			}
+		});
+	}
 
-    protected void foreachSearchTBLM() {
+	protected void foreachSearchTBLM() {
 		if (FOREACH_MODE) {
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
@@ -900,22 +968,22 @@ public class WA_YundaFragment extends WA_BaseFragment
 			return;
 		}
 		getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+			@Override
+			public void run() {
 				LogUtil.e("~~~~~~~正常");
-                if (PU_SHOP_LIST) {
-                    String spShopRecord = "";
-                    for (int i = 0; i <taoSearchList.size() ; i++) {
-                        if (TextUtils.isEmpty(spShopRecordKey)) {
-                            spShopRecord = taoSearchList.get(i);
-                        } else {
-                            spShopRecord = spShopRecord + "###" + taoSearchList.get(i);
-                        }
-                    }
-                    SharedPreferencesUtils.putValue(getActivity(),spShopRecordKey,spShopRecord);
-                    PU_SHOP_LIST = false;
+				if (PU_SHOP_LIST) {
+					String spShopRecord = "";
+					for (int i = 0; i <taoSearchList.size() ; i++) {
+						if (TextUtils.isEmpty(spShopRecordKey)) {
+							spShopRecord = taoSearchList.get(i);
+						} else {
+							spShopRecord = spShopRecord + "###" + taoSearchList.get(i);
+						}
+					}
+					SharedPreferencesUtils.putValue(getActivity(),spShopRecordKey,spShopRecord);
+					PU_SHOP_LIST = false;
 					currentPShopSize = taoSearchList.size();
-                }
+				}
 				if (searIndex < currentPShopSize) {
 					SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
 					if (searIndex == currentPShopSize - 1) {
@@ -925,8 +993,8 @@ public class WA_YundaFragment extends WA_BaseFragment
 					loadUrl(taoSearchList.get(searIndex));
 				}
 
-            }
-        });
+			}
+		});
 	}
 
 	public void foreachShop() {
@@ -975,19 +1043,19 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private void sortMap(Map map,String str) {
 		List<Map.Entry<String,Float>> list = new ArrayList<Map.Entry<String,Float>>(map.entrySet());
 		Collections.sort(list,new Comparator<Map.Entry<String,Float>>() {
-            //升序排序
-            public int compare(Map.Entry<String, Float> o1,
-                               Map.Entry<String, Float> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
+			//升序排序
+			public int compare(Map.Entry<String, Float> o1,
+							   Map.Entry<String, Float> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
 
-        });
+		});
 
 		for(Map.Entry<String,Float> mapping:list){
 			str = str + mapping.getKey()+"######"+mapping.getValue()+"\n";
-        }
+		}
 		putSp(str);
-			Log.e("sortMap: ",str);
+		Log.e("sortMap: ",str);
 	}
 
 	private void putSp(String str) {
@@ -1003,19 +1071,19 @@ public class WA_YundaFragment extends WA_BaseFragment
 	private void sortTitleMap(Map map,String str) {
 		List<Map.Entry<String,Float>> list = new ArrayList<Map.Entry<String,Float>>(map.entrySet());
 		Collections.sort(list,new Comparator<Map.Entry<String,Float>>() {
-            //升序排序
-            public int compare(Map.Entry<String, Float> o1,
-                               Map.Entry<String, Float> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
+			//升序排序
+			public int compare(Map.Entry<String, Float> o1,
+							   Map.Entry<String, Float> o2) {
+				return o2.getValue().compareTo(o1.getValue());
+			}
 
-        });
+		});
 
 		for(Map.Entry<String,Float> mapping:list){
 			str = str + mapping.getKey()+"\n";
-        }
+		}
 		putSp(str);
-			Log.e("sortMap: ",str);
+		Log.e("sortMap: ",str);
 	}
 
 	public void mapClear()
@@ -1055,7 +1123,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}).start( );
 	}
 
-	private void typeIn( final int KeyCode ){
+	public void typeIn( final int KeyCode ){
 		try {
 			Instrumentation inst = new Instrumentation();
 			inst.sendKeyDownUpSync( KeyCode );
@@ -1159,6 +1227,20 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 
 		return new String(bytes, 0, i, "Unicode");
+	}
+
+
+	public  String URLDecoderString(String str) {//url解码
+		String result = "";
+		if (null == str) {
+			return "";
+		}
+		try {
+			result = java.net.URLDecoder.decode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
