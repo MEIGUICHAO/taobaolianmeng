@@ -354,90 +354,10 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			}
 
 
-			before10secUrl = url;
-			oldindex = searIndex;
-			if (!IS_CANGKU&&!IS_INIT_LOAD&&!IS_3WAT) {
-				handler.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						if (oldindex == searIndex && before10secUrl.equals(url)) {
-							foreachSearchTBLM();
-						}
-					}
-				}, 20000);
-			}
-			if (IS_INIT_LOAD) {
-				IS_INIT_LOAD = false;
-			}
-
-
-
-			switch (SwitchMethod) {
-				case Constant.WAY3_SAMESTYTLE:
-
-					link3WayIndex++;
-					if (link3WayIndex < 2) {
-//					if (link3WayIndex < links3WayList.size()) {
-						loadUrl(links3WayList.get(link3WayIndex));
-					} else if (shopIndex < shops.length) {
-						SwitchMethod = Constant.DEFAULT_WAY;
-						loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-					} else  {
-						SwitchMethod = -1;
-					}
-					break;
-				case Constant.DEFAULT_WAY:
-				case Constant.SALES_DESC:
-				case Constant.RENQI_WAY:
-					if (SwitchMethod == Constant.DEFAULT_WAY) {
-						handlerJs("showKeyboard3Way();", 1000);
-					} else {
-
-						handlerJs("find3WaySameStyle();", 1000);
-					}
-					break;
-				case Constant.CANGKU_NEXT_PAGE_LOAD:
-                    if (NEXT_PAGE_END) {
-                        SwitchMethod = -1;
-                    }
-					handlerJs("jsCangkuGoNextPage();", 2000);
-					break;
-				case Constant.EDIT_DETAIL_COMPLETE:
-					if (shangjiaIndex < xiajiaRecordList.size()) {
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								goEditDetailsUrl();
-							}
-						}, 1000);
-					} else {
-						xiajiaRecordList.clear();
-						shangjiaIndex = 0;
-					}
-					break;
-				case Constant.EDIT_DETAIL:
-					shangjiaIndex++;
-					SwitchMethod = Constant.EDIT_DETAIL_COMPLETE;
-					handlerJs("editTitleAndShangjiaNow();", 2000);
-					break;
-				case Constant.NEXT_PAGE_LOAD:
-                    SwitchMethod = -1;
-//                    String name = taoNameList.get(searIndex);
-					handlerJs("tblmShopList();", 8000);
-					break;
-				case Constant.FIND_SAMESTYLE_FROM_TBLM:
-                    SwitchMethod = -1;
-//                    String name = taoNameList.get(searIndex);
-					findSameStyle();
-					break;
-				case Constant.GO_SAMESTYLE_URL:
-					SwitchMethod = -1;
-
-					jsGoSameStyle();
-
-
-					break;
-
+			try {
+				switchMethod(url);
+			} catch (Exception e) {
+				LogUtil.e(e.toString());
 			}
 
 			super.onPageFinished(view, url);
@@ -448,6 +368,93 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		{
 			super.onPageStarted(view, url, favicon);
 		}
+	}
+
+	private void switchMethod(final String url) {
+		before10secUrl = url;
+		oldindex = searIndex;
+		if (!IS_CANGKU&&!IS_INIT_LOAD&&!IS_3WAT) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (oldindex == searIndex && before10secUrl.equals(url)) {
+                        foreachSearchTBLM();
+                    }
+                }
+            }, 20000);
+        }
+		if (IS_INIT_LOAD) {
+            IS_INIT_LOAD = false;
+        }
+
+
+		switch (SwitchMethod) {
+            case Constant.WAY3_SAMESTYTLE:
+
+                link3WayIndex++;
+                if (link3WayIndex < 2) {
+//					if (link3WayIndex < links3WayList.size()) {
+                    loadUrl(links3WayList.get(link3WayIndex));
+                } else if (shopIndex < shops.length) {
+                    SwitchMethod = Constant.DEFAULT_WAY;
+                    loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+                } else  {
+                    SwitchMethod = -1;
+                }
+                break;
+            case Constant.DEFAULT_WAY:
+            case Constant.SALES_DESC:
+            case Constant.RENQI_WAY:
+                if (SwitchMethod == Constant.DEFAULT_WAY) {
+                    handlerJs("showKeyboard3Way();", 1000);
+                } else {
+
+                    handlerJs("find3WaySameStyle();", 1000);
+                }
+                break;
+            case Constant.CANGKU_NEXT_PAGE_LOAD:
+if (NEXT_PAGE_END) {
+SwitchMethod = -1;
+}
+                handlerJs("jsCangkuGoNextPage();", 2000);
+                break;
+            case Constant.EDIT_DETAIL_COMPLETE:
+                if (shangjiaIndex < xiajiaRecordList.size()) {
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            goEditDetailsUrl();
+                        }
+                    }, 1000);
+                } else {
+                    xiajiaRecordList.clear();
+                    shangjiaIndex = 0;
+                }
+                break;
+            case Constant.EDIT_DETAIL:
+                shangjiaIndex++;
+                SwitchMethod = Constant.EDIT_DETAIL_COMPLETE;
+                handlerJs("editTitleAndShangjiaNow();", 2000);
+                break;
+            case Constant.NEXT_PAGE_LOAD:
+SwitchMethod = -1;
+//                    String name = taoNameList.get(searIndex);
+                handlerJs("tblmShopList();", 8000);
+                break;
+            case Constant.FIND_SAMESTYLE_FROM_TBLM:
+SwitchMethod = -1;
+//                    String name = taoNameList.get(searIndex);
+                findSameStyle();
+                break;
+            case Constant.GO_SAMESTYLE_URL:
+                SwitchMethod = -1;
+
+                jsGoSameStyle();
+
+
+                break;
+
+        }
 	}
 
 	private void findSameStyle() {

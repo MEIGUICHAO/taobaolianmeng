@@ -679,13 +679,27 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void afterShopName(String[] arry){
 
 			LogUtil.e("afterShopName:" + arry.length);
+			ArrayList<String> keywordList = new ArrayList<String>();
 			for (int i = 0; i < arry.length; i++) {
 				String[] split = URLDecoderString(arry[i]).split(" ");
 				for (int j = 0; j < split.length; j++) {
-					LogUtil.e("afterShopName:" + split[j]);
+//					LogUtil.e("afterShopName:" + split[j]);
+					String[] shopSPlit = shops[shopIndex].split(" ");
+					for (int k = 0; k < shopSPlit.length; k++) {
+						String keyword = split[j].replace(shopSPlit[k], "");
+						if (!TextUtils.isEmpty(keyword)) {
+							keywordList.add(keyword);
+						}
+					}
 				}
-
 			}
+
+			HashSet set = new HashSet(keywordList);
+			keywordList = new ArrayList<String>(set);
+			for (int i = 0; i < keywordList.size(); i++) {
+				LogUtil.e(keywordList.get(i));
+			}
+
 			handlerJs("find3WaySameStyle();", 1000);
 		}
 
@@ -706,20 +720,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 							break;
 						case Constant.RENQI_WAY:
 							SwitchMethod = Constant.WAY3_SAMESTYTLE;
-
-							Set set = new HashSet(links3WayList);
-							ArrayList<String> tempList = new ArrayList(set);
-							links3WayList = tempList;
 							link3WayIndex = 0;
-							String linksCache = "";
-							for (int i = 0; i < links3WayList.size(); i++) {
-								if (TextUtils.isEmpty(linksCache)) {
-									linksCache = links3WayList.get(i);
-								} else {
-									linksCache = linksCache + "###" + links3WayList.get(i);
-								}
-							}
-							SharedPreferencesUtils.putValue(getActivity(),Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]),linksCache);
 							shopIndex++;
 							LogUtil.e("links3WayList:" + links3WayList.size());
 							if (links3WayList.size() > 0) {
