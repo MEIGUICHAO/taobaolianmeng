@@ -44,7 +44,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private String before10secUrl;
 	private int oldindex;
 	private boolean IS_INIT_LOAD = true;
-	private boolean IS_3WAT;
+	private boolean IS_3WAT = false;
+	private Button btn_way3Result;
 
 
 	/**  通过静态方法实例化自动化Fragment*/
@@ -92,6 +93,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		listWeb = (MyWebView) view.findViewById(R.id.wa_webview_list);
 		btnRefresh = (Button) view.findViewById(R.id.btn_refresh);
 		btnBack = (Button) view.findViewById(R.id.btn_back);
+		btn_way3Result = (Button) view.findViewById(R.id.btn_way3Result);
 		btnSearch = (Button) view.findViewById(R.id.btn_search);
 		btnGosearch = (Button) view.findViewById(R.id.btn_gosearch);
 		btnGosearchworld = (Button) view.findViewById(R.id.btn_gosearchworld);
@@ -205,11 +207,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_check.setOnClickListener(this);
 		btn_biao1.setOnClickListener(this);
 		btn_str_result.setOnClickListener(this);
+		btn_way3Result.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		IS_3WAT = false;
 		switch (v.getId()) {
             case R.id.btn_back://3way
 				IS_3WAT = true;
@@ -219,6 +221,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				SwitchMethod = Constant.DEFAULT_WAY;
 				loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
                 break;
+            case R.id.btn_way3Result:
+				String result = SharedPreferencesUtils.getValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)));
+				String[] min3wayUrls = result.split("###");
+				foreachMinurlResult(min3wayUrls);
+				break;
             case R.id.btn_getchecked:
 				SwitchMethod = Constant.CANGKU_NEXT_PAGE_LOAD;
             	handlerJs("jsCangkuGoNextPage();");
@@ -228,6 +235,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				listWeb.loadUrl(Constant.CANGKU_URL);
                 break;
 			case R.id.btn_refresh:
+				IS_3WAT = false;
 				FOREACH_MODE = false;
 				String url = initBeginUrl();
                 spShopRecordKey = url + Constant.SHOP_LIST;
@@ -262,6 +270,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 				break;
 			case R.id.btn_check://遍历模式
+				IS_3WAT = false;
 				btn_check.setBackgroundResource(android.R.color.holo_orange_light);
 				foreachShop();
 				break;
@@ -289,38 +298,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					}
 				}
 				String[] minUrls = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey).split("###");
-				String urlResutl1 = "================================================" + "\n";
-				String urlResutl2 = "================================================" + "\n";
-				String urlResutl3 = "================================================" + "\n";
-				String urlResutl4 = "================================================" + "\n";
-				String urlResutl5 = "================================================" + "\n";
-				String urlResutl6 = "================================================" + "\n";
-				for (int i = 0; i < minUrls.length; i++) {
-					if (i < 50) {
-						urlResutl1 = urlResutl1 + minUrls[i] + "\n";
-					}
-					if (i >= 50 && i < 100) {
-						urlResutl2 = urlResutl2 + minUrls[i] + "\n";
-					}
-					if (i >= 100 && i < 150) {
-						urlResutl3 = urlResutl3 + minUrls[i] + "\n";
-					}
-					if (i >= 150 && i < 200) {
-						urlResutl4 = urlResutl4 + minUrls[i] + "\n";
-					}
-					if (i >= 200 && i < 250) {
-						urlResutl5 = urlResutl5 + minUrls[i] + "\n";
-					}
-					if (i >= 250 && i < 300) {
-						urlResutl6 = urlResutl6 + minUrls[i] + "\n";
-					}
-				}
-				LogUtil.e(urlResutl1);
-				LogUtil.e(urlResutl2);
-				LogUtil.e(urlResutl3);
-				LogUtil.e(urlResutl4);
-				LogUtil.e(urlResutl5);
-				LogUtil.e(urlResutl6);
+				foreachMinurlResult(minUrls);
 
 
 				break;
@@ -330,6 +308,40 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 	}
 
+	private void foreachMinurlResult(String[] minUrls) {
+		String urlResutl1 = "================================================" + "\n";
+		String urlResutl2 = "================================================" + "\n";
+		String urlResutl3 = "================================================" + "\n";
+		String urlResutl4 = "================================================" + "\n";
+		String urlResutl5 = "================================================" + "\n";
+		String urlResutl6 = "================================================" + "\n";
+		for (int i = 0; i < minUrls.length; i++) {
+            if (i < 50) {
+                urlResutl1 = urlResutl1 + minUrls[i] + "\n";
+            }
+            if (i >= 50 && i < 100) {
+                urlResutl2 = urlResutl2 + minUrls[i] + "\n";
+            }
+            if (i >= 100 && i < 150) {
+                urlResutl3 = urlResutl3 + minUrls[i] + "\n";
+            }
+            if (i >= 150 && i < 200) {
+                urlResutl4 = urlResutl4 + minUrls[i] + "\n";
+            }
+            if (i >= 200 && i < 250) {
+                urlResutl5 = urlResutl5 + minUrls[i] + "\n";
+            }
+            if (i >= 250 && i < 300) {
+                urlResutl6 = urlResutl6 + minUrls[i] + "\n";
+            }
+        }
+		LogUtil.e(urlResutl1);
+		LogUtil.e(urlResutl2);
+		LogUtil.e(urlResutl3);
+		LogUtil.e(urlResutl4);
+		LogUtil.e(urlResutl5);
+		LogUtil.e(urlResutl6);
+	}
 
 
 	private String initBeginUrl() {
