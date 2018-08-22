@@ -48,6 +48,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private Button btn_way3Result;
 
 
+
 	/**  通过静态方法实例化自动化Fragment*/
 	public static void start(Activity mContext, int containerRsID, WA_Parameters parameter)
 	{
@@ -409,7 +410,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 		switch (SwitchMethod) {
             case Constant.WAY3_SAMESTYTLE:
-//				SwitchMethod = Constant.WAY3_SAME_URL;
+				SameLoadFinish = true;
+				SwitchMethod = Constant.WAY3_SAME_URL;
+				LogUtil.e("way3SameUrl:main" + 413);
 				way3SameUrl();
                 break;
             case Constant.DEFAULT_WAY:

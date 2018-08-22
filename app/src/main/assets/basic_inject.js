@@ -126,9 +126,10 @@ function js3WayGoSameUrl(array){
     var mUrl = document.getElementsByClassName("info1__itemname");
     localMethod.JI_LOG("array"+array.length);
     try{
-    var pay = paids[5].innerText.replace("人付款","");
+        var pay = paids[5].innerText.replace("人付款","");
     }catch(e){
         localMethod.after3WaySameResult();
+        localMethod.JI_LOG("after3WaySameResult:"+132);
     }
 //    var text ="\n";
     var maxPrices = 0;
@@ -184,7 +185,7 @@ function js3WayGoSameUrl(array){
 
     }
     localMethod.after3WaySameResult();
-
+    localMethod.JI_LOG("after3WaySameResult:"+188);
 
 
 

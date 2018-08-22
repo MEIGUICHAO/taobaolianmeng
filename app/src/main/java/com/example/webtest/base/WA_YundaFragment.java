@@ -76,7 +76,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected ArrayList<String> links3WayList;
 	protected int link3WayIndex;
 	protected ArrayList<String> allSameList;
-
+	protected boolean SameLoadFinish;
 
 
 	protected enum SearchType
@@ -857,26 +857,24 @@ public class WA_YundaFragment extends WA_BaseFragment
 		@JavascriptInterface
 		public void after3WaySameResult()
 		{
-			getActivity().runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					link3WayIndex++;
-					if (link3WayIndex < links3WayList.size()) {
-						LogUtil.e("link3WayIndex:" + link3WayIndex);
-						loadUrl(links3WayList.get(link3WayIndex));
+			if (SameLoadFinish) {
+				SameLoadFinish = false;
+				link3WayIndex++;
+				if (link3WayIndex < links3WayList.size()) {
+					LogUtil.e("link3WayIndex:" + link3WayIndex);
+					SwitchMethod = Constant.WAY3_SAMESTYTLE;
+					loadUrl(links3WayList.get(link3WayIndex));
 //						handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+				} else {
+					if (shopIndex < shops.length ) {
+						SwitchMethod = Constant.DEFAULT_WAY;
+						SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+						loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
 					} else {
-						if (shopIndex < shops.length ) {
-							SwitchMethod = Constant.DEFAULT_WAY;
-							SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
-							loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-						} else {
-							SwitchMethod = -1;
-						}
+						SwitchMethod = -1;
 					}
 				}
-			});
-
+			}
 		}
 
 		@JavascriptInterface
@@ -1274,21 +1272,14 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 	public void way3SameUrl() {
-
-		getActivity().runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-//				if (link3WayIndex < links3WayList.size()) {
-				if (link3WayIndex == 0) {
-					loadUrl(links3WayList.get(link3WayIndex));
-					handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
-				} else {
-					handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
-				}
-			}
-		});
-
-
+		if (link3WayIndex == 0) {
+			loadUrl(links3WayList.get(link3WayIndex));
+			handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+			LogUtil.e("js3WayGoSameUrl:" + 1275);
+		} else {
+			handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+			LogUtil.e("js3WayGoSameUrl:" + 1278);
+		}
 	}
 
 }
