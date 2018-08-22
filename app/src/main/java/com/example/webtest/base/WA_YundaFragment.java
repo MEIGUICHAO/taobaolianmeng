@@ -583,7 +583,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 					if (ints[j] < mTitleList.size()) {
 						mTtile = mTtile + mTitleList.get(ints[j]);
 					}
-				} else if (strLength(mTtile) < 55) {
+				} else if (strLength(mTtile) < 59) {
 					continue;
 				} else {
 					break;
@@ -696,9 +696,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 			HashSet set = new HashSet(keywordList);
 			keywordList = new ArrayList<String>(set);
+			String[] strings = new String[keywordList.size()];
 			for (int i = 0; i < keywordList.size(); i++) {
+				strings[i] = keywordList.get(i);
 				LogUtil.e(keywordList.get(i));
 			}
+			titlesArray = strings;
 
 			handlerJs("find3WaySameStyle();", 1000);
 		}
@@ -850,6 +853,31 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 		}
 
+
+		@JavascriptInterface
+		public void after3WaySameResult()
+		{
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					link3WayIndex++;
+					if (link3WayIndex < links3WayList.size()) {
+						LogUtil.e("link3WayIndex:" + link3WayIndex);
+						loadUrl(links3WayList.get(link3WayIndex));
+//						handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+					} else {
+						if (shopIndex < shops.length ) {
+							SwitchMethod = Constant.DEFAULT_WAY;
+							SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+							loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+						} else {
+							SwitchMethod = -1;
+						}
+					}
+				}
+			});
+
+		}
 
 		@JavascriptInterface
 		public void afterSameResult()
@@ -1242,6 +1270,25 @@ public class WA_YundaFragment extends WA_BaseFragment
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+	public void way3SameUrl() {
+
+		getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+//				if (link3WayIndex < links3WayList.size()) {
+				if (link3WayIndex == 0) {
+					loadUrl(links3WayList.get(link3WayIndex));
+					handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+				} else {
+					handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
+				}
+			}
+		});
+
+
 	}
 
 }

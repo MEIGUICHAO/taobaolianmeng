@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Space;
 
 import com.example.webtest.base.Constant;
 import com.example.webtest.base.MyWebView;
@@ -353,12 +354,18 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				LogUtil.e(e.toString());
 			}
 
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					switchMethod(url);
+				}
+			});
 
-			try {
-				switchMethod(url);
-			} catch (Exception e) {
-				LogUtil.e(e.toString());
-			}
+//			try {
+//				switchMethod(url);
+//			} catch (Exception e) {
+//				LogUtil.e(e.toString());
+//			}
 
 			super.onPageFinished(view, url);
 		}
@@ -390,17 +397,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 		switch (SwitchMethod) {
             case Constant.WAY3_SAMESTYTLE:
-
-                link3WayIndex++;
-                if (link3WayIndex < 2) {
-//					if (link3WayIndex < links3WayList.size()) {
-                    loadUrl(links3WayList.get(link3WayIndex));
-                } else if (shopIndex < shops.length) {
-                    SwitchMethod = Constant.DEFAULT_WAY;
-                    loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-                } else  {
-                    SwitchMethod = -1;
-                }
+//				SwitchMethod = Constant.WAY3_SAME_URL;
+				way3SameUrl();
                 break;
             case Constant.DEFAULT_WAY:
             case Constant.SALES_DESC:
@@ -413,9 +411,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
                 break;
             case Constant.CANGKU_NEXT_PAGE_LOAD:
-if (NEXT_PAGE_END) {
-SwitchMethod = -1;
-}
+				if (NEXT_PAGE_END) {
+					SwitchMethod = -1;
+				}
                 handlerJs("jsCangkuGoNextPage();", 2000);
                 break;
             case Constant.EDIT_DETAIL_COMPLETE:
@@ -437,12 +435,12 @@ SwitchMethod = -1;
                 handlerJs("editTitleAndShangjiaNow();", 2000);
                 break;
             case Constant.NEXT_PAGE_LOAD:
-SwitchMethod = -1;
+				SwitchMethod = -1;
 //                    String name = taoNameList.get(searIndex);
                 handlerJs("tblmShopList();", 8000);
                 break;
             case Constant.FIND_SAMESTYLE_FROM_TBLM:
-SwitchMethod = -1;
+				SwitchMethod = -1;
 //                    String name = taoNameList.get(searIndex);
                 findSameStyle();
                 break;
@@ -456,6 +454,8 @@ SwitchMethod = -1;
 
         }
 	}
+
+
 
 	private void findSameStyle() {
 //		String name  = taoNameList.get(searIndex);

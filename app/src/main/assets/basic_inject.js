@@ -117,6 +117,81 @@ function jsCangkuGoNextPage(){
 
 
 
+function js3WayGoSameUrl(array){
+
+    var itemnames = document.getElementsByClassName("info1__itemname");
+    var prices = document.getElementsByClassName("info2__price");
+    var paids = document.getElementsByClassName("info3__npaid");
+    var comments = document.getElementsByClassName("info3__ncomments");
+    var mUrl = document.getElementsByClassName("info1__itemname");
+    localMethod.JI_LOG("array"+array.length);
+    try{
+    var pay = paids[5].innerText.replace("人付款","");
+    }catch(e){
+        localMethod.after3WaySameResult();
+    }
+//    var text ="\n";
+    var maxPrices = 0;
+    var minPrices = 100000;
+    var minPricesTitle = "";
+    var averPrices = 0;
+    var averNum = 0;
+    var minPricesUrl = "";
+    var mTitleStr = "123";
+
+
+
+    if(paids.length>20&&pay>3){
+
+    for(var i=0;i<itemnames.length;i++){
+        if(comments[i].innerText!=""){
+            if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>2){
+                var price = prices[i].innerText.replace("￥","");
+                averPrices = accAdd(averPrices,price);
+                averNum = averNum +1;
+                if(parseFloat(price)>parseFloat(maxPrices)){
+                    maxPrices = price;
+                }
+                if(parseFloat(price)<parseFloat(minPrices)){
+                    minPrices = price;
+                    minPricesTitle = itemnames[i].innerText;
+                    minPricesUrl = mUrl[i].getElementsByTagName("a")[0];
+
+                }
+
+                var mTitle = "";
+                for(var j=0;j<array.length;j++){
+                    mTitle = itemnames[i].innerText.replace(array[j],"");
+                }
+                localMethod.JI_LOG("mTitle:"+i+mTitle);
+                mTitleStr = mTitleStr + "###" + mTitle;
+
+    //                localMethod.titleSave(itemnames[i].innerText);
+    //                text = text + itemnames[i].innerText +"#####"+paids[i].innerText + "\n";
+    //                localMethod.sameResultForSort(itemnames[i].innerText,paids[i].innerText.replace("人付款",""));
+
+            }
+        }
+    }
+    if(mTitleStr!="123"){
+        localMethod.titleArrayList(mTitleStr,minPricesTitle);
+    }
+
+    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
+    +"\n"+"minPricesUrl:"+minPricesUrl;
+    localMethod.TBLM_LOG(minSameRecord);
+    localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
+
+    }
+    localMethod.after3WaySameResult();
+
+
+
+
+
+}
+
+
 function jsGoSameUrl(array){
 
     var itemnames = document.getElementsByClassName("info1__itemname");
