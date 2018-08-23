@@ -422,7 +422,17 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                     }
                 }
             }, 20000);
-        }
+		} else if (IS_3WAT) {
+			oldindex = link3WayIndex;
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					if (oldindex == link3WayIndex && before10secUrl.equals(url)) {
+						nextShop3Way();
+					}
+				}
+			}, 50000);
+		}
 		if (IS_INIT_LOAD) {
             IS_INIT_LOAD = false;
         }

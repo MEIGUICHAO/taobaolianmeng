@@ -141,7 +141,7 @@ function js3WayGoSameUrl(array){
     var mUrl = document.getElementsByClassName("info1__itemname");
     localMethod.JI_LOG("array"+array.length);
     try{
-        var pay = paids[5].innerText.replace("人付款","");
+        var pay = paids[10].innerText.replace("人付款","");
     }catch(e){
         localMethod.after3WaySameResult();
         localMethod.JI_LOG("after3WaySameResult:"+132);
@@ -157,7 +157,7 @@ function js3WayGoSameUrl(array){
 
 
 
-    if(paids.length>20&&pay>3){
+    if(paids.length>30&&pay>3){
 
     for(var i=0;i<itemnames.length;i++){
         if(comments[i].innerText!=""){
