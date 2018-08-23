@@ -78,6 +78,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected ArrayList<String> allSameList;
 	protected boolean SameLoadFinish;
 	protected String bidNameMd5;
+	protected boolean CHECK_UPLOAD_SUCCESS;
 
 
 	protected enum SearchType
@@ -948,6 +949,18 @@ public class WA_YundaFragment extends WA_BaseFragment
 		{
 			LogUtil.e("------------getTargetIndex------------");
 			handlerJs("operaSearch();");
+		}
+
+		@JavascriptInterface
+		public void checkSuccess() throws IOException
+		{
+			CHECK_UPLOAD_SUCCESS = true;
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					handlerJs("del5Pic();");
+				}
+			}, 6000);
 		}
 	}
 

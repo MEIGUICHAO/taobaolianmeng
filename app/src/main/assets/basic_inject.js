@@ -38,6 +38,7 @@ function editTitleAndShangjiaNow(){
         titleBeginName[0].focus();
         localMethod.editByOriginalTitle(mTitle+"");
     } catch(e){
+        editTitleAndShangjiaNow();
         localMethod.JI_LOG(e.message);
     }
 }
@@ -63,6 +64,13 @@ function showKeyboard3Way(){
 
 }
 
+function del5Pic(){
+    var dels = document.getElementsByClassName("icon iconfont icon-remove del");
+    localMethod.JI_LOG("dels:"+dels.length);
+    dels[4].click();
+    shangjiaAfterEditTitle();
+}
+
 function shangjiaAfterEditTitle(){
 
     var checkboxs = document.getElementsByClassName("checkbox-wrap");
@@ -84,6 +92,8 @@ function shangjiaAfterEditTitle(){
             break
         }
     }
+
+    localMethod.checkSuccess();
 }
 
 

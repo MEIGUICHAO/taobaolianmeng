@@ -380,6 +380,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		{
 			view.loadUrl("javascript:" + injectJS);
 			LogUtil.e("SwitchMethod:" + SwitchMethod);
+			CHECK_UPLOAD_SUCCESS = false;
 			try {
 				LogUtil.e("shopName:" + shops[shopIndex]);
 			} catch (Exception e) {
