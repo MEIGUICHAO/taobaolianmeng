@@ -544,26 +544,23 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 
 
-
 		@JavascriptInterface
-		public void titleArrayList(final String titles,final String minPricesTitle)
-		{
+		public void titleArrayList(final String titles, final String minPricesTitle) {
 
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
 
-
 					String[] split = titles.split("###");
-					LogUtil.e(Constant.TBLMTAG + "minPricesTitle"+minPricesTitle);
+					LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
 					String templeRecord = "123";
 					mTitleList = new ArrayList<String>();
-					for (int i = 0; i <titlesArray.length; i++) {
+					for (int i = 0; i < titlesArray.length; i++) {
 						mTitleList.add(titlesArray[i]);
 					}
 
-					int foreachSize = 5;
-					if (split.length < 5) {
+					int foreachSize = 7;
+					if (split.length < foreachSize) {
 						foreachSize = split.length;
 					}
 					for (int i = 1; i < foreachSize; i++) {
@@ -577,7 +574,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 //					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
 							String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
-							String titleArray3 = split[i].substring(2 * splitLen, mLen/2);
+							String titleArray3 = split[i].substring(2 * splitLen, mLen / 2);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
 							mTitleList.add(titleArray1);
 							mTitleList.add(titleArray2);
@@ -589,20 +586,32 @@ public class WA_YundaFragment extends WA_BaseFragment
 					String mTtile = "";
 					for (int j = 0; j < mTitleList.size(); j++) {
 						if (j == 0) {
-							mTtile = mTitleList.get(j);
+							if (judgeContainsStr(mTitleList.get(ints[j]))) {
+								continue;
+							}
+							mTtile = mTitleList.get(ints[j]);
 						} else {
-							if (ints[j] < mTitleList.size()){
-								Set<String> sameStr = getSameStr(mTtile, mTitleList.get(ints[j]));
-								Iterator<String> iterator = sameStr.iterator();
+							if (ints[j] < mTitleList.size()) {
 								String titleArry = mTitleList.get(ints[j]);
-								while (iterator.hasNext()) {
-									String next = iterator.next();
-									if (strLength(next) > 3) {
-										titleArry = titleArry.replace(next, "");
+
+								if (judgeContainsStr(titleArry)) {
+									continue;
+								}
+								String sameStr = getSameStr(mTtile, titleArry);
+
+								if (!TextUtils.isEmpty(sameStr)) {
+									while (strLength(sameStr) > 2) {
+
+										titleArry = titleArry.replace(sameStr, "");
+										sameStr = getSameStr(mTtile, titleArry);
 									}
 								}
-								if (strLength(mTtile) + strLength(titleArry)< 60) {
+								if (strLength(mTtile) + strLength(titleArry) < 60) {
 									mTtile = mTtile + mTitleList.get(ints[j]);
+									String bidStr = getSameStr(mTtile, BidName.BrandName);
+									if (strLength(bidStr) > 2) {
+										mTtile = mTtile.replace(bidStr, "");
+									}
 								} else if (strLength(mTtile) < 59) {
 									continue;
 								} else {
@@ -611,11 +620,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 							}
 						}
 					}
+					LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
 					SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
 					LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
 
 				}
 			});
+
 
 		}
 

@@ -288,6 +288,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				break;
 			case R.id.btn_str_result:
 				foreachSearchTBLM();
+//				String[] split = BidName.BrandName.split("\n");
+//				String result123 = "";
+//				for (int i = 0; i < split.length; i++) {
+//					if (strLength(split[i]) < 11) {
+//						result123 = result123 + "\n" + split[i];
+//					}
+//				}
+//				LogUtil.e(result123);
 				break;
 			case R.id.btn_search:
 				if (FOREACH_MODE) {

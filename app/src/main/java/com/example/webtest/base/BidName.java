@@ -1,7 +1,8 @@
 package com.example.webtest.base;
 
 public interface BidName {
-    String BrandName = "日尚\n" +
+    String BrandName = "\n" +
+            "日尚\n" +
             "德高\n" +
             "立邦\n" +
             "兔米米\n" +
@@ -11,28 +12,26 @@ public interface BidName {
             "越图\n" +
             "曼丽缇斯\n" +
             "赛得\n" +
+            "APM Monaco\n" +
             "304\n" +
             "lv\n" +
+            "LV\n" +
             "真皮\n" +
-            "cpm·teaset/瓷牌茗\n" +
             "C-S/诚饰\n" +
             "明筑\n" +
             "军英\n" +
             "优品益儿\n" +
             "兴和家缘\n" +
-            "chanyi/创易\n" +
             "汇璟\n" +
             "奥弈\n" +
             "百露\n" +
             "佳顺美\n" +
             "红焱梦居\n" +
-            "灯鞋世家童鞋\n" +
             "迪米迪卡\n" +
             "明明潮童\n" +
             "跳宝衣帽铺\n" +
             "吉百居\n" +
             "美凯惠\n" +
-            "Fordkham/富迪康\n" +
             "哈尔滨\n" +
             "雷锋帽\n" +
             "宁雪儿\n" +
@@ -41,7 +40,6 @@ public interface BidName {
             "葵乐工艺\n" +
             "智防\n" +
             "飞豪户外\n" +
-            "palaytter/帕蓝蒂儿\n" +
             "HERO/英雄\n" +
             "儀衡\n" +
             "MME/妈妈易\n" +
@@ -60,18 +58,14 @@ public interface BidName {
             "家家网购\n" +
             "AISEN\n" +
             "腾腾母婴\n" +
-            "爱美家环保家居\n" +
-            "KingRoad/康道\n" +
             "BELO/百露\n" +
             "志明\n" +
-            "NAZJE/纳之洁\n" +
             "爵盾\n" +
             "好利雅\n" +
             "阿父佳儿\n" +
             "海维斯\n" +
             "罗丽丝\n" +
             "呗诺\n" +
-            "Bakeasy/烘易美\n" +
             "贝得利\n" +
             "乐峰\n" +
             "耐家\n" +
@@ -83,18 +77,15 @@ public interface BidName {
             "ARTSO\n" +
             "泽宝贝\n" +
             "缤纷屋\n" +
-            "ASCOR/艾仕可\n" +
             "豪美佳\n" +
             "佳佳洁\n" +
             "申旺\n" +
             "HANO\n" +
             "Creatwo\n" +
-            "AWORLD/爱立德\n" +
             "都来绣\n" +
             "赛眸\n" +
             "艾尚莱\n" +
             "德具\n" +
-            "alove/爱莱美\n" +
             "西贝家\n" +
             "舒洁\n" +
             "绵宝\n" +
@@ -106,24 +97,20 @@ public interface BidName {
             "尚婴\n" +
             "伟级\n" +
             "宜舒\n" +
-            "HALODN/哈骆顿\n" +
             "忠诚卫士\n" +
             "佳晟地毯\n" +
             "优势蓝\n" +
             "Helius\n" +
-            "舜成羽毛工艺品\n" +
             "恒益金娃娃\n" +
             "爱达乐\n" +
             "BS\n" +
             "馨园雅居\n" +
-            "木木品牌家纺\n" +
             "三贝\n" +
             "鹏飞车饰\n" +
             "加康\n" +
             "润豪\n" +
             "尚品\n" +
             "俏佳思\n" +
-            "Koenaston/柯纳斯\n" +
             "卡芙\n" +
             "dsfs\n" +
             "跃狼\n" +
@@ -213,19 +200,15 @@ public interface BidName {
             "°\n" +
             "A-ZA\n" +
             "阿札\n" +
-            "ACCORDANTTREND\n" +
             "中和休闲\n" +
             "AEMAPE\n" +
             "AERLIS\n" +
             "AIMAER\n" +
-            "博士来文化用品店\n" +
             "都市丽人\n" +
-            "安丽雅旗舰店\n" +
             "爱玛尔\n" +
             "AIMILY\n" +
             "艾米莉\n" +
             "ALAN\n" +
-            "ALVIEROMARTINI\n" +
             "红绿红\n" +
             "摩磨乐\n" +
             "绿红绿\n" +
@@ -251,7 +234,6 @@ public interface BidName {
             "花心小铺\n" +
             "Abag\n" +
             "壹包包\n" +
-            "AbercrombieFitch\n" +
             "Abigale\n" +
             "Actionfox\n" +
             "快乐狐狸\n" +
@@ -260,7 +242,6 @@ public interface BidName {
             "三叶草\n" +
             "Aemony\n" +
             "爱梦妮\n" +
-            "AffectionBird\n" +
             "亲情鸟\n" +
             "agnesb.\n" +
             "Agyness\n" +
@@ -269,14 +250,12 @@ public interface BidName {
             "Alcazar\n" +
             "阿卡莎\n" +
             "Aleiswe\n" +
-            "AlexanderWang\n" +
             "AlfaArtist\n" +
             "阿尔法\n" +
             "Amasie\n" +
             "阿曼姿\n" +
             "Ameda\n" +
             "爱魅\n" +
-            "AmericanCamel\n" +
             "美国骆驼\n" +
             "Anina\n" +
             "安妮娜\n" +
@@ -295,12 +274,10 @@ public interface BidName {
             "Avv\n" +
             "A－SK\n" +
             "阿萨客\n" +
-            "安普里奥·阿玛尼\n" +
             "aLLDeaR\n" +
             "奥蒂雅\n" +
             "accompany\n" +
             "爱柯普妮\n" +
-            "alexandermcqueen\n" +
             "艾吉贝\n" +
             "艾丽诗\n" +
             "Alice\n" +
@@ -318,7 +295,6 @@ public interface BidName {
             "BALISHINU\n" +
             "BALLETCLAN\n" +
             "芭蕾世家\n" +
-            "BANDICOOT品牌\n" +
             "BAOJIES\n" +
             "宝杰仕\n" +
             "BAOLIDEN\n" +
@@ -343,7 +319,6 @@ public interface BidName {
             "BKSS\n" +
             "博客盛世\n" +
             "BOKE\n" +
-            "BOSSANJERASU\n" +
             "BOSSsunwen\n" +
             "BOSVIER\n" +
             "波斯威尔\n" +
@@ -387,27 +362,23 @@ public interface BidName {
             "Besopt\n" +
             "佰仕泽\n" +
             "BibuBibu\n" +
-            "BlackRabbit\n" +
             "BlueBeauty\n" +
             "蓝美人\n" +
             "博科电子\n" +
             "Bosfield\n" +
             "波斯斐尔\n" +
-            "BottegaVeneta\n" +
             "Bowayne\n" +
             "宝威尼\n" +
             "Burberry\n" +
             "巴宝莉\n" +
             "Byarms\n" +
             "必昂士\n" +
-            "B－KINGFENG\n" +
             "babyloona\n" +
             "巴比伦人\n" +
             "bampo\n" +
             "半坡饰族\n" +
             "beinLover\n" +
             "belstaff\n" +
-            "braccialini\n" +
             "布奇里尼\n" +
             "佰瑞\n" +
             "包客隆\n" +
@@ -421,7 +392,6 @@ public interface BidName {
             "博斯\n" +
             "CARDLUSI\n" +
             "卡陆斯\n" +
-            "CAREELL卡芮尔\n" +
             "CARTELO\n" +
             "卡帝乐鳄鱼\n" +
             "CAT\n" +
@@ -440,7 +410,6 @@ public interface BidName {
             "卡洛黛茜\n" +
             "COREBIRD\n" +
             "粹鸟\n" +
-            "COSASUNITED\n" +
             "凯萨斯联\n" +
             "COULSTON\n" +
             "康森\n" +
@@ -450,17 +419,14 @@ public interface BidName {
             "克戴斯托尔\n" +
             "Calmoon\n" +
             "卡门\n" +
-            "CalvinKlein\n" +
             "Camel\n" +
             "骆驼\n" +
             "CaraDina\n" +
             "卡兰迪娜\n" +
             "Cardanro\n" +
             "卡丹路\n" +
-            "Carlton卡尔顿\n" +
             "Chanel\n" +
             "香奈儿\n" +
-            "Chareiharper\n" +
             "香奈哈泼\n" +
             "Chavelra\n" +
             "千维拉\n" +
@@ -475,7 +441,6 @@ public interface BidName {
             "宫帛\n" +
             "Cmlang\n" +
             "西牧狼\n" +
-            "ColorfulPhoenix\n" +
             "奇彩凤\n" +
             "Columbia\n" +
             "哥伦比亚\n" +
@@ -503,7 +468,6 @@ public interface BidName {
             "cover\n" +
             "卡文\n" +
             "超级计划\n" +
-            "SUPERPLANNING\n" +
             "D&G\n" +
             "D.BLACK\n" +
             "黑眼袋袋\n" +
@@ -511,7 +475,6 @@ public interface BidName {
             "DC\n" +
             "DEELFEL\n" +
             "迪菲莱\n" +
-            "DELLASTELLA\n" +
             "DERS\n" +
             "黛尔斯\n" +
             "DIMO蒂慕\n" +
@@ -542,7 +505,6 @@ public interface BidName {
             "Disney\n" +
             "迪士尼\n" +
             "Dissona\n" +
-            "Dolce＆Gabbana\n" +
             "杜嘉班纳\n" +
             "Dosau\n" +
             "朵尚\n" +
@@ -576,14 +538,12 @@ public interface BidName {
             "达派\n" +
             "丹爵\n" +
             "丹尼爱特\n" +
-            "DANIELHECHTER\n" +
             "迪柏斯\n" +
             "迪莱克丝\n" +
             "迪纳\n" +
             "Denar\n" +
             "狄菲\n" +
             "帝阁瑞\n" +
-            "斗牛士matador\n" +
             "杜可\n" +
             "EASTPAK\n" +
             "EAYUE\n" +
@@ -595,11 +555,9 @@ public interface BidName {
             "ELFSACK\n" +
             "妖精的口袋\n" +
             "ELLE\n" +
-            "ELVAHENRYLEO\n" +
             "伊娃亨利\n" +
             "EMINIHOUSE\n" +
             "伊米妮\n" +
-            "EPOWER伊宝莱\n" +
             "ERISEN\n" +
             "爱尼森\n" +
             "ERPC\n" +
@@ -669,13 +627,10 @@ public interface BidName {
             "梵贝斯\n" +
             "Fion\n" +
             "菲安妮\n" +
-            "FlowerPrincess\n" +
             "花间公主\n" +
-            "Flowerbeige\n" +
             "玉芙蓉\n" +
             "FoLio\n" +
             "弗里欧\n" +
-            "FolliFollie\n" +
             "芙丽芙丽\n" +
             "FourOne\n" +
             "FreeBird\n" +
@@ -694,7 +649,6 @@ public interface BidName {
             "GINRRY\n" +
             "简瑞\n" +
             "GLARE\n" +
-            "GLENFIDDI格兰菲迪\n" +
             "GOCINA\n" +
             "库奇世家\n" +
             "GREATHAN\n" +
@@ -779,7 +733,6 @@ public interface BidName {
             "Horsemen\n" +
             "海森梅尔\n" +
             "hear＆rose\n" +
-            "howru优哈优哈\n" +
             "huangs\n" +
             "哈根德斯\n" +
             "海角7号\n" +
@@ -806,11 +759,9 @@ public interface BidName {
             "茵奈儿\n" +
             "intasteye\n" +
             "伊特艾\n" +
-            "intasteye伊特艾\n" +
             "JEE\n" +
             "吉包包\n" +
             "JELUNG隽朗\n" +
-            "JESSIE＆JANE\n" +
             "JM\n" +
             "锦美\n" +
             "JN\n" +
@@ -823,11 +774,9 @@ public interface BidName {
             "欧时纳\n" +
             "JackJones\n" +
             "杰克琼斯\n" +
-            "Jackwolfskin\n" +
             "狼爪\n" +
             "Jakeass\n" +
             "杰克爱仕\n" +
-            "JamayZeyliner\n" +
             "佳美吉利亚\n" +
             "Jansport\n" +
             "Jazzstar\n" +
@@ -840,7 +789,6 @@ public interface BidName {
             "潮人滙\n" +
             "Jranter\n" +
             "佳兰特\n" +
-            "JuicyCouture\n" +
             "Jushion\n" +
             "聚尚\n" +
             "佳派\n" +
@@ -854,11 +802,9 @@ public interface BidName {
             "卡酷尚\n" +
             "KAMI\n" +
             "咔美\n" +
-            "KANGAROOKINGDOM\n" +
             "真澳袋鼠\n" +
             "KAUKKO\n" +
             "高高路\n" +
-            "KAWASHIMAFUKENO\n" +
             "川岛泓野\n" +
             "KAYLENA\n" +
             "卡伊娜\n" +
@@ -866,8 +812,6 @@ public interface BidName {
             "克丽莎丁\n" +
             "KENZO\n" +
             "KIZZME\n" +
-            "KLIYAWANBLONG\n" +
-            "可利亚万博龙\n" +
             "Kadnoo\n" +
             "Kamicy\n" +
             "卡蜜琪\n" +
@@ -903,7 +847,6 @@ public interface BidName {
             "阔道世家\n" +
             "LEVOCI\n" +
             "乐幻诗\n" +
-            "LEGENDWALKER\n" +
             "欧客\n" +
             "Leleshop\n" +
             "LENWEBOLO\n" +
@@ -918,7 +861,6 @@ public interface BidName {
             "LMQS\n" +
             "浪漫情诗\n" +
             "LOCCOT骆特\n" +
-            "LORRENCEVILLA\n" +
             "罗伦维拉\n" +
             "LULUDA\n" +
             "路路达\n" +
@@ -980,7 +922,6 @@ public interface BidName {
             "路西法\n" +
             "Luckigo\n" +
             "乐行仕\n" +
-            "LuggageRoom\n" +
             "行李房\n" +
             "Lumande\n" +
             "诺曼诋尼\n" +
@@ -988,7 +929,6 @@ public interface BidName {
             "路易斯库克\n" +
             "L’ALPINA\n" +
             "阿尔皮纳\n" +
-            "lapaireimei\n" +
             "蓓利美\n" +
             "lacoste\n" +
             "lampacity\n" +
@@ -1005,7 +945,6 @@ public interface BidName {
             "懒牛\n" +
             "立特希泊\n" +
             "恋姿\n" +
-            "MAIKEJUESHI迈克爵仕\n" +
             "MAKBOLO\n" +
             "MANBERCE\n" +
             "曼伯斯\n" +
@@ -1019,7 +958,6 @@ public interface BidName {
             "MCM\n" +
             "MCYS＆JPN\n" +
             "木村耀司\n" +
-            "MEFASI梦梵思\n" +
             "MICIE\n" +
             "美熙\n" +
             "MILRY\n" +
@@ -1030,7 +968,6 @@ public interface BidName {
             "米堤\n" +
             "MMJ\n" +
             "MNG\n" +
-            "MODERNCASTLE\n" +
             "摩登堡\n" +
             "MONALISA\n" +
             "蒙娜丽莎\n" +
@@ -1044,9 +981,6 @@ public interface BidName {
             "Maonair\n" +
             "猫奈儿\n" +
             "MarcJacobs\n" +
-            "MarinoOrlandi\n" +
-            "马连奴奥兰迪\n" +
-            "MarkFairwhale\n" +
             "马克华菲\n" +
             "Marvelous\n" +
             "玛维斯\n" +
@@ -1062,8 +996,6 @@ public interface BidName {
             "米薇\n" +
             "Mexican\n" +
             "稻草人\n" +
-            "Michaelkors\n" +
-            "迈克·科尔斯\n" +
             "Mickey\n" +
             "米奇\n" +
             "Mikko\n" +
@@ -1085,7 +1017,6 @@ public interface BidName {
             "梦芭莎\n" +
             "Moonmoonox\n" +
             "摩豆卡斯\n" +
-            "MooreCarden\n" +
             "摩尔卡登\n" +
             "Moschino\n" +
             "莫斯奇诺\n" +
@@ -1100,7 +1031,6 @@ public interface BidName {
             "maymay\n" +
             "mccotton\n" +
             "麦克棉花\n" +
-            "milletfamily\n" +
             "小米世家\n" +
             "mirydangle\n" +
             "迈瑞丹格\n" +
@@ -1121,8 +1051,6 @@ public interface BidName {
             "曼邦\n" +
             "猫猫\n" +
             "玫瑰石\n" +
-            "美国马球协会\n" +
-            "U.S.PoloAssn\n" +
             "美斯尼\n" +
             "蒙迪亚\n" +
             "米柏\n" +
@@ -1190,15 +1118,11 @@ public interface BidName {
             "欧米\n" +
             "PAISNEER\n" +
             "派尼尔\n" +
-            "PARTYPRINCE\n" +
             "花花王子\n" +
-            "PASTE柏思特\n" +
             "PERSITINO\n" +
             "波斯蒂诺\n" +
             "PLAYBOY\n" +
             "花花公子\n" +
-            "POLOCROWNPRINCEDRAGON\n" +
-            "保罗·太子龙\n" +
             "POLPMINSA\n" +
             "保罗名莎\n" +
             "PURITY\n" +
@@ -1218,9 +1142,7 @@ public interface BidName {
             "PiGi\n" +
             "Piccadilly\n" +
             "皮卡迪里\n" +
-            "PierreCardin\n" +
             "皮尔卡丹\n" +
-            "PierreSiTong\n" +
             "皮尔司通\n" +
             "Plover\n" +
             "Pmsix\n" +
@@ -1234,24 +1156,18 @@ public interface BidName {
             "原动力\n" +
             "Prada\n" +
             "普拉达\n" +
-            "Prettyzys普瑞蒂\n" +
-            "ProenzaSchouler\n" +
             "Pucca\n" +
             "Puma\n" +
             "彪马\n" +
             "pnochoo\n" +
             "皮诺草\n" +
-            "pocketfulofsunshine\n" +
             "一袋阳光\n" +
             "polomeisdo\n" +
-            "佩贝雅pebeya\n" +
             "皮尔\n" +
-            "QIXIFOX七喜狐\n" +
             "QJBY\n" +
             "千娇百悦\n" +
             "QiWang\n" +
             "旗王\n" +
-            "QianseBride\n" +
             "千色新娘\n" +
             "Qinghewy\n" +
             "清禾物语\n" +
@@ -1260,8 +1176,6 @@ public interface BidName {
             "千姿百袋\n" +
             "乔丹\n" +
             "茜茜公主\n" +
-            "RALPHLAUREN\n" +
-            "REDDRAGONFLY\n" +
             "红蜻蜓\n" +
             "RLBY\n" +
             "卢比亚\n" +
@@ -1274,8 +1188,6 @@ public interface BidName {
             "ROXANNE\n" +
             "洛葛仙妮\n" +
             "Ral·Basar\n" +
-            "RebeccaMinkoff（美国）\n" +
-            "RennerPoetry\n" +
             "伦纳时\n" +
             "Rifupiguo\n" +
             "日富\n" +
@@ -1286,10 +1198,8 @@ public interface BidName {
             "SAINTJACK\n" +
             "SALIMBENI\n" +
             "萨贝尼\n" +
-            "SAMANTHATHAVASA\n" +
             "SAMILON\n" +
             "森美浪\n" +
-            "SANTABARBARAPOLO＆RACQUETCLUB\n" +
             "圣大保罗\n" +
             "SECRETIME\n" +
             "私语空间\n" +
@@ -1348,10 +1258,7 @@ public interface BidName {
             "施沛森\n" +
             "Smartyou\n" +
             "以爱为铭\n" +
-            "SmileWay笑薇\n" +
             "Smilyan\n" +
-            "SmithWesson\n" +
-            "史密斯．文森\n" +
             "Snoopy\n" +
             "史努比\n" +
             "SoCool\n" +
@@ -1361,7 +1268,6 @@ public interface BidName {
             "Staccato\n" +
             "思加图\n" +
             "StarTown\n" +
-            "Suma’sStyle\n" +
             "原意苏玛\n" +
             "Sumbaby\n" +
             "日月宝贝\n" +
@@ -1383,9 +1289,7 @@ public interface BidName {
             "sunsam\n" +
             "尚森\n" +
             "萨兰丹迪\n" +
-            "SaronDandee\n" +
             "莎琪玛\n" +
-            "圣.梵伦蒂诺\n" +
             "圣卡罗\n" +
             "时尚起义\n" +
             "食草堂\n" +
@@ -1404,7 +1308,6 @@ public interface BidName {
             "途明\n" +
             "Tangcool\n" +
             "唐酷\n" +
-            "TangleTango\n" +
             "探戈\n" +
             "Tarence\n" +
             "泰伦斯\n" +
@@ -1412,22 +1315,17 @@ public interface BidName {
             "泰格斯\n" +
             "Tata\n" +
             "他她\n" +
-            "TheCityToTheTide\n" +
             "城中至潮\n" +
-            "TheTimeStory\n" +
             "光阴的故事\n" +
             "Thelebre\n" +
             "希伯莱\n" +
-            "Thomaswylde\n" +
             "Tinzonc\n" +
             "天妆\n" +
             "Tod’s\n" +
-            "TommyHifiger\n" +
             "ToryBurch\n" +
             "Tosoco\n" +
             "托斯苛\n" +
             "Tough\n" +
-            "Travelhouse\n" +
             "旅行之家\n" +
             "Travelpro\n" +
             "tana\n" +
@@ -1442,7 +1340,6 @@ public interface BidName {
             "UNA\n" +
             "优娜\n" +
             "UTC\n" +
-            "UTILITYKEENARMY\n" +
             "游骑兵\n" +
             "Unihouse\n" +
             "优娃\n" +
@@ -1473,7 +1370,6 @@ public interface BidName {
             "Versace\n" +
             "范思哲\n" +
             "Via\n" +
-            "Victoriacross\n" +
             "维士十字\n" +
             "瑞士军刀\n" +
             "Viewinbox\n" +
@@ -1483,8 +1379,6 @@ public interface BidName {
             "武林狼\n" +
             "Virginland\n" +
             "八荒地\n" +
-            "VivienneWestwood\n" +
-            "薇薇安·威斯特伍德\n" +
             "VoguHomme\n" +
             "Volossi\n" +
             "华路仕\n" +
@@ -1492,7 +1386,6 @@ public interface BidName {
             "凡雅\n" +
             "vemo\n" +
             "薇茉\n" +
-            "WAYNEXZAVIER\n" +
             "韦恩泽维尔\n" +
             "WEIGE\n" +
             "维戈军刀\n" +
@@ -1546,11 +1439,9 @@ public interface BidName {
             "Yeemuu\n" +
             "耶牧\n" +
             "Yifer\n" +
-            "YvesSaintLaurent\n" +
             "雅格奴\n" +
             "雅诗丽\n" +
             "伊之恋\n" +
-            "伊妃缇儿efeidear\n" +
             "意卡希\n" +
             "ZEDI\n" +
             "佐迪\n" +
@@ -1606,15 +1497,12 @@ public interface BidName {
             "阿诺玛\n" +
             "ARTASCEND\n" +
             "ARTEINTER\n" +
-            "ATOSLOMBARDINI\n" +
             "ATSYD\n" +
             "天思一达\n" +
             "Ab.f.z\n" +
             "艾芙杰\n" +
-            "Actinometer\n" +
             "爱缇诺米\n" +
             "Adair\n" +
-            "AiShangTaFengGe\n" +
             "爱尚她风格\n" +
             "Alguien\n" +
             "安赫\n" +
@@ -1622,9 +1510,7 @@ public interface BidName {
             "艾米翎\n" +
             "Amelie\n" +
             "奢爱\n" +
-            "AmericanApparel\n" +
             "AA美国服装\n" +
-            "AmericanEagle\n" +
             "Amii\n" +
             "Ammococo\n" +
             "Amves\n" +
@@ -1666,10 +1552,8 @@ public interface BidName {
             "贝茜\n" +
             "BIOPLAZM\n" +
             "百普拉姿\n" +
-            "BLACK&COLOR\n" +
             "BLESSEDLY\n" +
             "BOBOWOMAN\n" +
-            "BROTHEROFZHAO\n" +
             "Bailide\n" +
             "拜丽德\n" +
             "BasicHouse\n" +
@@ -1720,7 +1604,6 @@ public interface BidName {
             "博玺华服\n" +
             "布叶\n" +
             "布衣天使\n" +
-            "C.COLECTARE\n" +
             "CADIDL\n" +
             "CCclub\n" +
             "CEREL\n" +
@@ -1737,7 +1620,6 @@ public interface BidName {
             "释缝\n" +
             "CHUN·S·J\n" +
             "春四季\n" +
-            "CIAO！DAFANFAN\n" +
             "CIROS\n" +
             "CIUCIU\n" +
             "COCOON\n" +
@@ -1758,7 +1640,6 @@ public interface BidName {
             "格丽罗娜\n" +
             "Chericom\n" +
             "千仞岗\n" +
-            "Chese＆Phese\n" +
             "初·品\n" +
             "ChuGe\n" +
             "出格\n" +
@@ -1775,7 +1656,6 @@ public interface BidName {
             "Corwuwu\n" +
             "妩舞\n" +
             "Custo\n" +
-            "Cuttingtime\n" +
             "剪裁时间\n" +
             "Cycle\n" +
             "寻回\n" +
@@ -1785,7 +1665,6 @@ public interface BidName {
             "cloudspace\n" +
             "云上生活\n" +
             "cocoshasha\n" +
-            "蔻绮的神秘花园\n" +
             "阐述\n" +
             "潮流前线\n" +
             "潮一洋\n" +
@@ -1814,7 +1693,6 @@ public interface BidName {
             "多美娅\n" +
             "DOOMS\n" +
             "朵莫\n" +
-            "DOUDOUMOONWHISPER\n" +
             "婵语豆豆\n" +
             "Damonika\n" +
             "达蒙妮卡\n" +
@@ -1862,14 +1740,12 @@ public interface BidName {
             "ENFORME\n" +
             "ENC\n" +
             "ENHOT\n" +
-            "EOIOdiMilano\n" +
             "EQ：iQ\n" +
             "EVENY\n" +
             "伊芙心悦\n" +
             "EVENEVER\n" +
             "EVRAY\n" +
             "伊薇瑞\n" +
-            "EachKingdom\n" +
             "Eano\n" +
             "Easterly\n" +
             "伊索·言\n" +
@@ -1887,20 +1763,17 @@ public interface BidName {
             "EkasoLife\n" +
             "Eland\n" +
             "依恋\n" +
-            "ElanieRiese\n" +
             "Elondike\n" +
             "伊伦迪克\n" +
             "Emuslin\n" +
             "玛芝琳\n" +
             "Equality\n" +
             "伊国丽蒂\n" +
-            "Escolourful\n" +
             "依姿彩\n" +
             "EtBoite\n" +
             "法文箱子\n" +
             "Etam\n" +
             "艾格\n" +
-            "Eternal.Color\n" +
             "永恒颜色\n" +
             "Ethreecn\n" +
             "易丝瑞尔\n" +
@@ -1912,12 +1785,9 @@ public interface BidName {
             "衣讯\n" +
             "E·BECKY\n" +
             "依贝奇\n" +
-            "E·minenceS·toney\n" +
             "名典屋\n" +
             "FANESS\n" +
             "梵纳斯\n" +
-            "FASHIONSHOW\n" +
-            "FASHIONEARTH\n" +
             "时尚地球\n" +
             "FAliFE\n" +
             "FA：GE\n" +
@@ -1925,7 +1795,6 @@ public interface BidName {
             "韩尚美\n" +
             "FEIYADA\n" +
             "飞亚达\n" +
-            "FINDYOURFLAVOR\n" +
             "Fabricell\n" +
             "Falanqishi\n" +
             "法兰骑仕\n" +
@@ -1946,10 +1815,8 @@ public interface BidName {
             "范奈沙\n" +
             "泛德诗\n" +
             "FADCG\n" +
-            "非本性的边缘\n" +
             "非墨\n" +
             "芬飞燕\n" +
-            "粉红大布娃娃\n" +
             "弗兰吉\n" +
             "G2000\n" +
             "GAGINANG\n" +
@@ -1974,7 +1841,6 @@ public interface BidName {
             "Goldfarm\n" +
             "高梵\n" +
             "GreenLip\n" +
-            "Guimeigongzhu\n" +
             "鬼魅公主\n" +
             "哥尔罗杰\n" +
             "歌多芬\n" +
@@ -2029,7 +1895,6 @@ public interface BidName {
             "韩依倩影\n" +
             "汉正飞龙\n" +
             "豪门日记\n" +
-            "何梵思herfancydancing\n" +
             "恒源祥\n" +
             "红唇\n" +
             "红袖\n" +
@@ -2037,7 +1902,6 @@ public interface BidName {
             "后构想\n" +
             "花搭\n" +
             "花木马\n" +
-            "花信年华淑女屋\n" +
             "花园街19号\n" +
             "画里画外\n" +
             "惠她\n" +
@@ -2068,19 +1932,16 @@ public interface BidName {
             "iBLUES\n" +
             "ic\n" +
             "冰贝\n" +
-            "iiiviviniko\n" +
             "izzue\n" +
             "JOYSCHEE\n" +
             "千百惠\n" +
             "J&NINA\n" +
             "J-honey\n" +
-            "JEANSMATRIX\n" +
             "锐阵\n" +
             "JIEAO\n" +
             "杰奥\n" +
             "JINRONGFEI\n" +
             "金绒飞\n" +
-            "JINSHUNYOUYOU\n" +
             "金顺优优\n" +
             "JOAN&DAVID\n" +
             "JOJO\n" +
@@ -2134,7 +1995,6 @@ public interface BidName {
             "高田贤三\n" +
             "KIPONE\n" +
             "旗牌王\n" +
-            "KLAUDIAKADA\n" +
             "克劳迪\n" +
             "KOBRON\n" +
             "高邦\n" +
@@ -2157,7 +2017,6 @@ public interface BidName {
             "组曲\n" +
             "Kvenstar\n" +
             "K’SBERE\n" +
-            "kaixinningmeng\n" +
             "开心柠檬\n" +
             "kanonger\n" +
             "karabearni\n" +
@@ -2197,7 +2056,6 @@ public interface BidName {
             "LOUISAM\n" +
             "LOVEFLOWER\n" +
             "恋上花\n" +
-            "LUISACERANO\n" +
             "LUXDEER\n" +
             "施华鹿\n" +
             "LUXLEAD\n" +
@@ -2243,10 +2101,8 @@ public interface BidName {
             "两三事\n" +
             "裂帛\n" +
             "猎衣小盗\n" +
-            "零五七一世家\n" +
             "流畅\n" +
             "路施华\n" +
-            "路易丝·凯乐\n" +
             "禄可\n" +
             "罗裘\n" +
             "M&L\n" +
@@ -2261,9 +2117,7 @@ public interface BidName {
             "MANGO\n" +
             "MARCHNOON\n" +
             "莺时\n" +
-            "MARINARINALDI\n" +
             "MARNI\n" +
-            "MASSDesigner\n" +
             "MAXCHIC\n" +
             "玛汐\n" +
             "MEEDA\n" +
@@ -2300,13 +2154,10 @@ public interface BidName {
             "慕百俪\n" +
             "MUVEIL\n" +
             "慕味\n" +
-            "MagicGarden\n" +
             "曼佳合\n" +
-            "Maiakaweh迈卡维\n" +
             "Maliboo\n" +
             "麻利布\n" +
             "Marcuster\n" +
-            "MarkFairwhale·马克华菲\n" +
             "MaxMara\n" +
             "MaxStudio\n" +
             "MaxMid\n" +
@@ -2318,7 +2169,6 @@ public interface BidName {
             "Merrysam\n" +
             "迷上\n" +
             "MesoNcler\n" +
-            "MetersBonwe\n" +
             "美特斯邦威\n" +
             "Mexx\n" +
             "Meyeeka\n" +
@@ -2330,7 +2180,6 @@ public interface BidName {
             "MilaChic\n" +
             "乐米拉\n" +
             "Mimius\n" +
-            "MingMeiFashion\n" +
             "名美服饰\n" +
             "MissEgg\n" +
             "弥爱\n" +
@@ -2418,7 +2267,6 @@ public interface BidName {
             "零典\n" +
             "OBLAM\n" +
             "欧比兰\n" +
-            "OBO.Tarmangor\n" +
             "OLIMELA\n" +
             "欧莉拉\n" +
             "OMIHO\n" +
@@ -2432,9 +2280,7 @@ public interface BidName {
             "安瑞井\n" +
             "OSA\n" +
             "OTT\n" +
-            "Oct．Legend\n" +
             "十月传奇\n" +
-            "Olivierstrelli\n" +
             "Onneksi\n" +
             "吉菱\n" +
             "OrangeWeek\n" +
@@ -2449,7 +2295,6 @@ public interface BidName {
             "PEACEBIRD\n" +
             "太平鸟\n" +
             "PESARO\n" +
-            "PRANCINGLEAVES\n" +
             "落叶狂舞\n" +
             "PRICH\n" +
             "PSALTER\n" +
@@ -2465,7 +2310,6 @@ public interface BidName {
             "Ports\n" +
             "宝姿\n" +
             "p.ourip\n" +
-            "plaincolour若溯\n" +
             "prosilu\n" +
             "葆斯奴\n" +
             "璞·秀\n" +
@@ -2486,7 +2330,6 @@ public interface BidName {
             "轻晓\n" +
             "七彩亦酷\n" +
             "千百伊人\n" +
-            "前世今生你的样子\n" +
             "浅碧\n" +
             "Q&B\n" +
             "浅语\n" +
@@ -2542,7 +2385,6 @@ public interface BidName {
             "新百伦\n" +
             "品胜\n" +
             "飞毛腿\n" +
-            "New Balance\n" +
             "吴永志\n" +
             "千鸟格\n" +
             "沁园\n" +
@@ -2567,7 +2409,6 @@ public interface BidName {
             "英菲克\n" +
             "caTd\n" +
             "奥贝\n" +
-            "关键词：｛润乙\n" +
             "康昕\n" +
             "小厨宝\n" +
             "bluearly\n" +
@@ -2597,30 +2438,24 @@ public interface BidName {
             "胖胖哥\n" +
             "LOOL1881\n" +
             "Vancoog\n" +
-            "Abercrombie Fitch\n" +
-            "Alison White\n" +
             "菊池武夫\n" +
             "KESUN柯尚\n" +
             "酷泰努\n" +
             "里维斯\n" +
             "Laxjoy朗悦\n" +
             "闪亮家族\n" +
-            "mexican稻草人\n" +
             "Match麻吉\n" +
             "迈克菲恩\n" +
-            "Neighborhood\n" +
             "欧莱诺\n" +
             "联邦蜥鳄\n" +
             "零号男\n" +
             "menothink\n" +
             "摩迪道奇\n" +
-            "MAYKOR JANE\n" +
             "Nike耐克\n" +
             "One2One\n" +
             "意利王\n" +
             "有尚致品\n" +
             "洲艳\n" +
-            "圣亚哥(索卡迪)\n" +
             "TOPWIND\n" +
             "天后龙觉\n" +
             "华尔思丹\n" +
@@ -2634,7 +2469,6 @@ public interface BidName {
             "混合二次方\n" +
             "Zojovi\n" +
             "25.5℃\n" +
-            "艾夫斯ITISF4\n" +
             "Ambm men\n" +
             "宾杰法尼\n" +
             "古骑博格\n" +
@@ -2643,10 +2477,8 @@ public interface BidName {
             "EBG\n" +
             "伊文\n" +
             "哥仨行\n" +
-            "GORDRAL戈左\n" +
             "heidihomme\n" +
             "HOSEL\n" +
-            "Hardl yevers\n" +
             "吉米仕家\n" +
             "哇咔\n" +
             "依柱香\n" +
@@ -2666,7 +2498,6 @@ public interface BidName {
             "承发\n" +
             "Cleef\n" +
             "策威\n" +
-            "camel cavalier\n" +
             "驰鸵\n" +
             "超杯\n" +
             "东帝名坊\n" +
@@ -2855,7 +2686,6 @@ public interface BidName {
             "pocbee\n" +
             "剑鱼渔具\n" +
             "DBX\n" +
-            "重装系统u盘\n" +
             "腾达\n" +
             "怡倩\n" +
             "富安娜\n" +
@@ -2874,7 +2704,6 @@ public interface BidName {
             "火火兔\n" +
             "古美图\n" +
             "沃特斯\n" +
-            "eii bio bra\n" +
             "扬子乐\n" +
             "富贵鸟\n" +
             "蜘蛛王\n" +
@@ -2946,31 +2775,23 @@ public interface BidName {
             "优彼\n" +
             "海瀾之家\n" +
             "qq男装\n" +
-            "日韩女装专卖\n" +
             "我是阿武\n" +
             "cc2013518\n" +
             "ni252521\n" +
-            "AISS街拍时尚女装\n" +
             "半山居\n" +
             "玄雕紫砂\n" +
             "emai骄娘\n" +
-            "我爱黑色奶茶\n" +
             "衫衫帆布鞋\n" +
             "速派户外\n" +
-            "一一新一佳一一\n" +
             "潘彼岸\n" +
             "蜡笔小新猩\n" +
-            "宝love亲亲那男人\n" +
             "暮光记\n" +
-            "武汉手绘鞋批发\n" +
             "琴琴滴店铺\n" +
             "及时雨库存\n" +
             "中美瓷\n" +
             "123568香\n" +
             "魔幻之恋曲\n" +
             "zhwfly\n" +
-            "huxinlong1108\n" +
-            "琴琴牛仔包袋\n" +
             "小庞村的爱\n" +
             "和平石井\n" +
             "大和围巾\n" +
@@ -2978,57 +2799,28 @@ public interface BidName {
             "sex青?\n" +
             "允儿妈小铺\n" +
             "振轩衣阁\n" +
-            "大脸猫M潮品\n" +
             "海沸全城\n" +
-            "yanglihuan258\n" +
             "唯唯逗乃\n" +
-            "一一新一佳一一 \n" +
-            "月销量200000件\n" +
-            "veedee5度旗舰店\n" +
             "361°\n" +
             "艾米利361°\n" +
-            "AISS街拍时尚女装亚\n" +
-            "GS古思潮包 每周上新\n" +
-            "陪你看婚纱6\n" +
             "星光百纳\n" +
             "江东草堂\n" +
             "日吻\n" +
-            "欧美乡村小屋\n" +
-            "益生堂健康食品\n" +
-            "家有n多宝贝\n" +
             "lin家世界\n" +
-            "悍高厨卫商城\n" +
-            "悍高厨卫官方企业店\n" +
-            "我有一个窝窝头llj\n" +
-            "我爱发明自动钓鱼钩\n" +
             "桐溪玉阁\n" +
-            "标元吉皮具0851\n" +
             "吴奇良11\n" +
             "蚊子的羽毛\n" +
-            "背着小车看日出\n" +
             "造福千万家\n" +
             "亚美皮业\n" +
-            "说我喜欢你1997\n" +
             "孕妈咪475\n" +
-            "时尚妈咪营销店\n" +
             "leayer0\n" +
-            "tb8000804_99\n" +
             "港龙眼镜店\n" +
-            "潇湘雨2012年\n" +
             "小七北鼻\n" +
-            "我就是我6666669\n" +
-            "午后树下的柠檬\n" +
             "陈杰888899\n" +
-            "梦小姐的店阿\n" +
-            "wenchao8877\n" +
             "戍棣姒家\n" +
             "x1aoyang0\n" +
             "cxlxxy\n" +
-            "chenglingfeng00\n" +
-            "幼儿园专科毕业\n" +
             "宏达便利店\n" +
-            "温迪wendy33\n" +
-            "chenkanglinse\n" +
             "im丶yours\n" +
             "原创\n" +
             "xsq0377\n" +
@@ -3037,71 +2829,42 @@ public interface BidName {
             "转角潮男\n" +
             "生活美现\n" +
             "深水的海洋\n" +
-            "金色夏天20140319\n" +
             "美茵商店\n" +
             "yuanyull\n" +
             "tb7519712\n" +
-            "trustzhang2007\n" +
-            "鼎尚真皮女鞋企业店\n" +
             "linjijie68\n" +
             "sarge775\n" +
             "信息中心32\n" +
             "聪健856\n" +
             "细细屋\n" +
-            "曼霖格贸易公司婴儿出口服\n" +
             "wangyusak\n" +
-            "筱婷470348692\n" +
             "精舞门彤\n" +
-            "xiaolanlan1986\n" +
-            "李寻欢19808\n" +
-            "钓鱼人娱乐城\n" +
             "器舍youpin\n" +
             "品质霏凡\n" +
-            "zcy67458934\n" +
             "尜珊妮子\n" +
             "付道云96\n" +
             "阿玛谔\n" +
             "amae\n" +
             "都市达柯\n" +
-            "艾利斯车身改色直营店\n" +
             "蒋超级无敌\n" +
-            "上海振宇家具\n" +
             "吴文通\n" +
             "xy鑫源车饰\n" +
-            "友谊e族商贸城\n" +
             "亿泽服饰\n" +
             "奥科生活\n" +
-            "wz531089800\n" +
             "dgmabi\n" +
-            "红树林户外渔具商城 \n" +
             "凌蜡笔\n" +
             "辉音峻举\n" +
-            "铂尔金数码专营店\n" +
             "木炭世家\n" +
-            "wgj15221403089\n" +
             "渔美人zl\n" +
-            "星雨雅阁一号\n" +
             "冰冰8898\n" +
             "一点点9558\n" +
-            "linlixiong88\n" +
             "东东和当当\n" +
             "小怪怪0525\n" +
-            "彬_执笔写下情\n" +
             "开心8_55\n" +
-            "zyun0000414414\n" +
-            "鹏盈办公专营店\n" +
-            "畅通羊绒编织线\n" +
-            "长江户外商行\n" +
-            "淡泊以明志266\n" +
             "lan1826950\n" +
-            "wangxutao1982\n" +
-            "差不多先生52199\n" +
-            "tb855670_11\n" +
-            "starting企业店\n" +
             "小雨051492\n" +
             "且沫旗舰店\n" +
             "chho821\n" +
-            "jap71492181111\n" +
             "lin_fanny\n" +
             "leafna\n" +
             "休休儿880\n" +
@@ -3109,11 +2872,8 @@ public interface BidName {
             "喜客多2008\n" +
             "山寨10086\n" +
             "tiemme\n" +
-            "仲松防护用品\n" +
-            "xueliangbaba\n" +
             "新梦想乐园\n" +
             "好运来1022\n" +
-            "startingfashion旗舰店\n" +
             "hehua136\n" +
             "霸权主义16\n" +
             "徽派生活\n" +
@@ -3129,29 +2889,21 @@ public interface BidName {
             "俏江南\n" +
             "科德士\n" +
             "艾梦忆思\n" +
-            "男士t恤夏季短\n" +
             "跃宁\n" +
             "AOSIMAN\n" +
-            "芭啦娜大包包\n" +
             "翔风鸟\n" +
             "明璐\n" +
             "袋鼠\n" +
-            "Prada、Miumiu\n" +
             "路施南\n" +
             "欧出色显\n" +
-            "雷博舞蹈鞋女式广场舞鞋秋季新款\n" +
             "舞美\n" +
             "恋上舞\n" +
             "舞之娇\n" +
             "舞诺\n" +
-            "正品韩式家纺床品纯棉四件套 全\n" +
             "三莎\n" +
-            "来自星星的你\n" +
             "千颂伊\n" +
             "Armani jea\n" +
-            "CF穿越火线大炮巴雷特狙击\n" +
             "小香风\n" +
-            "珊瑚绒羊绒活性罗莱磨毛四件套\n" +
             "雷博\n" +
             "歌秀丹\n" +
             "哈梵\n" +
@@ -3160,13 +2912,8 @@ public interface BidName {
             "赛彩\n" +
             "Shourouk\n" +
             "红雨\n" +
-            "哈罗曼舞蹈鞋\n" +
-            "WALKER沃克 \n" +
-            "老人头品牌男鞋\n" +
-            "2015新款男童风衣外套韩版潮 \n" +
             "樱宁\n" +
             "迪尔优品 \n" +
-            "2015秋装外套原创主题新款\n" +
             "雅煊\n" +
             "依诗欧\n" +
             "奈昕\n" +
@@ -3174,26 +2921,10 @@ public interface BidName {
             "才子帮\n" +
             "积福阁 \n" +
             "富安娜  \n" +
-            "2015秋季新款韩版女装.\n" +
-            "2015秋季新款女装韩版连衣裙\n" +
-            "2015秋装新款 大码女装显瘦\n" +
             "薇薇果\n" +
-            "2015新款泳衣比基尼分体平角\n" +
-            "秋季韩版弹力布过膝长靴内增高平\n" +
-            "zakka工艺品杂货 做旧装饰\n" +
             "娃娃领\n" +
             "锐鹰配件\n" +
-            "汽车加热坐垫12V24V \n" +
-            "电脑防辐射仪器  \n" +
-            "範 X 2015秋季新款甜美森\n" +
-            "韦乐雅斯充电精准电子称人体体重\n" +
             "墨概念\n" +
-            "廉仕爸爸男装 \n" +
-            "单肩斜挎女包包复古真皮女包\n" +
-            "春秋装新款修身圆领男士毛衣韩版\n" +
-            "野营炉头分体气炉户外野餐野炊露\n" +
-            "三申儿童学习桌\n" +
-            "BEEHIVES2015秋冬新\n" +
             "芬宝 \n" +
             "袋鼠 \n" +
             "木易太\n" +
@@ -3201,30 +2932,23 @@ public interface BidName {
             "爱贝斯\n" +
             "5832\n" +
             "OL黑\n" +
-            "泊莱雅bb霜正品保湿美白遮瑕强\n" +
             "DB1585\n" +
             "木易太服饰\n" +
             "百卓\n" +
-            "2015秋装新款欧美高端灯笼袖\n" +
-            "2015秋季新款时尚女装短款宽\n" +
-            "创意装饰灯饰儿童房台灯卡通可爱\n" +
             "奥阁拉狮\n" +
             "简毅男装\n" +
             "芭谷韩 \n" +
-            "北极绒纯棉莫代尔贡缎提花四件\n" +
             "艾玫思\n" +
             "DENON \n" +
             "中岛柜货架\n" +
             "快乐年华 \n" +
             "回力帆布鞋\n" +
-            "广州空气净化器吸尘器电风扇挂烫\n" +
             "飒韵 \n" +
             "Jeans\n" +
             "圣澜菲诺\n" +
             "闺蜜坊\n" +
             "奥林匹亚\n" +
             "夏新\n" +
-            "其乐英伦真皮男鞋\n" +
             "探拓者\n" +
             "迎康\n" +
             "达尔丽\n" +
@@ -3232,177 +2956,96 @@ public interface BidName {
             "创世\n" +
             "宾宝\n" +
             "速写\n" +
-            "韦乐雅斯USB充电\n" +
             "唐匠世家\n" +
             "圣天虹\n" +
-            "木质烤漆展示高柜\n" +
             "孕肤宝\n" +
-            "精美玉石首饰 玛瑙石戒指\n" +
             "铁柜\n" +
             "铁皮柜\n" +
-            "全棉四件套纯棉学生hell\n" +
             "3M净水器\n" +
-            "精美玉石首饰 玛瑙石戒指 天然\n" +
-            "帛芮韩版时尚碎花背心连衣裙棉气\n" +
             "彩婷\n" +
             "森雷司\n" +
             "GD港度\n" +
             "雅圣利\n" +
             "韦乐雅斯\n" +
-            "李宁官方网旗舰店\n" +
             "美洲貂钱包\n" +
             "绿杰\n" +
             "DOSS\n" +
             "亿民康\n" +
             "傲徒\n" +
-            "PINLI品立秋装男装弹力修身\n" +
             "迈雅\n" +
             "培罗蒙\n" +
             "金迈驰\n" +
             "水星\n" +
-            "2015春秋款真皮平跟女单鞋舒\n" +
             "百唯雅\n" +
-            "2015秋季新款真皮平跟单鞋\n" +
-            "毅雅舒适透气优雅百搭女鞋单鞋\n" +
-            "迪奥男香 正品dior hom\n" +
             "天衣布品\n" +
             "CERRUTI \n" +
-            "全棉纯棉床上三四件套3D磨毛立\n" +
-            "床上用品纯棉四件套 全棉4件套.\n" +
-            "夏季新款鱼嘴凉鞋女摇摇鞋增高舒\n" +
-            "魔声Beats powerbeats\n" +
-            "360度三网通插网线随身3G4\n" +
-            "云南西双版纳vip包团一日游\n" +
             "拉途\n" +
             "七夜海 \n" +
-            "秋冬新款女装大毛领100%纯山\n" +
-            "厝边头尾 秋野地全自动车顶帐篷\n" +
-            "蓝牙电话 手柄 蓝牙话筒 USEASY\n" +
-            "优美宝宝卡通储物柜\n" +
             "琳丽人\n" +
-            "秋季透气运动男女潮鞋阿甘情侣\n" +
             "爱用\n" +
-            "2015秋装韩版童装女童长袖纯\n" +
-            "纯天然磨砂黑曜石关公男\n" +
-            "2015新款夏装卫裤男小脚\n" +
             "蔻迈\n" +
             "蓝硕\n" +
             "亿得佳\n" +
             "D600S\n" +
             "捷渡D600S \n" +
             "PINLI品立\n" +
-            "毛呢外套女风衣式呢大衣韩版20\n" +
-            "显瘦2015女装新款秋装 秋季\n" +
-            "宝人夏时尚防滑高跟凉拖鞋松糕厚\n" +
-            "幽灵舞步破洞牛仔裤女2015秋\n" +
-            "925银项链女吊坠锁骨首饰紫水晶\n" +
-            "拉市海一日纯玩跟团游 云南旅游 \n" +
-            "台湾MPS高清HDMI线1\n" +
             "斯得雅 \n" +
             "金柳\n" +
             "ANKOU\n" +
-            "2015韩版秋装宽松长袖t恤女\n" +
-            "4层把手式夹缝冰箱收纳架/收纳\n" +
-            "孕妇枕头护腰侧睡孕妇枕头孕\n" +
-            "日本富士珐琅\n" +
             "A100\n" +
             "北鼎\n" +
             "超人\n" +
-            "香具摄影产品\n" +
-            "加肥加大码弹力小碎花汗背\n" +
             "可可西\n" +
-            "上海故事专柜加厚獭兔毛\n" +
             "美尔丝\n" +
             "漫林\n" +
             "魅利\n" +
-            "雷柏7100P无线鼠标\n" +
-            "安程汽车脚垫\n" +
             "耐旅\n" +
-            "LMK官方正品 \n" +
             "蓝贝\n" +
             "金柳家居 \n" +
-            "欧式陶瓷水果盘\n" +
-            "创意儿童玩具收纳筐超大宝宝玩具\n" +
-            "日本富士珐琅 搪瓷 蓝色冰箱保\n" +
-            "【蜜意包邮】\n" +
             "DOODOO\n" +
             "舒采\n" +
-            "日默瓦rimowa旅行箱纯PC拉杆箱\n" +
             "衣芮 \n" +
-            "雅煊简约高帮男鞋舒适马丁鞋短靴\n" +
             "素恋\n" +
-            "ANKOU安扣塑料冰箱保鲜盒4套装\n" +
-            "韩都衣舍AMH男装2015秋装\n" +
             "谷翼\n" +
             "舒采小蛮腰\n" +
             "老北京布鞋\n" +
-            "新款2015时尚雪纺套装女装夏装\n" +
-            "2015新款秋季女鞋尖头中跟\n" +
-            "梦特娇休闲裤\n" +
             "EA\n" +
             "阿玛妮\n" +
             "王子妈妈\n" +
-            "【特价乐购】豆豆鞋男鞋夏季新款\n" +
             "毅雅YIYA \n" +
             "兄弟BRS\n" +
             "索酷飞轮\n" +
             "汇乐806\n" +
-            "家庭用小型自动家用榨油机冷榨\n" +
             "森足\n" +
-            "科涵K700安霸A7LA70高端行车记录\n" +
             "潮男豆豆鞋\n" +
-            "snoopy史努比童鞋\n" +
             "BeachQueen\n" +
-            "2015夏装新款女装气质印花真\n" +
-            "充电宝10400毫安\n" +
-            "棕色帆布鞋休闲板鞋男鞋子夏季透\n" +
             "美来美去 \n" +
-            "JAUNT破窗器\n" +
-            "连体衣裤2015新款夏女装连体\n" +
             "男孩很忙 \n" +
-            "beyond优上冷光牙齿美白仪\n" +
             "艾可丽\n" +
-            "连体衣裤2015新款夏女装连体服\n" +
             "悠朵家纺\n" +
             "水星梦\n" +
-            "永高人童鞋 \n" +
             "恋人水星\n" +
             "拿得劳\n" +
-            "2015秋季男鞋男士休闲鞋反绒\n" +
             "范特华特\n" +
             "百甸阿甘鞋\n" +
             "仕臣\n" +
             "维多利亚\n" +
             "傻厨\n" +
-            "2015新款韩版男夏季薄款潮流男装\n" +
             "车之源\n" +
-            "凯迪拉克xts\n" +
             "贝踏\n" +
-            "2015早秋新款纯色\n" +
             "DOOVOS\n" +
             "快易典\n" +
             "爱登堡\n" +
-            "2015秋季新款古家G家荧光色\n" +
             "Inakids\n" +
             "菲梅妮\n" +
-            "Led心形彩灯婚庆婚房布置\n" +
             "NEOCOVER\n" +
-            "美帝宝323全自动\n" +
-            "EVO电动滑板车\n" +
             "花样滑冰\n" +
             "泊柏莱\n" +
             "泊莱雅套装\n" +
-            "壹枱The ONE智能钢琴\n" +
-            "【全车包贴套餐】重庆汽车贴膜\n" +
             "花儿布依\n" +
             "BAO BAO\n" +
-            "湖人队24号科比号码印花运动\n" +
-            "商务男士短袖t恤圆领冰丝纯棉莫.\n" +
-            "英之华2015夏\n" +
             "逸佳\n" +
-            "DJ12B-C18SG\n" +
             "SKG\n" +
-            "歪呀呀加高床护栏婴儿通用\n" +
             "柒牌\n" +
             "薇洛贝拉\n" +
             "索瑞尔\n" +
@@ -3410,69 +3053,46 @@ public interface BidName {
             "九牧王\n" +
             "小猪培格\n" +
             "千百丽人\n" +
-            "【天天特价】七夕礼物天然琥珀\n" +
             "海南黄花梨\n" +
             "韩伊格\n" +
             "沃尔沃XC60\n" +
             "和家缘\n" +
-            "宝檀 印度老料金星小叶紫檀\n" +
             "车博士\n" +
             "和玉轩\n" +
             "肖班夏\n" +
             "蓝馨缘\n" +
             "老凤祥\n" +
-            "龙虎 清凉油19g+风油精\n" +
-            "正品bonny/波力\n" +
             "北京现代\n" +
             "马卡龙\n" +
-            "可视电话网络防盗报警器WIF\n" +
-            "【天天特价】米奇双\n" +
             "索可尼  \n" +
             "本田11款\n" +
-            "保平安108颗\n" +
             "明可美\n" +
             "富力狮\n" +
-            "尊弘世家999纯银树\n" +
             "画婷\n" +
             "【藤田】\n" +
-            "点辰 高清夜视1200线监控套装\n" +
-            "景德镇陶瓷三件套 \n" +
             "cucci\n" +
             "乔威 \n" +
-            "铝膜汽车车衣车罩防晒防雨隔热加\n" +
-            "翡翠十二生肖\n" +
-            "肖班夏季男士休闲鞋韩版鞋透气包\n" +
-            "1212限量版定制款 阿狸永望\n" +
             "草莓地芬迪\n" +
             "格瑞丝琳\n" +
             "卫道\n" +
             "V37\n" +
             "春天瑞朵\n" +
-            "大嘴猴莫代尔套装夏\n" +
             "美来美去\n" +
             "豆豆鞋\n" +
             "SUV\n" +
-            "shake n take 3\n" +
             "李培德手工\n" +
             "多普森\n" +
             "牧蹬羊\n" +
             "亦美珊\n" +
             "醒目\n" +
-            "VOLO犀牛男鞋\n" +
-            "欧美新款女士羊皮小香风菱格包包\n" +
             "玮玛\n" +
             "非浅 \n" +
-            "乐卡5000拉卡拉刷卡苹果5S\n" +
             "铝合金\n" +
             "波西米\n" +
             "卡洛莱\n" +
             "NIAN JEEP\n" +
             "肯玛驰\n" +
             "禾诗\n" +
-            "防水儿童寻车宠物轨迹\n" +
-            "京中家用榨油机电动家用榨油机全\n" +
-            "品牌女装2015春夏装新款时尚\n" +
-            "RP太阳镜男 偏光镜司机专\n" +
             "韵佳麒\n" +
             "氧层\n" +
             "OL\n" +
@@ -3481,12 +3101,9 @@ public interface BidName {
             "玥裳\n" +
             "潮T\n" +
             "仙女装修身\n" +
-            "胜雄兰博基尼\n" +
             "Hauswirt\n" +
             "威登保罗 \n" +
-            "原创设计925纯银吊坠 女 项\n" +
             "知识花园\n" +
-            "镂空水钻女士拖鞋高跟坡跟女\n" +
             "移动电源\n" +
             "贝迪斯\n" +
             "5066韩版\n" +
@@ -3498,22 +3115,15 @@ public interface BidName {
             "PH7S\n" +
             "显瘦\n" +
             "杭依阁 \n" +
-            "美罗家纺出品 \n" +
-            "华伦天奴古柏\n" +
             "潮酷奇\n" +
             "B家\n" +
             "曼歌妮\n" +
             "莱尔诗琦 \n" +
             "EVISU\n" +
             "Lee/李牌\n" +
-            "日本EVISU福神\n" +
             "James\n" +
-            "专柜正品James Lee\n" +
             "ZOKU\n" +
             "美ZOKU \n" +
-            "正品再生原液 做处女般紧致见效\n" +
-            "空气压缩式雾化器\n" +
-            "格瑞丝琳欧美装饰项\n" +
             "莫吉\n" +
             "贵蒂儿\n" +
             "玛拉卡罗\n" +
@@ -3522,27 +3132,20 @@ public interface BidName {
             "香妮兰\n" +
             "铁艺墙饰\n" +
             "韩大 \n" +
-            "出口加大加宽宝宝充气沙发\n" +
             "魔浪\n" +
             "帛柏\n" +
             "欧根莎\n" +
-            "2015夏韩版新款大牌气质翻领v领\n" +
             "百丽添沃\n" +
             "蓝海仕家\n" +
             "FVHD\n" +
-            "麦昆McQueen\n" +
             "人本正品  \n" +
             "丑皮匠\n" +
-            "SADES/赛德斯 A60\n" +
             "莱尔诗琦\n" +
             "彼得\n" +
             "诗诺坊\n" +
             "公主与王后\n" +
-            "格瑞丝琳欧美时尚铆\n" +
-            "苹果夏季男鞋网鞋透\n" +
             "James \n" +
             "森马\n" +
-            "新款隐形按钮暴走鞋儿童 \n" +
             "爱德华\n" +
             "爱乐宝\n" +
             "娜箐箐 \n" +
@@ -3555,27 +3158,21 @@ public interface BidName {
             "ButWhy\n" +
             "依路行 \n" +
             "宝家丽\n" +
-            "苹果夏季男鞋网鞋透气鞋情侣板鞋\n" +
             "永高 \n" +
             "青春潮流\n" +
             "可可家圆\n" +
-            "彼得潘领欧根纱\n" +
-            "名媛小香风 \n" +
             "波西米亚\n" +
             "Fxunshi\n" +
             "parkyeon\n" +
             "P6\n" +
-            "小桃泳衣女斯漫琪\n" +
             "莫蕾蔻蕾\n" +
             "盟迪奥\n" +
             "NUCKILY \n" +
-            "麦克赛尔Maxell\n" +
             "胖MM\n" +
             "QKU奇酷\n" +
             "军用\n" +
             "警用\n" +
             "劲武\n" +
-            "心款屋 胖mm\n" +
             "海恩\n" +
             "娇小妞\n" +
             "子俊 ▲\n" +
@@ -3585,14 +3182,9 @@ public interface BidName {
             "路伊梵\n" +
             "塔文\n" +
             "小小HOME \n" +
-            "田园布艺卡通      \n" +
-            "Gatej             \n" +
-            "VOLO              \n" +
             "益启莱\n" +
             "雪纺瘦\n" +
-            "加肥加大    \n" +
             "暴龙太阳镜\n" +
-            "鼻炎药中药鼻炎精油\n" +
             "自由骑士 \n" +
             "BOSS\n" +
             "抹茶生活  \n" +
@@ -3602,24 +3194,18 @@ public interface BidName {
             "拼接\n" +
             "韩芙儿\n" +
             "励高\n" +
-            "CCainoliver  \n" +
             "泰芝郎\n" +
             "美邦  \n" +
-            "粉红小布娃娃 \n" +
-            "cantorp骆驼\n" +
             "概念 \n" +
-            "bennyblue韩\n" +
             "布伊格\n" +
             "耐宾韩版\n" +
             "荷兰\n" +
             "人本 \n" +
             "博视正品 \n" +
             "利兹菲莱 \n" +
-            "印度海那花粉\n" +
             "仙の韵 \n" +
             "夏娃之秀\n" +
             "Scutie\n" +
-            "1嫚婵-i116韩版\n" +
             "哥弟正品\n" +
             "好孩子\n" +
             "抹茶生活\n" +
@@ -3634,17 +3220,11 @@ public interface BidName {
             "博洋宝贝\n" +
             "南方寝饰 \n" +
             "新科V18  \n" +
-            "聚】紫罗兰家纺 \n" +
             "她他\n" +
-            "TEANA天籁掌上KTV \n" +
-            "burberry巴宝莉\n" +
-            "INTEX67736双人双层充气床\n" +
-            "Takstar/得胜\n" +
             "羽博充电宝\n" +
             "永高人\n" +
             "QKU奇酷 \n" +
             "闺蜜姐妹 \n" +
-            "粉红小布娃娃\n" +
             "VB白盒子 \n" +
             "梦特娇 \n" +
             "时尚权威\n" +
@@ -3663,7 +3243,6 @@ public interface BidName {
             "婴木 \n" +
             "斯丹百依 \n" +
             "轻松熊\n" +
-            "steamercurl\n" +
             "CCMKHF\n" +
             "ezer\n" +
             "法朗兹\n" +
@@ -3697,21 +3276,14 @@ public interface BidName {
             "哈他谷翼崎\n" +
             "爱晴柔\n" +
             "华伦\n" +
-            "Michael Kors\n" +
             "七音果\n" +
             "TOP TOMS\n" +
             "怡姿\n" +
             "Longcham\n" +
-            "SUNBOY999千足银纯银杯\n" +
-            "绵绸 棉麻连衣裙夏装高端气质收\n" +
             "桑蚕丝\n" +
-            "FVHD爆裂纹真皮女包\n" +
             "shan7杉七 \n" +
-            "九分裤休闲裤韩版铅笔裤戈美\n" +
             "贝迪\n" +
-            "艾芭莎NewbalanceNB\n" +
             "佑一良品\n" +
-            "shake n take\n" +
             "VANPL\n" +
             "瑞沃\n" +
             "dhc\n" +
@@ -3733,7 +3305,6 @@ public interface BidName {
             "促销\n" +
             "汉王\n" +
             "知名品牌\n" +
-            "哥伦比亚专柜正品\n" +
             "胶囊\n" +
             "Daxian\n" +
             "Clinique\n" +
@@ -3761,7 +3332,6 @@ public interface BidName {
             "West\n" +
             "天美意\n" +
             "Huawei\n" +
-            "时光行者男表\n" +
             "executive\n" +
             "他她 \n" +
             "千百度\n" +
@@ -3769,8 +3339,6 @@ public interface BidName {
             "万斯帆\n" +
             "Origins\n" +
             "悦木之源\n" +
-            "弗兰安娜亚马逊\n" +
-            "格兰玛弗兰萝西\n" +
             "百麗人\n" +
             "KUEGOU\n" +
             "森马 \n" +
@@ -3805,7 +3373,6 @@ public interface BidName {
             "笔记本\n" +
             "万 宝龙\n" +
             "弗兰安 \n" +
-            "MASILOU玛狮路\n" +
             "天梭 \n" +
             "促销 \n" +
             "海信 \n" +
@@ -3836,33 +3403,14 @@ public interface BidName {
             "飙邦\n" +
             "美罗家纺 \n" +
             "斯漫琪\n" +
-            "欧出色                 \n" +
-            "哈他谷翼崎  HDW \n" +
-            "熙漫               \n" +
-            "亦美珊       \n" +
             "熙漫  \n" +
             "七音果 \n" +
-            "林茜雅静           \n" +
             "柏泊莱雅\n" +
-            "泊柏珀莱雅 \n" +
-            "韩舍芭莉雪纺衫             \n" +
-            "袋鼠              \n" +
-            "斯漫琪               \n" +
-            "情调衣人                   \n" +
-            "妮兰                 \n" +
-            "又见小夕                  \n" +
             "乐包包 \n" +
             "格兰琴\n" +
-            "公主与王后  \n" +
-            "ongchamp法珑骧\n" +
-            "夏季舒适增高鞋真皮豆\n" +
-            "正品男裤中老年休闲裤男士修身\n" +
-            "韩版夏季内增高男鞋镂空透气休闲\n" +
             "ACE\n" +
-            "韩版双肩包男潮流帆布青年男士\n" +
             "千颂伊 \n" +
             "WUSSA\n" +
-            "CK one卡莱优\n" +
             "苏泽尔\n" +
             "黑色逻辑 \n" +
             "黛薇拉\n" +
@@ -3870,28 +3418,22 @@ public interface BidName {
             "CK \n" +
             "吉嘉欧式  \n" +
             "广百思\n" +
-            "万斯 old skool\n" +
-            "D:FUSE迪芙斯\n" +
             "LL＆QQ\n" +
             "游牧鲁\n" +
-            "魔声beatbox\n" +
             "CORSA酷萨 \n" +
             "爱马仕 \n" +
             "卓尔\n" +
             "宾尼兔\n" +
             "古奇天\n" +
-            "欧时力five plus\n" +
             "BEAU\n" +
             "玉步之恋\n" +
             "乳头矫正器\n" +
-            "Jabra Stealth 捷波朗 \n" +
             "先科\n" +
             "爱步ecco\n" +
             "秋比\n" +
             "韦氏手工\n" +
             "秋比 \n" +
             "kisan凯盛\n" +
-            "ProtectABed\n" +
             "好女人\n" +
             "中台小黄人\n" +
             "jonnyrman \n" +
@@ -3906,7 +3448,6 @@ public interface BidName {
             "CATPT\n" +
             "其乐英伦\n" +
             "帝乐曼芬\n" +
-            "达尔优机械师\n" +
             "LOZ/俐智\n" +
             "唯斯尚\n" +
             "巧足\n" +
@@ -3931,8 +3472,6 @@ public interface BidName {
             "jonnyrman\n" +
             "纳佰卡\n" +
             "颐贝贝\n" +
-            "Toshiba/东芝\n" +
-            "lamarantine\n" +
             "哚唻咪\n" +
             "防汗控油\n" +
             "Axglo爱斯\n" +
@@ -3977,18 +3516,9 @@ public interface BidName {
             "动感车\n" +
             "缇沃丝\n" +
             "cantomotto\n" +
-            "七彩草莓种子\n" +
             "七彩草莓苗\n" +
             "七彩茶花苗\n" +
-            "纯蓝色玫瑰种子\n" +
-            "纯蓝色玫瑰苗\n" +
-            "蓝色火龙果种子\n" +
-            "蓝色火龙果苗\n" +
-            "蓝色西瓜种子\n" +
-            "绿色西瓜种子\n" +
-            "绿色草莓种子\n" +
             "绿色草莓苗\n" +
-            "七彩玫瑰种子\n" +
             "七彩玫瑰苗\n" +
             "蓝桂苗\n" +
             "舞步\n" +
@@ -4003,7 +3533,6 @@ public interface BidName {
             "班尼路\n" +
             "8字扣头\n" +
             "migo\n" +
-            "泰山墨玉九龙印章玉玺摆件\n" +
             "lanadin\n" +
             "靓典\n" +
             "wanlang\n" +
@@ -4012,7 +3541,6 @@ public interface BidName {
             "倍思\n" +
             "巴西\n" +
             "阿狸\n" +
-            "JCOOL STORY\n" +
             "阿狸英伦\n" +
             "Marbo\n" +
             "妈宝\n" +
@@ -4020,7 +3548,6 @@ public interface BidName {
             "极控者NFC\n" +
             "波斯蒂琪\n" +
             "方太\n" +
-            "BeeBees韩国金贝\n" +
             "毛球拍\n" +
             "路易克思\n" +
             "贝蒂betty\n" +
@@ -4030,7 +3557,6 @@ public interface BidName {
             "Masha\n" +
             "欧宝龙\n" +
             "基诺浦\n" +
-            "澳洲紫色薰衣草小熊\n" +
             "VB白盒子\n" +
             "浪潮\n" +
             "川崎\n" +
@@ -4051,7 +3577,6 @@ public interface BidName {
             "EMIRDOS\n" +
             "美邦\n" +
             "歌瑞丝芬\n" +
-            "CCainoliver\n" +
             "花舞\n" +
             "小辣椒\n" +
             "纽曼\n" +
@@ -4069,7 +3594,6 @@ public interface BidName {
             "Tmc\n" +
             "百代适\n" +
             "远梦家纺\n" +
-            "日本隐形口罩\n" +
             "爱者\n" +
             "远梦\n" +
             "长相知\n" +
@@ -4100,7 +3624,6 @@ public interface BidName {
             "真维斯男裤\n" +
             "阿玛施\n" +
             "巴利迪亚\n" +
-            "2Zinganything\n" +
             "GUB SS\n" +
             "INBIKE\n" +
             "迈途\n" +
@@ -4114,7 +3637,6 @@ public interface BidName {
             "A皇\n" +
             "百思图\n" +
             "艾芭莎\n" +
-            "NewbalanceNB\n" +
             "诺雷敦\n" +
             "郑多燕\n" +
             "MK女包\n" +
@@ -4123,25 +3645,19 @@ public interface BidName {
             "欧出色\n" +
             "古翼崎\n" +
             "雅戈尔\n" +
-            "INNET因奈儿\n" +
             "米飒\n" +
             "韦大锤\n" +
             "Sir7\n" +
             "迪亚欧\n" +
-            "BLUNT XS_METRO\n" +
             "安贝威\n" +
             "俏北北\n" +
             "米兰登\n" +
             "威妍\n" +
             "格兰宝路\n" +
-            "Calvin Klein\n" +
             "锐步\n" +
             "Reebok\n" +
             "斐乐FILA\n" +
-            "美津侬Mizuno\n" +
             "茵宝UMBRO\n" +
-            "背靠背KAPPA\n" +
-            "迪亚多纳DIADORA\n" +
             "乐途LOTTO\n" +
             "织云\n" +
             "捷安特\n" +
@@ -4206,9 +3722,7 @@ public interface BidName {
             "欧罗兰\n" +
             "TIANKUDC\n" +
             "德SAILE\n" +
-            "The North Face\n" +
             "红惑\n" +
-            "凯丽贝尔kiber\n" +
             "百变潮\n" +
             "纳川\n" +
             "足间舞\n" +
@@ -4226,14 +3740,10 @@ public interface BidName {
             "杰尼轩诗\n" +
             "利拓\n" +
             "果妃\n" +
-            "【天天特价】\n" +
             "童星\n" +
             "RAPOO雷柏\n" +
-            "davebella戴维贝拉\n" +
             "诺贝尔正品\n" +
             "圣芳女\n" +
-            "【jow/乔沃】\n" +
-            "丹维斯ABS/PC\n" +
             "摩豹BK20\n" +
             "美之鑫\n" +
             "missfofo\n" +
@@ -4243,16 +3753,12 @@ public interface BidName {
             "手机内存卡\n" +
             " SD卡M51W\n" +
             "索尼L36H\n" +
-            "小卡Xperia \n" +
-            "C3/s55t存储卡\n" +
             "休闲百搭\n" +
             "金姆丽莎\n" +
             "手工diy\n" +
             "蕾丝衫女\n" +
             "儿童苹果\n" +
-            "Beats WireLess\n" +
             "行政执行官\n" +
-            "Beats studio\n" +
             "巴拉巴拉雁\n" +
             "豪德\n" +
             "万色水母\n" +
@@ -4282,7 +3788,6 @@ public interface BidName {
             "乐高\n" +
             "迪斯尼\n" +
             "MOONSE\n" +
-            "夜店潮人电子烟\n" +
             "钻石\n" +
             "ROTEL\n" +
             "恤男\n" +
@@ -4293,7 +3798,6 @@ public interface BidName {
             "谷邦\n" +
             "张小盒\n" +
             "rush1号店\n" +
-            "Paco Rabanne One Million\n" +
             "温碧泉\n" +
             "美地\n" +
             "特锶源\n" +
@@ -4317,7 +3821,6 @@ public interface BidName {
             "长鹿\n" +
             "衬衣女\n" +
             "Cevkoe\n" +
-            "草方全家乐享套装\n" +
             "清火\n" +
             "美白祛渍\n" +
             "祛烟渍\n" +
@@ -4326,13 +3829,9 @@ public interface BidName {
             "angs\n" +
             "吉列锋速\n" +
             "富图宝\n" +
-            "正品ISK HP-960B\n" +
-            "HP960B头戴监听耳机专业喊麦K歌\n" +
             "巴布豆童装\n" +
             "得科新百伦\n" +
-            "100ML持久男香\n" +
             "双杆eGo\n" +
-            "电子烟戒烟送4瓶lilip烟油\n" +
             "音速风暴\n" +
             "新贝\n" +
             "fag\n" +
@@ -4343,10 +3842,8 @@ public interface BidName {
             "宝轻\n" +
             "毛绒热宝\n" +
             "水米尼K609\n" +
-            "开光越南黄花梨\n" +
             "达芙妮安踏\n" +
             "黄古林\n" +
-            "【凯瑟娇兰】\n" +
             "双飞燕\n" +
             "范德安\n" +
             "硕美科\n" +
@@ -4354,7 +3851,6 @@ public interface BidName {
             "布先生\n" +
             "爱丽思\n" +
             "亚舜\n" +
-            "韩国第六/七代pobling洁面仪\n" +
             "merryland\n" +
             "西瑞\n" +
             "宾度\n" +
@@ -4362,7 +3858,6 @@ public interface BidName {
             "想川\n" +
             "乐秀\n" +
             "linetwo\n" +
-            "Banana Umbrella\n" +
             "蓝月亮\n" +
             "米高\n" +
             "大花小花\n" +
@@ -4370,7 +3865,6 @@ public interface BidName {
             "Gillette\n" +
             "吉利\n" +
             "金稻\n" +
-            "MORPHY RICHARDS\n" +
             "汉客\n" +
             "优酷\n" +
             "阿巴町\n" +
@@ -4380,14 +3874,12 @@ public interface BidName {
             "快乐玛丽\n" +
             "欧思范斯\n" +
             "正品代购\n" +
-            "三星移动电源\n" +
             "快乐玛丽 \n" +
             "达摩\n" +
             "香珀蒂\n" +
             "金纺\n" +
             "南娜\n" +
             "美骆世家\n" +
-            "VICTORYSTAR\n" +
             "紫郁\n" +
             "百麗\n" +
             "依思\n" +
@@ -4407,7 +3899,6 @@ public interface BidName {
             "ANNI＆DIER\n" +
             "安妮黛儿\n" +
             "ASOBIO\n" +
-            "AliceBubble\n" +
             "艾洛芭儿\n" +
             "a02\n" +
             "as安都\n" +
@@ -4421,17 +3912,13 @@ public interface BidName {
             "B．LN\n" +
             "佰林娜\n" +
             "b+ab\n" +
-            "breadnbutter\n" +
             "CSMISA\n" +
             "池上美沙\n" +
-            "CS．imagination\n" +
             "Cadina\n" +
             "卡迪纳\n" +
             "Chee\n" +
-            "cache？cache\n" +
             "初刻\n" +
             "川久保玲\n" +
-            "DESSINANIME\n" +
             "动漫不断\n" +
             "东京着衣\n" +
             "敦奴\n" +
@@ -4446,18 +3933,13 @@ public interface BidName {
             "爱城市\n" +
             "恩裳\n" +
             "FivePlus\n" +
-            "Flowerscoming\n" +
-            "Futureimpression\n" +
             "未来印象\n" +
             "forever21\n" +
             "风笛\n" +
-            "GANGANWORLD\n" +
             "甘甘的世界\n" +
             "GEPOSHI\n" +
             "歌珀诗\n" +
-            "Geminatefamily\n" +
             "双子依家\n" +
-            "GeorgeShark\n" +
             "乔治鲨\n" +
             "Guudoo\n" +
             "谷朵\n" +
@@ -4479,14 +3961,12 @@ public interface BidName {
             "U-GO\n" +
             "ZOOC\n" +
             "何梵思\n" +
-            "herfancydancing\n" +
             "IDEAL\n" +
             "JUST\n" +
             "JezzJeans\n" +
             "真矽\n" +
             "KUMOTA\n" +
             "云田\n" +
-            "Koodikanllo\n" +
             "科蒂卡诺\n" +
             "卡莎布兰卡\n" +
             "可琳菲儿\n" +
@@ -4494,12 +3974,10 @@ public interface BidName {
             "LE’ORFFIE\n" +
             "LUOKE络客\n" +
             "LYS\n" +
-            "Leadalltheway\n" +
             "衣路领先\n" +
             "Lilashorn\n" +
             "莉兰秀人\n" +
             "Lily\n" +
-            "LoveKingdom\n" +
             "爱的国度\n" +
             "朗姿\n" +
             "Langzi\n" +
@@ -4520,7 +3998,6 @@ public interface BidName {
             "Mo&Co.\n" +
             "Momani\n" +
             "摩蔓妮\n" +
-            "ThreeTwoThree\n" +
             "361度\n" +
             "7-Poove\n" +
             "ADIBO\n" +
@@ -4556,10 +4033,8 @@ public interface BidName {
             "BESTWOLF\n" +
             "飙山狼\n" +
             "BSQT\n" +
-            "BepureTravelT2000imes\n" +
             "宝飘\n" +
             "Bepure\n" +
-            "BestwolfSportShoes\n" +
             "BigRooster\n" +
             "大公鸡\n" +
             "Boosniao\n" +
@@ -4567,7 +4042,6 @@ public interface BidName {
             "Bopie\n" +
             "宝派\n" +
             "BraveTuch\n" +
-            "Bugd－Kugvll\n" +
             "邦德康威\n" +
             "波尼\n" +
             "Pony\n" +
@@ -4581,7 +4055,6 @@ public interface BidName {
             "步狮\n" +
             "CBA\n" +
             "Chaoyue\n" +
-            "CamelCaptain\n" +
             "骆驼队长\n" +
             "Condesi\n" +
             "康帝斯\n" +
@@ -4590,7 +4063,6 @@ public interface BidName {
             "超日\n" +
             "沉迷\n" +
             "D8．Dgys\n" +
-            "DCSHOECOUSA\n" +
             "DOUBLESTAR\n" +
             "Decathlon\n" +
             "迪卡侬\n" +
@@ -4615,7 +4087,6 @@ public interface BidName {
             "杜维可\n" +
             "D·Wing\n" +
             "东翼\n" +
-            "disneysport\n" +
             "登翔\n" +
             "ERKEPLAY\n" +
             "EXR\n" +
@@ -4626,7 +4097,6 @@ public interface BidName {
             "非步\n" +
             "FLEXPRO\n" +
             "佛雷斯\n" +
-            "FLYINGMANHEALTH\n" +
             "飞人海尔斯\n" +
             "Feiyashi\n" +
             "飞亚世\n" +
@@ -4706,11 +4176,9 @@ public interface BidName {
             "LHuo\n" +
             "LKD\n" +
             "里卡多\n" +
-            "LOONEYTUNES\n" +
             "乐一通\n" +
             "拉科斯特\n" +
             "鳄鱼\n" +
-            "Lecoqsportif\n" +
             "公鸡\n" +
             "Lotto\n" +
             "Luminosity\n" +
@@ -4754,7 +4222,6 @@ public interface BidName {
             "马菲坚尼\n" +
             "蔓睫\n" +
             "美克\n" +
-            "明若mingruo\n" +
             "名步\n" +
             "名朗格\n" +
             "名乐\n" +
@@ -4762,9 +4229,7 @@ public interface BidName {
             "NEWFEEL\n" +
             "NORGAY\n" +
             "NewBalance\n" +
-            "NewWestWolf\n" +
             "新西狼\n" +
-            "NikeAirJordan\n" +
             "Noyo.Carr\n" +
             "南洋马车\n" +
             "N－DENG\n" +
@@ -4778,19 +4243,16 @@ public interface BidName {
             "ONKE\n" +
             "旺克\n" +
             "Olockee\n" +
-            "OnitsukaTiger\n" +
             "鬼塚虎\n" +
             "Ooandxx\n" +
             "oneleaf\n" +
             "乐草\n" +
-            "PIPISTRELLO\n" +
             "比多路\n" +
             "PROTONIC\n" +
             "波特\n" +
             "Path\n" +
             "公牛\n" +
             "Paylss\n" +
-            "PeacePrincess\n" +
             "太平公主\n" +
             "Peak\n" +
             "Powoeon\n" +
@@ -4807,7 +4269,6 @@ public interface BidName {
             "Swsport\n" +
             "奇安达\n" +
             "奇尼狮\n" +
-            "俏穿JORCHOIN\n" +
             "秋狸\n" +
             "琪天狐\n" +
             "RAY－BOW\n" +
@@ -4819,7 +4280,6 @@ public interface BidName {
             "日射\n" +
             "Rdda\n" +
             "RockMe\n" +
-            "RoyalElastics\n" +
             "洛雅\n" +
             "Rukas\n" +
             "人本\n" +
@@ -4892,7 +4352,6 @@ public interface BidName {
             "VETASTE\n" +
             "VOBU\n" +
             "沃步\n" +
-            "Veidibaoshi\n" +
             "威迪堡狮\n" +
             "VeryCram\n" +
             "维蔻\n" +
@@ -4992,7 +4451,6 @@ public interface BidName {
             "凯丽贝尔\n" +
             "凯沃思\n" +
             "莎宣茗依\n" +
-            "阿李罗火火兔\n" +
             "梦雅霏\n" +
             "魅动\n" +
             "忆红妆\n" +
@@ -5051,12 +4509,10 @@ public interface BidName {
             "哈罗曼\n" +
             "WALKER\n" +
             "沃克 \n" +
-            "樱宁太阳能灭蚊灯户外灭蚊神器家\n" +
             "希望城\n" +
             "依诗\n" +
             "zakka\n" +
             "锐鹰\n" +
-            "电脑防辐射仪器\n" +
             "三申\n" +
             "BEEHIVES\n" +
             "幽灵蜂 \n" +
@@ -5075,8 +4531,6 @@ public interface BidName {
             "韩束\n" +
             "aal\n" +
             "迪奥玛\n" +
-            "Zinganything\n" +
-            "小米移动电源\n" +
             "因奈儿\n" +
             "EDO\n" +
             "植美村\n" +
@@ -5088,7 +4542,6 @@ public interface BidName {
             "万斯\n" +
             "EKO\n" +
             "美津侬\n" +
-            "男商务腰带货号BV-2日系森女系\n" +
             "clarks\n" +
             "TtMm\n" +
             "汤姆斯\n" +
@@ -5113,7 +4566,6 @@ public interface BidName {
             "卓玛利亚\n" +
             "蜜意包邮\n" +
             "行货正品\n" +
-            "全球购优选商家\n" +
             "黑蝴蝶\n" +
             "ymqp\n" +
             "味优狗粮\n" +
@@ -5128,16 +4580,13 @@ public interface BidName {
             "万火\n" +
             "乔衣仕\n" +
             "杨子\n" +
-            "送礼创意弱碱智能养生水杯陶瓷强\n" +
             "厨之宝\n" +
             "诺亚舟\n" +
             "格来德\n" +
-            "原装苹果4/5s土豪金蓝牙耳机\n" +
             "优盘\n" +
             "华伊格\n" +
             "双杆\n" +
             "BBcar\n" +
-            "水杯麦开cuptime\n" +
             "移康智能\n" +
             "味优\n" +
             "百年纪念\n" +
@@ -5181,7 +4630,6 @@ public interface BidName {
             "力箭\n" +
             "港田\n" +
             "蒂凡尼\n" +
-            "一洗黑色桑果\n" +
             "杨子乐\n" +
             "恩舒芳 \n" +
             "bobiwater\n" +
@@ -5199,20 +4647,12 @@ public interface BidName {
             "快乐年华\n" +
             "Lotus\n" +
             "路特斯\n" +
-            "被子枕头蚊帐凉席床褥主图视频拍\n" +
-            "户外新款防水冲锋衣男女潮三合\n" +
-            "培罗蒙官方旗舰\n" +
-            "USB充电韦乐雅斯超精准家庭电\n" +
-            "孕肤宝孕妇专用护肤品套装防辐射\n" +
             "帛芮\n" +
             "GD\n" +
             "港度\n" +
-            "潮2014早秋新款休闲套装大码\n" +
             "美洲貂\n" +
             "PINLI\n" +
             "金迈\n" +
-            "Beats powerbe\n" +
-            "CERRUTI 188\n" +
             "七夜海\n" +
             "优美\n" +
             "黑曜石\n" +
@@ -5221,7 +4661,6 @@ public interface BidName {
             "幽灵舞步\n" +
             "斯得雅\n" +
             "Kamo\n" +
-            "2014韩版秋装宽松长袖t恤女\n" +
             "快鱼\n" +
             "zakk\n" +
             "香具摄影\n" +
@@ -5234,13 +4673,11 @@ public interface BidName {
             "LMK\n" +
             "金柳家居\n" +
             "杰尅琼斯\n" +
-            "Mini Displa\n" +
             "舒贝儿\n" +
             "日默瓦\n" +
             "rimowa\n" +
             "衣芮\n" +
             "beatbox\n" +
-            "王子妈妈顶级木制30粒多彩色原\n" +
             "毅雅\n" +
             "YIYA\n" +
             "科涵\n" +
@@ -5248,13 +4685,11 @@ public interface BidName {
             "beyond\n" +
             "百甸\n" +
             "凯迪拉克\n" +
-            "快易典点读笔Q2 幼儿童早教机\n" +
             "美帝宝\n" +
             "EVO\n" +
             "壹枱\n" +
             "The ONE\n" +
             "歪米\n" +
-            "商务男士短袖t恤圆领冰丝纯棉莫\n" +
             "英之华\n" +
             "爱思\n" +
             "TURE\n" +
@@ -5267,19 +4702,17 @@ public interface BidName {
             "宝檀\n" +
             "bonny\n" +
             "波力\n" +
-            "春夏季男士透气低帮鞋帆布鞋男鞋\n" +
             "本田\n" +
             "藤田\n" +
             "高斯达家纳\n" +
             "点辰\n" +
-            "超闪水钻婚鞋明星高跟鞋防水台白\n" +
             "肖班\n" +
             "芬迪\n" +
             "shake\n" +
             "千人\n" +
             "乐卡\n" +
             "胜雄\n" +
-            "和田玉十二生肖玉吊坠玉鼠牛虎兔\n" +
+            "和田玉\n" +
             "小米\n" +
             "李牌\n" +
             "福神\n" +
@@ -5292,7 +4725,6 @@ public interface BidName {
             "NUCKILY\n" +
             "麦克赛尔\n" +
             "Maxel\n" +
-            "卡洛驰沃尔卢\n" +
             "QKU\n" +
             "奇酷\n" +
             "心款屋\n" +
@@ -5304,7 +4736,6 @@ public interface BidName {
             "利兹菲莱\n" +
             "桑塔纳\n" +
             "宝来\n" +
-            "正品空气压缩式雾化器家用医用雾\n" +
             "印度\n" +
             "MMK\n" +
             "britax\n" +
@@ -5334,7 +4765,6 @@ public interface BidName {
             "TISHion\n" +
             "朵澜\n" +
             "蓝牙耳机\n" +
-            "三星蓝牙耳机\n" +
             "陶丝\n" +
             "北脸\n" +
             "渡卡森\n" +
@@ -5350,7 +4780,6 @@ public interface BidName {
             "宛庭\n" +
             "慢漫\n" +
             "SUNBOY999\n" +
-            "千足银纯银杯\n" +
             "shan7\n" +
             "杉七 \n" +
             "戈美\n" +
@@ -5366,7 +4795,6 @@ public interface BidName {
             "CORSA\n" +
             "酷萨\n" +
             "先行\n" +
-            "Jabra Stealth\n" +
             "捷波朗 \n" +
             "魅铂斯\n" +
             "陆川\n" +
@@ -5480,7 +4908,6 @@ public interface BidName {
             "格力\n" +
             "索尼\n" +
             "卡宾\n" +
-            "balance new\n" +
             "巴布\n" +
             "弹弓\n" +
             "bb弹\n" +
@@ -5511,7 +4938,6 @@ public interface BidName {
             "宜家家居\n" +
             "全友家具\n" +
             "尚品宅配\n" +
-            "香港皇朝家私\n" +
             "联邦家私\n" +
             "顾家工艺\n" +
             "雅洁\n" +
@@ -5596,7 +5022,6 @@ public interface BidName {
             "拓扑\n" +
             "亭林\n" +
             "威克多\n" +
-            "BaBylissPRO\n" +
             "感恩B\n" +
             "安博尔\n" +
             "ESSEN\n" +
@@ -5621,8 +5046,6 @@ public interface BidName {
             "防盗门\n" +
             "925纯银\n" +
             "芭谷韩\n" +
-            "韩版2015秋季新款卓诗尼坡跟\n" +
-            "大码套装胖MM夏装新款2015\n" +
             "菱格\n" +
             "古家\n" +
             "钉珠格\n" +
@@ -5669,13 +5092,11 @@ public interface BidName {
             "飞科抹茶\n" +
             "顾家家居\n" +
             "DITTO\n" +
-            "shake n take mcm\n" +
             "OCSEE\n" +
             "贝比派迪\n" +
             "思美奇\n" +
             "天衣布\n" +
             "小贝壳\n" +
-            "优彼亲子熊三代优比故事机早教机\n" +
             "hba\n" +
             "佐乐米\n" +
             "三针内衣\n" +
@@ -5685,7 +5106,6 @@ public interface BidName {
             "绮瑞加\n" +
             "菲利莫克\n" +
             "MKM533\n" +
-            "WONDERFLOWER\n" +
             "蒙莉尔\n" +
             "英伦玛莉\n" +
             "卡帝乐\n" +
@@ -5720,15 +5140,12 @@ public interface BidName {
             "飞刀\n" +
             "指虎\n" +
             "拳刺\n" +
-            "三星原装移动电源正品充电宝\n" +
-            "装饰项链 女 配饰毛衣链长款项链\n" +
-            "空调衫罩衫外搭女装夏季新款\n" +
+            "三星\n" +
             "格瑞丝琳 \n" +
             "百丽旗下\n" +
             "恋上舞 \n" +
             "佳禾361°\n" +
             "鬼魅公主 \n" +
-            "来自星星的你 \n" +
             "VR\n" +
             "悍高\n" +
             "自动钓鱼钩\n" +
@@ -5739,7 +5156,7 @@ public interface BidName {
             "AOGUSI\n" +
             "艾丝拉\n" +
             "kiko\n" +
-            "红树林户外渔具商城\n" +
+            "红树林\n" +
             "雅马哈\n" +
-            "英雄\n";
+            "英雄";
 }

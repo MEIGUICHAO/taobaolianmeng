@@ -18,6 +18,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.content.ContentValues.TAG;
 
@@ -211,23 +213,35 @@ public class WA_BaseFragment extends Fragment
 
 	}
 
-    public Set<String> getSameStr(String A, String B) {
-
-        Set<String> set1 = new HashSet<String>();
-        Set<String> set2 = new HashSet<String>();
-		int foreachSize = 0;
-		if (set1.size()>set2.size()){
-			foreachSize = set2.size();
-		} else {
-			foreachSize = set1.size();
+    public String getSameStr(String s1, String s2) {
+		String max = "",min = "";
+		max = (s1.length()>s2.length())?s1: s2;
+		min = (max==s1)?s2: s1;
+//		sop("max="+max+"...min="+min);
+		for(int x=0; x<min.length(); x++)
+		{
+			for(int y=0,z=min.length()-x; z!=min.length()+1; y++,z++)
+			{
+				String temp = min.substring(y,z);
+				if(max.contains(temp))//if(s1.indexOf(temp)!=-1)
+					return temp;
+			}
 		}
-        for (int i = 0; i < foreachSize; i++) {
-            set1.add(A.substring(i, i + 1));
-            set2.add(B.substring(i, i + 1));
-        }
-        //找出两个元素的交集
-        set1.retainAll(set2);
-        return set1;
-    }
+		return "";
+
+
+	}
+
+	public boolean getBidResult(String keyword) {
+		String bidNameMd5 = md5Password(BidName.BrandName);
+		String replace = BidName.BrandName.replace(keyword, "");
+		return bidNameMd5.equals(md5Password(replace));
+	}
+
+	public boolean judgeContainsStr(String str) {
+		String regex=".*[a-zA-Z]+.*";
+		Matcher m= Pattern.compile(regex).matcher(str);
+		return m.matches();
+	}
 
 }
