@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Set;
 
 import static android.content.ContentValues.TAG;
 
@@ -208,4 +210,24 @@ public class WA_BaseFragment extends Fragment
 		}
 
 	}
+
+    public Set<String> getSameStr(String A, String B) {
+
+        Set<String> set1 = new HashSet<String>();
+        Set<String> set2 = new HashSet<String>();
+		int foreachSize = 0;
+		if (set1.size()>set2.size()){
+			foreachSize = set2.size();
+		} else {
+			foreachSize = set1.size();
+		}
+        for (int i = 0; i < foreachSize; i++) {
+            set1.add(A.substring(i, i + 1));
+            set2.add(B.substring(i, i + 1));
+        }
+        //找出两个元素的交集
+        set1.retainAll(set2);
+        return set1;
+    }
+
 }

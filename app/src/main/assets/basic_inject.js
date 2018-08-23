@@ -189,20 +189,23 @@ function js3WayGoSameUrl(array){
             }
         }
     }
-    if(mTitleStr!="123"){
-        localMethod.titleArrayList(mTitleStr,minPricesTitle);
-    }
-    localMethod.JI_LOG("minSameRecord b4");
-    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
-    +"\n"+"minPricesUrl:"+minPricesUrl;
-    localMethod.JI_LOG("minSameRecord after");
-    localMethod.TBLM_LOG(minSameRecord);
-    localMethod.JI_LOG("getMinPricesUrl b4");
-    localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
-    localMethod.JI_LOG("getMinPricesUrl after");
+    if(maxPrices>accMul(1.8,minPrices)){
 
+        if(mTitleStr!="123"){
+            localMethod.titleArrayList(mTitleStr,minPricesTitle);
+        }
+        localMethod.JI_LOG("minSameRecord b4");
+        var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
+        +"\n"+"minPricesUrl:"+minPricesUrl;
+        localMethod.JI_LOG("minSameRecord after");
+        localMethod.TBLM_LOG(minSameRecord);
+        localMethod.JI_LOG("getMinPricesUrl b4");
+        localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
+        localMethod.JI_LOG("getMinPricesUrl after");
+
+        }
     }
-    localMethod.after3WaySameResult();
+        localMethod.after3WaySameResult();
     localMethod.JI_LOG("after3WaySameResult:"+188);
 
 

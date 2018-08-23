@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -545,54 +546,77 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		@JavascriptInterface
-		public void titleArrayList(String titles,String minPricesTitle)
+		public void titleArrayList(final String titles,final String minPricesTitle)
 		{
-			String[] split = titles.split("###");
-			LogUtil.e(Constant.TBLMTAG + "minPricesTitle"+minPricesTitle);
-			String templeRecord = "123";
-			mTitleList = new ArrayList<String>();
-			for (int i = 0; i <titlesArray.length; i++) {
-				mTitleList.add(titlesArray[i]);
-			}
 
-			int foreachSize = 5;
-			if (split.length < 5) {
-				foreachSize = split.length;
-			}
-			for (int i = 1; i < foreachSize; i++) {
-				if (!templeRecord.contains(split[i])) {
-					templeRecord = templeRecord + split[i];
-					int mLen = strLength(split[i]);
-					int splitLen = mLen / 6;
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+
+
+					String[] split = titles.split("###");
+					LogUtil.e(Constant.TBLMTAG + "minPricesTitle"+minPricesTitle);
+					String templeRecord = "123";
+					mTitleList = new ArrayList<String>();
+					for (int i = 0; i <titlesArray.length; i++) {
+						mTitleList.add(titlesArray[i]);
+					}
+
+					int foreachSize = 5;
+					if (split.length < 5) {
+						foreachSize = split.length;
+					}
+					for (int i = 1; i < foreachSize; i++) {
+						if (!templeRecord.contains(split[i])) {
+							templeRecord = templeRecord + split[i];
+							int mLen = strLength(split[i]);
+							int splitLen = mLen / 6;
 //					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
 //					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
-					String titleArray1 = split[i].substring(0, splitLen);
+							String titleArray1 = split[i].substring(0, splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
-					String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
+							String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
-					String titleArray3 = split[i].substring(2 * splitLen, mLen/2);
+							String titleArray3 = split[i].substring(2 * splitLen, mLen/2);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
-					mTitleList.add(titleArray1);
-					mTitleList.add(titleArray2);
-					mTitleList.add(titleArray3);
-				}
-			}
-
-			int[] ints = randomArray(mTitleList.size());
-			String mTtile = "";
-			for (int j = 0; j < mTitleList.size(); j++) {
-				if (strLength(mTtile) + strLength(mTitleList.get(ints[j]))< 60) {
-					if (ints[j] < mTitleList.size()) {
-						mTtile = mTtile + mTitleList.get(ints[j]);
+							mTitleList.add(titleArray1);
+							mTitleList.add(titleArray2);
+							mTitleList.add(titleArray3);
+						}
 					}
-				} else if (strLength(mTtile) < 59) {
-					continue;
-				} else {
-					break;
+
+					int[] ints = randomArray(mTitleList.size());
+					String mTtile = "";
+					for (int j = 0; j < mTitleList.size(); j++) {
+						if (j == 0) {
+							mTtile = mTitleList.get(j);
+						} else {
+							if (ints[j] < mTitleList.size()){
+								Set<String> sameStr = getSameStr(mTtile, mTitleList.get(ints[j]));
+								Iterator<String> iterator = sameStr.iterator();
+								String titleArry = mTitleList.get(ints[j]);
+								while (iterator.hasNext()) {
+									String next = iterator.next();
+									if (strLength(next) > 3) {
+										titleArry = titleArry.replace(next, "");
+									}
+								}
+								if (strLength(mTtile) + strLength(titleArry)< 60) {
+									mTtile = mTtile + mTitleList.get(ints[j]);
+								} else if (strLength(mTtile) < 59) {
+									continue;
+								} else {
+									break;
+								}
+							}
+						}
+					}
+					SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+					LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+
 				}
-			}
-			SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
-			LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+			});
+
 		}
 
 
