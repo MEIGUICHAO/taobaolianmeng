@@ -77,6 +77,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected int link3WayIndex;
 	protected ArrayList<String> allSameList;
 	protected boolean SameLoadFinish;
+	protected String bidNameMd5;
 
 
 	protected enum SearchType
@@ -688,7 +689,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 					for (int k = 0; k < shopSPlit.length; k++) {
 						String keyword = split[j].replace(shopSPlit[k], "");
 						if (!TextUtils.isEmpty(keyword)) {
-							keywordList.add(keyword);
+							String replace = BidName.BrandName.replace(keyword, "");
+							if (bidNameMd5.equals(md5Password(replace))) {
+								keywordList.add(keyword);
+							}
 						}
 					}
 				}
@@ -869,19 +873,15 @@ public class WA_YundaFragment extends WA_BaseFragment
 					handler.postDelayed(new Runnable() {
 						@Override
 						public void run() {
-							loadUrl(links3WayList.get(link3WayIndex));
+							if (link3WayIndex < links3WayList.size()) {
+								loadUrl(links3WayList.get(link3WayIndex));
+							}
 						}
 					}, 1500);
 
 //						handlerJs("js3WayGoSameUrl(\"" + titlesArray + "\");");
 				} else {
-					if (shopIndex < shops.length ) {
-						SwitchMethod = Constant.DEFAULT_WAY;
-						SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
-						loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-					} else {
-						SwitchMethod = -1;
-					}
+					nextShop3Way();
 				}
 			}
 		}
@@ -949,6 +949,16 @@ public class WA_YundaFragment extends WA_BaseFragment
 			LogUtil.e("------------getTargetIndex------------");
 			handlerJs("operaSearch();");
 		}
+	}
+
+	protected void nextShop3Way() {
+		if (shopIndex < shops.length ) {
+            SwitchMethod = Constant.DEFAULT_WAY;
+            SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+            loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+        } else {
+            SwitchMethod = -1;
+        }
 	}
 
 	protected void goEditDetailsUrl() {

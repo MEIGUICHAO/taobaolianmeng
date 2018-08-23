@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.Space;
 
+import com.example.webtest.base.BidName;
 import com.example.webtest.base.Constant;
 import com.example.webtest.base.MyWebView;
 import com.example.webtest.base.Shops;
@@ -24,8 +23,6 @@ import com.example.webtest.base.WA_YundaFragment;
 import com.example.webtest.io.LogUtil;
 import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -197,6 +194,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private void setListener(View view)
 	{
 
+		bidNameMd5 = md5Password(BidName.BrandName);
+
+
 		btnRefresh.setOnClickListener(this);
 
 
@@ -267,7 +267,11 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
 				break;
 			case R.id.btn_gosearch:
-			    listWeb.reload();
+				if (IS_3WAT) {
+					nextShop3Way();
+				} else {
+					listWeb.reload();
+				}
 
 				break;
 			case R.id.btn_check://遍历模式

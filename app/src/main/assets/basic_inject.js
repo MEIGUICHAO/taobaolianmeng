@@ -28,14 +28,18 @@ function tblmShopList(){
 }
 
 function editTitleAndShangjiaNow(){
-    var titles = document.getElementsByClassName("texbox title-box");
-    var titleBeginName = titles[0].getElementsByTagName("input");
+    try{
+        var titles = document.getElementsByClassName("texbox title-box");
+        var titleBeginName = titles[0].getElementsByTagName("input");
 
-    localMethod.JI_LOG(titleBeginName[0].value);
-    var mTitle = titleBeginName[0].value;
-    titleBeginName[0].value = "";
-    titleBeginName[0].focus();
-    localMethod.editByOriginalTitle(mTitle+"");
+        localMethod.JI_LOG(titleBeginName[0].value);
+        var mTitle = titleBeginName[0].value;
+        titleBeginName[0].value = "";
+        titleBeginName[0].focus();
+        localMethod.editByOriginalTitle(mTitle+"");
+    } catch(e){
+        localMethod.JI_LOG(e.message);
+    }
 }
 
 
@@ -99,9 +103,10 @@ function jsCangkuGoNextPage(){
         }
     }
     localMethod.cangkuList(cangkuCidIds+"");
-    if(selectors.length<20){
-        localMethod.cangkuForeach();
-    }
+//    localMethod.cangkuForeach();
+//    if(selectors.length<20){
+//        localMethod.cangkuForeach();
+//    }
 
 
     var nexts = document.getElementsByClassName("next-page");
@@ -177,11 +182,14 @@ function js3WayGoSameUrl(array){
     if(mTitleStr!="123"){
         localMethod.titleArrayList(mTitleStr,minPricesTitle);
     }
-
+    localMethod.JI_LOG("minSameRecord b4");
     var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
     +"\n"+"minPricesUrl:"+minPricesUrl;
+    localMethod.JI_LOG("minSameRecord after");
     localMethod.TBLM_LOG(minSameRecord);
+    localMethod.JI_LOG("getMinPricesUrl b4");
     localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
+    localMethod.JI_LOG("getMinPricesUrl after");
 
     }
     localMethod.after3WaySameResult();
