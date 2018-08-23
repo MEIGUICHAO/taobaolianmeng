@@ -6,8 +6,8 @@ public interface Shops {
     //    String shops =;
 
 
-//    ----------------------饰品
-        String shops ="耳环\n" +
+//    ----------------------饰品1w 6.0
+        String shop312312s ="耳环\n" +
         "项链\n" +
         "耳钉\n" +
         "耳环女 气质 韩国 个性 百搭\n" +
@@ -237,6 +237,7 @@ public interface Shops {
         "猫耳朵发箍\n" +
         "吊坠 挂绳\n" +
         "人鱼泡沫项链\n";
+//        秋装 2w 6.0
     String shops321321 = "外套女春秋韩版学生 bf原宿宽松\n" +
             "chic早秋上衣慵懒\n" +
             "秋季套装女\n" +
@@ -403,7 +404,7 @@ public interface Shops {
             "秋季卫衣女韩版学生宽松百搭\n" +
             "长毛衣女秋冬\n" +
             "中年妈妈春秋外套\n";
-    String shops2321 = "塑料袋\n" +
+    String shops = "塑料袋\n" +
             "空调导风袋\n" +
             "手提袋\n" +
             "编织袋\n" +
