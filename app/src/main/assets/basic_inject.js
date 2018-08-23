@@ -168,7 +168,7 @@ function js3WayGoSameUrl(array){
                 if(parseFloat(price)>parseFloat(maxPrices)){
                     maxPrices = price;
                 }
-                if(parseFloat(price)<parseFloat(minPrices)&&parseFloat(9.9)<parseFloat(minPrices)){
+                if(parseFloat(price)<parseFloat(minPrices)&&parseFloat(9.8)<parseFloat(minPrices)){
                     minPrices = price;
                     minPricesTitle = itemnames[i].innerText;
                     minPricesUrl = mUrl[i].getElementsByTagName("a")[0];
