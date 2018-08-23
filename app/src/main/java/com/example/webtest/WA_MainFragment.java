@@ -426,7 +426,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		switch (SwitchMethod) {
             case Constant.WAY3_SAMESTYTLE:
 				SameLoadFinish = true;
-				SwitchMethod = Constant.WAY3_SAME_URL;
 				LogUtil.e("way3SameUrl:main" + 413);
 				way3SameUrl();
                 break;

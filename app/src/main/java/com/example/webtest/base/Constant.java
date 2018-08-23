@@ -57,6 +57,5 @@ public interface Constant {
     int RENQI_WAY = 0x9;
     int WAY3_SAMESTYTLE = 0x10;
 
-    int WAY3_SAME_URL = 0x11;
 
 }
