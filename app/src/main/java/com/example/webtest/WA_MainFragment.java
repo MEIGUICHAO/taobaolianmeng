@@ -332,14 +332,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			}
 		}
 
-		String temple = "================================================" + "\n";
+		String temple = "================================================" + 1 + "\n";
 		for (int i = 0; i < minUrls.length; i++) {
 			int one = i / 50;
 
 			if (one > 0) {
 				int two = one + 1;
 				if (i == one * 50) {
-					temple = "================================================" + "\n";
+					temple = "================================================" + (one + 1) + "\n";
 				}
 				if (i >= one * 50 && i < two * 50) {
 					temple = temple + minUrls[i] + "\n";

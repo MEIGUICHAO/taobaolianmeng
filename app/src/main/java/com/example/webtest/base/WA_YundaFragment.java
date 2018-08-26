@@ -80,9 +80,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected boolean SameLoadFinish;
 	protected String bidNameMd5;
 	protected boolean CHECK_UPLOAD_SUCCESS;
+    private String mTtile;
 
 
-	protected enum SearchType
+    protected enum SearchType
 	{
 		All, Shop, Mall
 	}
@@ -551,78 +552,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 				@Override
 				public void run() {
 
-					String[] split = titles.split("###");
-					LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
-					String templeRecord = "123";
-					mTitleList = new ArrayList<String>();
-					for (int i = 0; i < titlesArray.length; i++) {
-						mTitleList.add(titlesArray[i]);
-					}
-
-					int foreachSize = 7;
-					if (split.length < foreachSize) {
-						foreachSize = split.length;
-					}
-					for (int i = 1; i < foreachSize; i++) {
-						if (!templeRecord.contains(split[i])) {
-							templeRecord = templeRecord + split[i];
-							int mLen = strLength(split[i]);
-							int splitLen = mLen / 6;
-//					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
-//					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
-							String titleArray1 = split[i].substring(0, splitLen);
-//					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
-							String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
-//					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
-							String titleArray3 = split[i].substring(2 * splitLen, mLen / 2);
-//					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
-							mTitleList.add(titleArray1);
-							mTitleList.add(titleArray2);
-							mTitleList.add(titleArray3);
-						}
-					}
-
-					int[] ints = randomArray(mTitleList.size());
-					String mTtile = "";
-					for (int j = 0; j < mTitleList.size(); j++) {
-						if (j == 0) {
-							if (judgeContainsStr(mTitleList.get(ints[j]))) {
-								continue;
-							}
-							mTtile = mTitleList.get(ints[j]);
-						} else {
-							if (ints[j] < mTitleList.size()) {
-								String titleArry = mTitleList.get(ints[j]);
-
-								if (judgeContainsStr(titleArry)) {
-									continue;
-								}
-								String sameStr = getSameStr(mTtile, titleArry);
-
-								if (!TextUtils.isEmpty(sameStr)) {
-									while (strLength(sameStr) > 2) {
-
-										titleArry = titleArry.replace(sameStr, "");
-										sameStr = getSameStr(mTtile, titleArry);
-									}
-								}
-								if (strLength(mTtile) + strLength(titleArry) < 60) {
-									mTtile = mTtile + mTitleList.get(ints[j]);
-									String bidStr = getSameStr(mTtile, BidName.BrandName);
-									if (strLength(bidStr) > 2) {
-										mTtile = mTtile.replace(bidStr, "");
-									}
-								} else if (strLength(mTtile) < 59) {
-									continue;
-								} else {
-									break;
-								}
-							}
-						}
-					}
-					LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
-					SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
-					LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+                    try {
+                        getTitleAfterJs(titles, minPricesTitle);
+                    } catch (Exception e) {
+                        LogUtil.e("Exception~~~~~~~~~~~~~~~~" + e.toString());
+                        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+                        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+                    }
 
 				}
 			});
@@ -999,7 +935,85 @@ public class WA_YundaFragment extends WA_BaseFragment
 		}
 	}
 
-	protected void nextShop3Way() {
+    private void getTitleAfterJs(String titles, String minPricesTitle) {
+        String[] split = titles.split("###");
+        LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
+        String templeRecord = "123";
+        mTitleList = new ArrayList<String>();
+        for (int i = 0; i < titlesArray.length; i++) {
+            mTitleList.add(titlesArray[i]);
+        }
+
+        int foreachSize = 10;
+        if (split.length < foreachSize) {
+            foreachSize = split.length;
+        }
+        for (int i = 1; i < foreachSize; i++) {
+            if (!templeRecord.contains(split[i])) {
+                templeRecord = templeRecord + split[i];
+                int mLen = strLength(split[i]);
+                int splitLen = mLen / 6;
+//					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
+//					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
+                String titleArray1 = split[i].substring(0, splitLen);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
+                String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
+                String titleArray3 = split[i].substring(2 * splitLen, mLen / 2);
+//					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
+                mTitleList.add(titleArray1);
+                mTitleList.add(titleArray2);
+                mTitleList.add(titleArray3);
+            }
+        }
+
+        int[] ints = randomArray(mTitleList.size());
+        mTtile = "";
+        for (int j = 0; j < mTitleList.size(); j++) {
+            if (j == 0) {
+                if (judgeContainsStr(mTitleList.get(ints[j]))) {
+                    continue;
+                }
+                mTtile = mTitleList.get(ints[j]);
+            } else {
+                if (j > ints.length) {
+                    break;
+                }
+                if (ints[j] < mTitleList.size()) {
+                    String titleArry = mTitleList.get(ints[j]);
+
+                    if (judgeContainsStr(titleArry)) {
+                        continue;
+                    }
+                    String sameStr = getSameStr(mTtile, titleArry);
+
+                    if (!TextUtils.isEmpty(sameStr)) {
+                        while (strLength(sameStr) > 2) {
+
+                            titleArry = titleArry.replace(sameStr, "");
+                            sameStr = getSameStr(mTtile, titleArry);
+                        }
+                    }
+                    if (strLength(mTtile) + strLength(titleArry) < 60) {
+                        mTtile = mTtile + mTitleList.get(ints[j]);
+                        String bidStr = getSameStr(mTtile, BidName.BrandName);
+                        if (strLength(bidStr) > 2) {
+                            mTtile = mTtile.replace(bidStr, "");
+                        }
+                    } else if (strLength(mTtile) < 59) {
+                        continue;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
+        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+    }
+
+    protected void nextShop3Way() {
 		if (shopIndex < shops.length ) {
             SwitchMethod = Constant.DEFAULT_WAY;
             SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
@@ -1251,7 +1265,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	}
 
 	public int[] randomArray(int size){
-		int splitNum = 30;
+		int splitNum = 50;
 		int max = mTitleList.size() - 1;
 		if (null == mTitleList || mTitleList.size() < 1) {
 			max = size;
