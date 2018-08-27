@@ -2,6 +2,8 @@ package com.example.webtest.base;
 
 public interface BidName {
     String BrandName = "\n" +
+            "批发\n" +
+            "代理\n" +
             "日尚\n" +
             "德高\n" +
             "立邦\n" +

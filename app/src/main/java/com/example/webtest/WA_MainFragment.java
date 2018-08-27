@@ -368,6 +368,29 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		for (int i = 0; i < minUrlsResultList.size(); i++) {
 			LogUtil.e(minUrlsResultList.get(i));
 		}
+		String titleArrayResult;
+		for (int i = 0; i < minUrls.length; i++) {
+			titleArrayResult = "--------------" + i + "-----------------" + "\n";
+			String value = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE);
+
+			if (!TextUtils.isEmpty(value)) {
+				titleArrayResult = minUrls[i];
+//				LogUtil.e(minUrls[i]);
+				String[] split = value.split("###");
+				for (int j = 0; j < split.length; j++) {
+					if (null == mTitleList) {
+						mTitleList = new ArrayList<String>();
+					}
+					mTitleList.add(split[j]);
+				}
+				for (int j = 0; j < 5; j++) {
+					getRandomTitle();
+					titleArrayResult = titleArrayResult + "\n" + mTtile;
+				}
+				LogUtil.e(titleArrayResult);
+			}
+		}
+
 
 	}
 

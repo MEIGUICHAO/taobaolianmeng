@@ -64,7 +64,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected String beginUrl;
 
 
-	private ArrayList<String> mTitleList;
+	protected ArrayList<String> mTitleList;
 	private boolean pageNextStop = false;
 	private boolean PU_SHOP_LIST = true;
 	protected boolean IS_CANGKU = false;
@@ -80,10 +80,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected boolean SameLoadFinish;
 	protected String bidNameMd5;
 	protected boolean CHECK_UPLOAD_SUCCESS;
-    private String mTtile;
+	protected String mTtile;
+	private String titleArraySave;
 
 
-    protected enum SearchType
+	protected enum SearchType
 	{
 		All, Shop, Mall
 	}
@@ -592,7 +593,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 					for (int i = 0; i < keyCodeArray.length; i++) {
 						try {
 							typeIn(keyCodeArray[i]);
-							Thread.sleep( 200 );
+							Thread.sleep( 400 );
 							if (i == keyCodeArray.length - 1) {
 								handlerJs("shangjiaAfterEditTitle();", 1000);
 							}
@@ -673,8 +674,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 			HashSet set = new HashSet(keywordList);
 			keywordList = new ArrayList<String>(set);
 			String[] strings = new String[keywordList.size()];
+			titleArraySave = "";
 			for (int i = 0; i < keywordList.size(); i++) {
 				strings[i] = keywordList.get(i);
+				titleArraySave(keywordList.get(i));
 				LogUtil.e(keywordList.get(i));
 			}
 			titlesArray = strings;
@@ -765,8 +768,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 		{
 
 			String mTitle = SharedPreferencesUtils.getValue(getActivity(), originalTitle);
+
 			if (TextUtils.isEmpty(mTitle)) {
 				mTitle = originalTitle;
+			} else {
+				mTitle = mTitle.replace("批发", "");
+				mTitle = mTitle.replace("代理", "");
 			}
 			if (strLength(mTitle) > 60) {
 				try {
@@ -825,6 +832,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 					minUrlShopNameRecord = minUrlShopNameRecord + "###" + name;
 				}
 				LogUtil.e(Constant.TBLMTAG + "minUrlShopNameRecord" + "\n" + name);
+				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE, titleArraySave);
+
+				LogUtil.e("titleKey:" + url + Constant.TITLE_ARRAY_SAVE);
+
 			}
 
 		}
@@ -932,10 +943,46 @@ public class WA_YundaFragment extends WA_BaseFragment
 					handlerJs("del5Pic();");
 				}
 			}, 6000);
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					new Thread( new Runnable( ) {
+						@Override
+						public void run() {
+							try {
+								Thread.sleep( 1000 );
+							} catch (InterruptedException e1) {
+								e1.printStackTrace();
+							}
+
+							// “旋转”的拼音
+//				int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_X,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N,KeyEvent.KEYCODE_SPACE,KeyEvent.KEYCODE_Z,KeyEvent.KEYCODE_H,KeyEvent.KEYCODE_U,KeyEvent.KEYCODE_A,KeyEvent.KEYCODE_N};
+							int[] keyCodeArray = new int[]{KeyEvent.KEYCODE_DEL,KeyEvent.KEYCODE_DEL};
+							for( int keycode : keyCodeArray ){
+								try {
+									typeIn( keycode );
+									Thread.sleep( 200 );
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+					}).start( );
+
+				}
+			}, 8000);
 		}
 	}
 
-    private void getTitleAfterJs(String titles, String minPricesTitle) {
+	private void titleArraySave(String title) {
+		if (TextUtils.isEmpty(titleArraySave)) {
+            titleArraySave = title;
+        } else {
+            titleArraySave = titleArraySave + "###" + title;
+        }
+	}
+
+	private void getTitleAfterJs(String titles, String minPricesTitle) {
         String[] split = titles.split("###");
         LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
         String templeRecord = "123";
@@ -953,6 +1000,7 @@ public class WA_YundaFragment extends WA_BaseFragment
                 templeRecord = templeRecord + split[i];
                 int mLen = strLength(split[i]);
                 int splitLen = mLen / 6;
+
 //					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
 //					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
                 String titleArray1 = split[i].substring(0, splitLen);
@@ -964,12 +1012,22 @@ public class WA_YundaFragment extends WA_BaseFragment
                 mTitleList.add(titleArray1);
                 mTitleList.add(titleArray2);
                 mTitleList.add(titleArray3);
+				titleArraySave(titleArray1);
+				titleArraySave(titleArray2);
+				titleArraySave(titleArray3);
             }
         }
 
-        int[] ints = randomArray(mTitleList.size());
-        mTtile = "";
-        for (int j = 0; j < mTitleList.size(); j++) {
+		getRandomTitle();
+        LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
+        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+    }
+
+	protected void getRandomTitle() {
+		int[] ints = randomArray(mTitleList.size());
+		mTtile = "";
+		for (int j = 0; j < mTitleList.size(); j++) {
             if (j == 0) {
                 if (judgeContainsStr(mTitleList.get(ints[j]))) {
                     continue;
@@ -994,13 +1052,13 @@ public class WA_YundaFragment extends WA_BaseFragment
                             sameStr = getSameStr(mTtile, titleArry);
                         }
                     }
-                    if (strLength(mTtile) + strLength(titleArry) < 60) {
+                    if (strLength(mTtile) + strLength(titleArry) < 100) {
                         mTtile = mTtile + mTitleList.get(ints[j]);
                         String bidStr = getSameStr(mTtile, BidName.BrandName);
                         if (strLength(bidStr) > 2) {
                             mTtile = mTtile.replace(bidStr, "");
                         }
-                    } else if (strLength(mTtile) < 59) {
+                    } else if (strLength(mTtile) < 90) {
                         continue;
                     } else {
                         break;
@@ -1008,12 +1066,9 @@ public class WA_YundaFragment extends WA_BaseFragment
                 }
             }
         }
-        LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
-        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
-        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
-    }
+	}
 
-    protected void nextShop3Way() {
+	protected void nextShop3Way() {
 		if (shopIndex < shops.length ) {
             SwitchMethod = Constant.DEFAULT_WAY;
             SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);

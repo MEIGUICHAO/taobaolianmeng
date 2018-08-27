@@ -58,4 +58,5 @@ public interface Constant {
     int WAY3_SAMESTYTLE = 0x10;
 
 
+    String TITLE_ARRAY_SAVE = "TITLE_ARRAY_SAVE";
 }
