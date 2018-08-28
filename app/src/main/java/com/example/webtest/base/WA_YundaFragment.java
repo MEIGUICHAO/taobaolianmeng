@@ -664,7 +664,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 						if (!TextUtils.isEmpty(keyword)) {
 							String replace = BidName.BrandName.replace(keyword, "");
 							if (bidNameMd5.equals(md5Password(replace))) {
-								keywordList.add(keyword);
+								keywordList.add(keyword.trim());
 							}
 						}
 					}
@@ -1057,6 +1057,8 @@ public class WA_YundaFragment extends WA_BaseFragment
                         String bidStr = getSameStr(mTtile, BidName.BrandName);
                         if (strLength(bidStr) > 2) {
                             mTtile = mTtile.replace(bidStr, "");
+							mTtile.trim();
+							mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
                         }
                     } else if (strLength(mTtile) < 90) {
                         continue;

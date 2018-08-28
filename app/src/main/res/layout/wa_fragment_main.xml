@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="编辑标题" />
+            android:text="编辑" />
 
         <Button
             android:layout_weight="1"
@@ -102,7 +102,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="3Result" />
+            android:text="3结果" />
+        <Button
+            android:id="@+id/btn_split"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="裂变" />
 
 
     </LinearLayout>

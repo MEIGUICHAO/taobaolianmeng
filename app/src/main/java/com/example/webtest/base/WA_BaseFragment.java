@@ -31,6 +31,7 @@ public class WA_BaseFragment extends Fragment
 {
 
 
+	protected Button btn_split;
 	protected Button btnRefresh;
 	protected Button btnBack;
 	protected Button btnSearch;

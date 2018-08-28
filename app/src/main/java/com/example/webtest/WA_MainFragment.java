@@ -19,6 +19,7 @@ import com.example.webtest.base.BidName;
 import com.example.webtest.base.Constant;
 import com.example.webtest.base.MyWebView;
 import com.example.webtest.base.Shops;
+import com.example.webtest.base.SplitStr;
 import com.example.webtest.base.WA_YundaFragment;
 import com.example.webtest.io.LogUtil;
 import com.example.webtest.io.SharedPreferencesUtils;
@@ -103,6 +104,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_check = (Button) view.findViewById(R.id.btn_check);
 		btn_biao1 = (Button) view.findViewById(R.id.btn_biao1);
 		btn_str_result = (Button) view.findViewById(R.id.btn_str_result);
+		btn_split = (Button) view.findViewById(R.id.btn_split);
 	}
 
 	/** 初始化两个不同功用的WebView */
@@ -213,6 +215,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_biao1.setOnClickListener(this);
 		btn_str_result.setOnClickListener(this);
 		btn_way3Result.setOnClickListener(this);
+		btn_split.setOnClickListener(this);
 	}
 
 	@Override
@@ -319,6 +322,26 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 
 				break;
+			case R.id.btn_split:
+
+				String[] split = SplitStr.split.split("\n");
+				String splitReslt = "";
+				String link = "";
+				for (int i = 0; i < split.length; i++) {
+					splitReslt = "";
+					link = "";
+					if (split[i].contains("发布成功，新商品")) {
+						splitReslt = "****************************************" + "\n";
+						String replace = split[i].split("】")[0].replace("【", "");
+						String value = SharedPreferencesUtils.getValue(getActivity(), replace);
+						link = split[i].split("发布成功，新商品:")[1].split("，")[0];
+						splitReslt = splitReslt + link + "\n" + value;
+					}
+					if (!TextUtils.isEmpty(splitReslt) && splitReslt.split("\n").length > 2) {
+						LogUtil.e(splitReslt);
+					}
+				}
+				break;
 
 		}
 
@@ -326,6 +349,59 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	}
 
 	private void foreachMinurlResult(String[] minUrls) {
+
+		String titleArrayResult;
+		ArrayList<String> myLinkList = new ArrayList<String>();
+		for (int i = 0; i < minUrls.length; i++) {
+//		for (int i = 12; i < 13; i++) {
+
+			if (null == mTitleList) {
+				mTitleList = new ArrayList<String>();
+			} else {
+				mTitleList.clear();
+			}
+			titleArrayResult = "--------------" + i + "-----------------" + "\n";
+			String value = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE);
+			if (!TextUtils.isEmpty(value)) {
+				titleArrayResult = minUrls[i];
+				String ids = minUrls[i].split("id=")[1].split("&ns=1")[0];
+				String idsResult = "";
+
+				myLinkList.add(minUrls[i]);
+//				LogUtil.e(value);
+				String[] split = value.split("###");
+                if (split.length < 15) {
+                    continue;
+                }
+
+				for (int j = 0; j <split.length; j++) {
+					mTitleList.add(split[j].trim());
+				}
+				for (int j = 0; j < 5; j++) {
+					try {
+						getRandomTitle();
+					} catch (Exception e) {
+
+					}
+
+					titleArrayResult = titleArrayResult + "\n" + mTtile;
+					if (TextUtils.isEmpty(idsResult)) {
+						idsResult = mTtile;
+					} else {
+						idsResult = idsResult + "\n" + mTtile;
+					}
+				}
+				SharedPreferencesUtils.putValue(getActivity(), ids, idsResult);
+                LogUtil.e("titleArrayResult:" + titleArrayResult);
+			}
+		}
+
+		getMyMinList(myLinkList);
+
+
+	}
+
+	private void getMyMinList(ArrayList<String> minUrls) {
 		ArrayList<String> minUrlsResultList = new ArrayList<String>();
 		ArrayList<Integer> numsList = new ArrayList<Integer>();
 		for (int i = 0; i < 100; i++) {
@@ -337,29 +413,29 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		}
 
 		String temple = "================================================" + 1 + "\n";
-		for (int i = 0; i < minUrls.length; i++) {
-			int one = i / 50;
+		for (int i = 0; i < minUrls.size(); i++) {
+			int one = i / 15;
 
 			if (one > 0) {
 				int two = one + 1;
-				if (i == one * 50) {
+				if (i == one * 15) {
 					temple = "================================================" + (one + 1) + "\n";
 				}
-				if (i >= one * 50 && i < two * 50) {
-					temple = temple + minUrls[i] + "\n";
+				if (i >= one * 15 && i < two * 15) {
+					temple = temple + minUrls.get(i) + "\n";
 
-					if (minUrls.length < two * 50 - 1) {
-						if (i == minUrls.length - 1) {
+					if (minUrls.size() < two * 15 - 1) {
+						if (i == minUrls.size() - 1) {
 							minUrlsResultList.add(temple);
 						}
-					} else if (i == two * 50 - 1) {
+					} else if (i == two * 15 - 1) {
 						minUrlsResultList.add(temple);
 					}
 				}
 			} else if (one==0) {
-				temple = temple + minUrls[i] + "\n";
-				if (minUrls.length < numsList.get(one) - 1) {
-					if (i == minUrls.length - 1) {
+				temple = temple + minUrls.get(i) + "\n";
+				if (minUrls.size() < numsList.get(one) - 1) {
+					if (i == minUrls.size() - 1) {
 						minUrlsResultList.add(temple);
 					}
 
@@ -372,62 +448,6 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		for (int i = 0; i < minUrlsResultList.size(); i++) {
 			LogUtil.e(minUrlsResultList.get(i));
 		}
-		String titleArrayResult;
-		for (int i = 0; i < minUrls.length; i++) {
-//		for (int i = 12; i < 13; i++) {
-
-			if (null == mTitleList) {
-				mTitleList = new ArrayList<String>();
-			} else {
-				mTitleList.clear();
-			}
-			titleArrayResult = "--------------" + i + "-----------------" + "\n";
-			String value = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE);
-			if (!TextUtils.isEmpty(value)) {
-				titleArrayResult = minUrls[i]+"-------"+i;
-//				LogUtil.e(value);
-				String[] split = value.split("###");
-                if (split.length < 15) {
-                    continue;
-                }
-				HashMap<String,String> sameList = new HashMap<String,String>();
-				for (int j = 0; j < split.length; j++) {
-
-					for (int k = 1; k < split.length; k++) {
-						String sameStr = getSameStr(split[j], split[k]);
-
-						if (strLength(sameStr) > 5) {
-							sameList.put(sameStr, "123");
-
-//							split[k] = split[k].replace(sameStr, "");
-//							mTitleList.add(split[k]);
-						}
-					}
-				}
-				for (Map.Entry<String, String> entry : sameList.entrySet()) {
-					mTitleList.add(entry.getKey());
-					value = value.replace(entry.getKey(), "");
-				}
-//				LogUtil.e(value);
-				String[] split2 = value.split("###");
-
-				for (int j = 0; j <split2.length; j++) {
-					mTitleList.add(split2[j]);
-				}
-				for (int j = 0; j < 5; j++) {
-					try {
-						getRandomTitle();
-					} catch (Exception e) {
-
-					}
-
-					titleArrayResult = titleArrayResult + "\n" + mTtile;
-				}
-                LogUtil.e("titleArrayResult:" + titleArrayResult);
-			}
-		}
-
-
 	}
 
 
