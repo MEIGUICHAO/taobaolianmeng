@@ -1037,7 +1037,7 @@ public class WA_YundaFragment extends WA_BaseFragment
                 }
                 mTtile = mTitleList.get(ints[j]);
             } else {
-                if (j > ints.length) {
+                if (j > ints.length-1) {
                     break;
                 }
                 if (ints[j] < mTitleList.size()) {
@@ -1080,7 +1080,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 		for (int i = 0; i < mTiTleArrayList.size(); i++) {
 			mTtile = mTtile + mTiTleArrayList.get(i);
 		}
-		LogUtil.e("mTtile:" + mTtile);
+//		LogUtil.e("mTtile:" + mTtile);
 	}
 
 	protected void nextShop3Way() {

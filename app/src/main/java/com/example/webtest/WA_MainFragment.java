@@ -372,6 +372,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
 				String shopName = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE_SHOPNAME);
 
+				shopName = shopName.replace(" ", "");
 				LogUtil.e("shopName:" + shopName);
 				for (int j = 0; j <split.length; j++) {
 					mTitleList.add(split[j].trim());
@@ -380,7 +381,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					try {
 						getRandomTitle(shopName);
 					} catch (Exception e) {
-
+                        LogUtil.e(e.toString());
 					}
 
 					titleArrayResult = titleArrayResult + "\n" + mTtile;

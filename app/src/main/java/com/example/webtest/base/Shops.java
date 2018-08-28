@@ -3,7 +3,7 @@ package com.example.webtest.base;
 public interface Shops {
 
     //        String shops =;
-    String shops = "制服诱惑\n" +
+    String shop123s = "制服诱惑\n" +
             "水手服情趣\n" +
             "学生制服情趣\n" +
             "情趣衣服\n" +
@@ -49,7 +49,7 @@ public interface Shops {
             "性感情趣骚 激情套装 透视装\n" +
             "心机女装\n" +
             "女教师服装\n";
-    String shop21312s = "足疗工作服\n" +
+    String shops = "足疗工作服\n" +
             "情趣性感制服\n" +
             "美容师工作服短袖\n" +
             "足浴技师工作服 性感 显瘦\n" +
