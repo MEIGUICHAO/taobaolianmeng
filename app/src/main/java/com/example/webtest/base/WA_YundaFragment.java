@@ -1048,13 +1048,12 @@ public class WA_YundaFragment extends WA_BaseFragment
 
                     if (!TextUtils.isEmpty(sameStr)) {
                         while (strLength(sameStr) > 2) {
-
                             titleArry = titleArry.replace(sameStr, "");
                             sameStr = getSameStr(mTtile, titleArry);
                         }
                     }
                     if (strLength(mTtile) + strLength(titleArry) < 100) {
-                        mTtile = mTtile + mTitleList.get(ints[j]);
+                        mTtile = mTtile + titleArry;
                         String bidStr = getSameStr(mTtile, BidName.BrandName);
                         if (strLength(bidStr) > 2) {
                             mTtile = mTtile.replace(bidStr, "");

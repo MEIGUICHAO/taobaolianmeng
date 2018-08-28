@@ -25,6 +25,10 @@ import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @desc 自动化Fragment主调页面
@@ -370,6 +374,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		}
 		String titleArrayResult;
 		for (int i = 0; i < minUrls.length; i++) {
+//		for (int i = 12; i < 13; i++) {
 
 			if (null == mTitleList) {
 				mTitleList = new ArrayList<String>();
@@ -379,11 +384,35 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			titleArrayResult = "--------------" + i + "-----------------" + "\n";
 			String value = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE);
 			if (!TextUtils.isEmpty(value)) {
-				titleArrayResult = minUrls[i];
-//				LogUtil.e(minUrls[i]);
+				titleArrayResult = minUrls[i]+"-------"+i;
+//				LogUtil.e(value);
 				String[] split = value.split("###");
+                if (split.length < 15) {
+                    continue;
+                }
+				HashMap<String,String> sameList = new HashMap<String,String>();
 				for (int j = 0; j < split.length; j++) {
-					mTitleList.add(split[j]);
+
+					for (int k = 1; k < split.length; k++) {
+						String sameStr = getSameStr(split[j], split[k]);
+
+						if (strLength(sameStr) > 5) {
+							sameList.put(sameStr, "123");
+
+//							split[k] = split[k].replace(sameStr, "");
+//							mTitleList.add(split[k]);
+						}
+					}
+				}
+				for (Map.Entry<String, String> entry : sameList.entrySet()) {
+					mTitleList.add(entry.getKey());
+					value = value.replace(entry.getKey(), "");
+				}
+//				LogUtil.e(value);
+				String[] split2 = value.split("###");
+
+				for (int j = 0; j <split2.length; j++) {
+					mTitleList.add(split2[j]);
 				}
 				for (int j = 0; j < 5; j++) {
 					try {
@@ -391,9 +420,10 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					} catch (Exception e) {
 
 					}
+
 					titleArrayResult = titleArrayResult + "\n" + mTtile;
 				}
-				LogUtil.e(titleArrayResult);
+                LogUtil.e("titleArrayResult:" + titleArrayResult);
 			}
 		}
 
