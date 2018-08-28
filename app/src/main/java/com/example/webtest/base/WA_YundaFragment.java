@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.webtest.io.LogUtil;
@@ -22,11 +21,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import static android.content.ContentValues.TAG;
 
@@ -833,7 +830,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 				}
 				LogUtil.e(Constant.TBLMTAG + "minUrlShopNameRecord" + "\n" + name);
 				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE, titleArraySave);
+				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE_SHOPNAME, shops[shopIndex]);
+
+
 				LogUtil.e("titleArraySave：" + titleArraySave);
+				LogUtil.e("shops[shopIndex]：" + SharedPreferencesUtils.getValue(getActivity(), url + Constant.TITLE_ARRAY_SAVE_SHOPNAME));
 
 				LogUtil.e("titleKey:" + url + Constant.TITLE_ARRAY_SAVE);
 
@@ -1019,15 +1020,16 @@ public class WA_YundaFragment extends WA_BaseFragment
             }
         }
 
-		getRandomTitle();
+		getRandomTitle(shops[shopIndex]);
         LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
         SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
         LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
     }
 
-	protected void getRandomTitle() {
+	protected void getRandomTitle(String shopName) {
 		int[] ints = randomArray(mTitleList.size());
 		mTtile = "";
+		ArrayList<String> mTiTleArrayList = new ArrayList<String>();
 		for (int j = 0; j < mTitleList.size(); j++) {
             if (j == 0) {
                 if (judgeContainsStr(mTitleList.get(ints[j]))) {
@@ -1052,22 +1054,33 @@ public class WA_YundaFragment extends WA_BaseFragment
                             sameStr = getSameStr(mTtile, titleArry);
                         }
                     }
-                    if (strLength(mTtile) + strLength(titleArry) < 100) {
-                        mTtile = mTtile + titleArry;
-                        String bidStr = getSameStr(mTtile, BidName.BrandName);
-                        if (strLength(bidStr) > 2) {
-                            mTtile = mTtile.replace(bidStr, "");
+					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 60) {
+						mTiTleArrayList.add(titleArry);
+						mTtile = mTtile + titleArry;
+						String bidStr = getSameStr(mTtile, BidName.BrandName);
+						if (strLength(bidStr) > 2) {
+							mTtile = mTtile.replace(bidStr, "");
 							mTtile.trim();
 							mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
-                        }
-                    } else if (strLength(mTtile) < 90) {
-                        continue;
-                    } else {
-                        break;
-                    }
+						}
+					} else if (strLength(mTtile) + strLength(shopName) < 59) {
+						continue;
+					} else {
+						break;
+					}
                 }
             }
         }
+		Random rand = new Random();
+		int position = rand.nextInt(mTiTleArrayList.size());
+		mTiTleArrayList.add(position, shopName);
+
+		mTtile = "";
+
+		for (int i = 0; i < mTiTleArrayList.size(); i++) {
+			mTtile = mTtile + mTiTleArrayList.get(i);
+		}
+		LogUtil.e("mTtile:" + mTtile);
 	}
 
 	protected void nextShop3Way() {

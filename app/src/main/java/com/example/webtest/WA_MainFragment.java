@@ -26,10 +26,6 @@ import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @desc 自动化Fragment主调页面
@@ -352,6 +348,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 		String titleArrayResult;
 		ArrayList<String> myLinkList = new ArrayList<String>();
+
 		for (int i = 0; i < minUrls.length; i++) {
 //		for (int i = 12; i < 13; i++) {
 
@@ -373,13 +370,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 if (split.length < 15) {
                     continue;
                 }
+				String shopName = SharedPreferencesUtils.getValue(getActivity(), minUrls[i] + Constant.TITLE_ARRAY_SAVE_SHOPNAME);
 
+				LogUtil.e("shopName:" + shopName);
 				for (int j = 0; j <split.length; j++) {
 					mTitleList.add(split[j].trim());
 				}
 				for (int j = 0; j < 5; j++) {
 					try {
-						getRandomTitle();
+						getRandomTitle(shopName);
 					} catch (Exception e) {
 
 					}
@@ -470,6 +469,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 			CHECK_UPLOAD_SUCCESS = false;
 			try {
 				LogUtil.e("shopName:" + shops[shopIndex]);
+
 			} catch (Exception e) {
 				LogUtil.e(e.toString());
 			}
