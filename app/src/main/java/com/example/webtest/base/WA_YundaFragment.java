@@ -833,6 +833,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 				}
 				LogUtil.e(Constant.TBLMTAG + "minUrlShopNameRecord" + "\n" + name);
 				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE, titleArraySave);
+				LogUtil.e("titleArraySave：" + titleArraySave);
 
 				LogUtil.e("titleKey:" + url + Constant.TITLE_ARRAY_SAVE);
 
