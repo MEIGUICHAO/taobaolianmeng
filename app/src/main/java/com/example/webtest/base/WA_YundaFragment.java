@@ -1022,7 +1022,7 @@ public class WA_YundaFragment extends WA_BaseFragment
             }
         }
 
-		getRandomTitle(shops[shopIndex]);
+		getRandomTitle(shops[shopIndex-1]);
         LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
         SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
         LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));

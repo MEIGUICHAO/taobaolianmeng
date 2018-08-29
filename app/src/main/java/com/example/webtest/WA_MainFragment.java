@@ -323,11 +323,13 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				String[] split = SplitStr.split.split("\n");
 				String splitReslt = "";
 				String link = "";
+				int splitNum = 0;
 				for (int i = 0; i < split.length; i++) {
 					splitReslt = "";
 					link = "";
 					if (split[i].contains("发布成功，新商品")) {
-						splitReslt = "****************************************" + "\n";
+						splitReslt = "****************************************" + splitNum + "\n";
+						splitNum++;
 						String replace = split[i].split("】")[0].replace("【", "");
 						String value = SharedPreferencesUtils.getValue(getActivity(), replace);
 						link = split[i].split("发布成功，新商品:")[1].split("，")[0];
