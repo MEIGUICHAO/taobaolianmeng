@@ -1056,7 +1056,7 @@ public class WA_YundaFragment extends WA_BaseFragment
                             sameStr = getSameStr(mTtile, titleArry);
                         }
                     }
-					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 70) {
+					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 100) {
 						mTiTleArrayList.add(titleArry);
 						mTtile = mTtile + titleArry;
 						String bidStr = getSameStr(mTtile, BidName.BrandName);
@@ -1065,7 +1065,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 							mTtile.trim();
 							mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
 						}
-					} else if (strLength(mTtile) + strLength(shopName) < 59) {
+					} else if (strLength(mTtile) + strLength(shopName) < 80) {
 						continue;
 					} else {
 						break;
@@ -1074,7 +1074,11 @@ public class WA_YundaFragment extends WA_BaseFragment
             }
         }
 		Random rand = new Random();
-		int position = rand.nextInt(mTiTleArrayList.size());
+		int position = rand.nextInt(5);
+        String bidStr = getSameStr(mTtile, BidName.BrandName);
+        if (strLength(bidStr) > 2) {
+            shopName = shopName.replace(bidStr, "");
+        }
 		mTiTleArrayList.add(position, shopName);
 
 		mTtile = "";
