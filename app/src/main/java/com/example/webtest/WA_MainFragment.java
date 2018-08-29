@@ -391,6 +391,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 						idsResult = idsResult + "\n" + mTtile;
 					}
 				}
+				idsResult = idsResult.replace(",", "").replace("，", "").replace("。", "");
+
 				SharedPreferencesUtils.putValue(getActivity(), ids, idsResult);
                 LogUtil.e("titleArrayResult:" + titleArrayResult);
 			}
@@ -406,29 +408,29 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		ArrayList<Integer> numsList = new ArrayList<Integer>();
 		for (int i = 0; i < 100; i++) {
 			if (i == 0) {
-				numsList.add(50);
+				numsList.add(Constant.MIN_URL_NUMS);
 			} else {
-				numsList.add(numsList.get(i - 1) + 50);
+				numsList.add(numsList.get(i - 1) + Constant.MIN_URL_NUMS);
 			}
 		}
 
 		String temple = "================================================" + 1 + "\n";
 		for (int i = 0; i < minUrls.size(); i++) {
-			int one = i / 15;
+			int one = i / Constant.MIN_URL_NUMS;
 
 			if (one > 0) {
 				int two = one + 1;
-				if (i == one * 15) {
+				if (i == one * Constant.MIN_URL_NUMS) {
 					temple = "================================================" + (one + 1) + "\n";
 				}
-				if (i >= one * 15 && i < two * 15) {
+				if (i >= one * Constant.MIN_URL_NUMS && i < two * Constant.MIN_URL_NUMS) {
 					temple = temple + minUrls.get(i) + "\n";
 
-					if (minUrls.size() < two * 15 - 1) {
+					if (minUrls.size() < two * Constant.MIN_URL_NUMS - 1) {
 						if (i == minUrls.size() - 1) {
 							minUrlsResultList.add(temple);
 						}
-					} else if (i == two * 15 - 1) {
+					} else if (i == two * Constant.MIN_URL_NUMS - 1) {
 						minUrlsResultList.add(temple);
 					}
 				}

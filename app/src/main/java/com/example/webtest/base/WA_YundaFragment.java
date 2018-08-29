@@ -706,7 +706,9 @@ public class WA_YundaFragment extends WA_BaseFragment
 								loadUrl(links3WayList.get(link3WayIndex));
 							} else {
 								SwitchMethod = Constant.DEFAULT_WAY;
-								loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+								if (shopIndex < shops.length) {
+									loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+								}
 							}
 							break;
 					}
@@ -830,7 +832,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 				}
 				LogUtil.e(Constant.TBLMTAG + "minUrlShopNameRecord" + "\n" + name);
 				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE, titleArraySave);
-				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE_SHOPNAME, shops[shopIndex]);
+				SharedPreferencesUtils.putValue(getActivity(), url+Constant.TITLE_ARRAY_SAVE_SHOPNAME, shops[shopIndex-1]);
 
 
 				LogUtil.e("titleArraySave：" + titleArraySave);
@@ -1054,7 +1056,7 @@ public class WA_YundaFragment extends WA_BaseFragment
                             sameStr = getSameStr(mTtile, titleArry);
                         }
                     }
-					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 60) {
+					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 70) {
 						mTiTleArrayList.add(titleArry);
 						mTtile = mTtile + titleArry;
 						String bidStr = getSameStr(mTtile, BidName.BrandName);
