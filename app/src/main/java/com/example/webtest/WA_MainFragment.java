@@ -350,7 +350,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					splitReslt = "";
 					link = "";
 					if (split[i].contains("发布成功，新商品")) {
-						splitReslt = "****************************************" + splitNum + "\n";
+						splitReslt = "********************************************************************************" + splitNum + "\n";
 						splitNum++;
 						String replace = split[i].split("】")[0].replace("【", "");
 						String value = SharedPreferencesUtils.getValue(getActivity(), replace);

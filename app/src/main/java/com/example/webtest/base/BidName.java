@@ -8,6 +8,30 @@ public interface BidName {
             "#，#\n" +
             "#.#\n" +
             "#。#\n" +
+
+            "#mcm#\n" +
+            "#coach#\n" +
+            "#花花公子#\n" +
+            "#蔻驰#\n" +
+            "#bellroy#\n" +
+            "#ck#\n" +
+            "#mk#\n" +
+            "#fossil#\n" +
+            "#真皮#\n" +
+            "#真牛皮#\n" +
+            "#coach#\n" +
+            "#thrasher#\n" +
+            "#头层牛皮#\n" +
+            "#kipling#\n" +
+            "#babama#\n" +
+            "#稻草人#\n" +
+            "#阿玛尼#\n" +
+            "#herschel#\n" +
+            "#卓梵阿玛尼#\n" +
+            "#小怪兽钱包#\n" +
+            "#herschel supply#\n" +
+
+
             "#批发#\n" +
             "#代理#\n" +
             "#日尚#\n" +
@@ -24,6 +48,7 @@ public interface BidName {
             "#304#\n" +
             "#lv#\n" +
             "#真皮#\n" +
+            "#洁丽雅#\n" +
             "#C-S/诚饰#\n" +
             "#明筑#\n" +
             "#军英#\n" +
