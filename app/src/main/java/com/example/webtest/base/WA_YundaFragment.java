@@ -550,13 +550,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 				@Override
 				public void run() {
 
-                    try {
-                        getTitleAfterJs(titles, minPricesTitle);
-                    } catch (Exception e) {
-                        LogUtil.e("Exception~~~~~~~~~~~~~~~~" + e.toString());
-                        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
-                        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
-                    }
+					try {
+						getTitleAfterJs(titles, minPricesTitle);
+					} catch (Exception e) {
+						LogUtil.e("Exception~~~~~~~~~~~~~~~~" + e.toString());
+						SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+						LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+					}
 
 				}
 			});
@@ -980,123 +980,143 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 	private void titleArraySave(String title) {
 		if (TextUtils.isEmpty(titleArraySave)) {
-            titleArraySave = title;
-        } else {
-            titleArraySave = titleArraySave + "###" + title;
-        }
+			titleArraySave = title;
+		} else {
+			titleArraySave = titleArraySave + "###" + title;
+		}
 	}
 
 	private void getTitleAfterJs(String titles, String minPricesTitle) {
-        String[] split = titles.split("###");
-        LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
-        String templeRecord = "123";
-        mTitleList = new ArrayList<String>();
-        for (int i = 0; i < titlesArray.length; i++) {
-            mTitleList.add(titlesArray[i]);
-        }
+		String[] split = titles.split("###");
+		LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
+		String templeRecord = "123";
+		mTitleList = new ArrayList<String>();
+		for (int i = 0; i < titlesArray.length; i++) {
+			mTitleList.add(titlesArray[i]);
+		}
 
-        int foreachSize = 10;
-        if (split.length < foreachSize) {
-            foreachSize = split.length;
-        }
-        for (int i = 1; i < foreachSize; i++) {
-            if (!templeRecord.contains(split[i])) {
-                templeRecord = templeRecord + split[i];
-                int mLen = strLength(split[i]);
-                int splitLen = mLen / 6;
+		int foreachSize = 10;
+		if (split.length < foreachSize) {
+			foreachSize = split.length;
+		}
+		for (int i = 1; i < foreachSize; i++) {
+			if (!templeRecord.contains(split[i])) {
+				templeRecord = templeRecord + split[i];
+				int mLen = strLength(split[i]);
+				int splitLen = mLen / 6;
 
 //					LogUtil.e(Constant.TBLMTAG + "mLen" + mLen);
 //					LogUtil.e(Constant.TBLMTAG + "split" + split[i]);
-                String titleArray1 = split[i].substring(0, splitLen);
+				String titleArray1 = split[i].substring(0, splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray1" + titleArray1);
-                String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
+				String titleArray2 = split[i].substring(splitLen, 2 * splitLen);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray2" + titleArray2);
-                String titleArray3 = split[i].substring(2 * splitLen, mLen / 2);
+				String titleArray3 = split[i].substring(2 * splitLen, mLen / 2);
 //					LogUtil.e(Constant.TBLMTAG + "titleArray3" + titleArray3);
-                mTitleList.add(titleArray1);
-                mTitleList.add(titleArray2);
-                mTitleList.add(titleArray3);
+				mTitleList.add(titleArray1);
+				mTitleList.add(titleArray2);
+				mTitleList.add(titleArray3);
 				titleArraySave(titleArray1);
 				titleArraySave(titleArray2);
 				titleArraySave(titleArray3);
-            }
-        }
+			}
+		}
 
 		getRandomTitle(shops[shopIndex-1]);
-        LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
-        SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
-        LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
-    }
+		LogUtil.e("sameStr-mTtile~~~~~~~~~~~~~~~~");
+		SharedPreferencesUtils.putValue(getActivity(), minPricesTitle, mTtile);
+		LogUtil.e(Constant.TBLMTAG + "mTtile: " + SharedPreferencesUtils.getValue(getActivity(), minPricesTitle));
+	}
 
 	protected void getRandomTitle(String shopName) {
 		int[] ints = randomArray(mTitleList.size());
 		mTtile = "";
 		ArrayList<String> mTiTleArrayList = new ArrayList<String>();
 		for (int j = 0; j < mTitleList.size(); j++) {
-            if (j == 0) {
-                if (judgeContainsStr(mTitleList.get(ints[j]))) {
-                    continue;
-                }
-                mTtile = mTitleList.get(ints[j]);
-            } else {
-                if (j > ints.length-1) {
-                    break;
-                }
-                if (ints[j] < mTitleList.size()) {
-                    String titleArry = mTitleList.get(ints[j]);
+			if (j == 0) {
+				if (judgeContainsStr(mTitleList.get(ints[j]))) {
+					continue;
+				}
+				mTtile = mTitleList.get(ints[j]);
+			} else {
+				if (j > ints.length-1) {
+					break;
+				}
+				if (ints[j] < mTitleList.size()) {
+					String titleArry = mTitleList.get(ints[j]);
 
-                    if (judgeContainsStr(titleArry)) {
-                        continue;
-                    }
-                    String sameStr = getSameStr(mTtile, titleArry);
+					if (titleArry.contains("【") | titleArry.contains("】")) {
+						continue;
+					}
+					if (judgeContainsStr(titleArry)) {
+						continue;
+					}
+					String sameStr = getSameStr(mTtile, titleArry);
 
-                    if (!TextUtils.isEmpty(sameStr)) {
-                        while (strLength(sameStr) > 2) {
-                            titleArry = titleArry.replace(sameStr, "");
-                            sameStr = getSameStr(mTtile, titleArry);
-                        }
-                    }
+					if (!TextUtils.isEmpty(sameStr)) {
+						while (strLength(sameStr) > 2) {
+							titleArry = titleArry.replace(sameStr, "");
+							sameStr = getSameStr(mTtile, titleArry);
+						}
+					}
 					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 100) {
 						mTiTleArrayList.add(titleArry);
 						mTtile = mTtile + titleArry;
-						String bidStr = getSameStr(mTtile, BidName.BrandName);
-						if (strLength(bidStr) > 2) {
-							mTtile = mTtile.replace(bidStr, "");
-							mTtile.trim();
-							mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
-						}
+
 					} else if (strLength(mTtile) + strLength(shopName) < 80) {
 						continue;
 					} else {
 						break;
 					}
-                }
-            }
-        }
+				}
+			}
+		}
 		Random rand = new Random();
 		int position = rand.nextInt(5);
-        String bidStr = getSameStr(mTtile, BidName.BrandName);
-        if (strLength(bidStr) > 2) {
-            shopName = shopName.replace(bidStr, "");
-        }
+		String bidStr = getSameStr(mTtile, BidName.BrandName);
+		if (strLength(bidStr) > 2) {
+			shopName = shopName.replace(bidStr, "");
+		}
 		mTiTleArrayList.add(position, shopName);
+
+
 
 		mTtile = "";
 
 		for (int i = 0; i < mTiTleArrayList.size(); i++) {
 			mTtile = mTtile + mTiTleArrayList.get(i);
 		}
+		mTtile = titleReplace();
+
+		String bidBrand = BidName.BrandName;
+		bidStr = getSameStr(mTtile, bidBrand);
+		String bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+		while (strLength(bidStr) > 2) {
+			bidBrand = bidBrand.replace(bidStr, "");
+			if (strLength("#" + bidStr + "#") == strLength(bidStrCompare)) {
+				mTtile = mTtile.replace(bidStr, "");
+			}
+			bidStr = getSameStr(mTtile, bidBrand);
+			bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+
+		}
+		mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
 //		LogUtil.e("mTtile:" + mTtile);
+	}
+
+	private String titleReplace() {
+		return mTtile.replace(" ", "").replace("【", "")
+				.replace("【", "").replace("】", "");
 	}
 
 	protected void nextShop3Way() {
 		if (shopIndex < shops.length ) {
-            SwitchMethod = Constant.DEFAULT_WAY;
-            SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
-            loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-        } else {
-            SwitchMethod = -1;
-        }
+			SwitchMethod = Constant.DEFAULT_WAY;
+			SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+			loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+		} else {
+			SwitchMethod = -1;
+		}
 	}
 
 	protected void goEditDetailsUrl() {

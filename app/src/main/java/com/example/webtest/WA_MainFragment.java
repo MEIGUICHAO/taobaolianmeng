@@ -290,7 +290,29 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
 				break;
 			case R.id.btn_str_result:
-				foreachSearchTBLM();
+				String string = "地毯卧室卧室宜家米垫客厅飘窗床式床边地毯可厅毯防滑垫儿童宝宝宝爬行垫可定制";
+
+				String bidBrand = BidName.BrandName;
+				String bidStr = getSameStr(string, bidBrand);
+				String bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+
+
+				while (!TextUtils.isEmpty(bidStr)) {
+					bidBrand = bidBrand.replace(bidStr, "");
+					if (strLength("#" + bidStr + "#") == strLength(bidStrCompare)) {
+						string = string.replace(bidStr, "");
+					}
+					bidStr = getSameStr(string, bidBrand);
+					bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+				}
+
+//				String bidStr = getSameStr(string, BidName.BrandName);
+//				if (strLength(bidStr) > 2) {
+//					string = string.replace(bidStr, "");
+//				}
+				LogUtil.e(string);
+
+//				foreachSearchTBLM();
 //				String[] split = BidName.BrandName.split("\n");
 //				String result123 = "";
 //				for (int i = 0; i < split.length; i++) {

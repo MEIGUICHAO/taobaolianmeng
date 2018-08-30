@@ -4,7 +4,7 @@ public interface Shops {
 
     //            String shops =;
 //            String shops =;
-            String shops ="车载手机架\n" +
+            String shop989s ="车载手机架\n" +
             "车载香水\n" +
             "车载手机支架\n" +
             "车内饰品摆件\n" +
@@ -201,7 +201,7 @@ public interface Shops {
             "宝马钥匙套\n" +
             "荞麦壳汽车坐垫\n" +
             "本田urv钥匙套\n";
-    String shop321312s = "地毯\n" +
+    String shops = "地毯\n" +
             "地垫\n" +
             "浴室防滑垫\n" +
             "地毯 卧室\n" +
