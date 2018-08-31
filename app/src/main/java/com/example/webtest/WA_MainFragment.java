@@ -14,6 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.webtest.base.BidName;
 import com.example.webtest.base.Constant;
@@ -101,6 +102,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_biao1 = (Button) view.findViewById(R.id.btn_biao1);
 		btn_str_result = (Button) view.findViewById(R.id.btn_str_result);
 		btn_split = (Button) view.findViewById(R.id.btn_split);
+		et_shop = (EditText) view.findViewById(R.id.et_shop);
+		et_split = (EditText) view.findViewById(R.id.et_split);
 	}
 
 	/** 初始化两个不同功用的WebView */
@@ -221,12 +224,15 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				IS_3WAT = true;
 				shopIndex = 0;
 				allSameList = new ArrayList<String>();
-				shops = Shops.shops.split("\n");
+				getShopsStr();
+				shops = shopsStr.split("\n");
+
 				SwitchMethod = Constant.DEFAULT_WAY;
 				loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
                 break;
             case R.id.btn_way3Result:
-				String result = SharedPreferencesUtils.getValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)));
+				getShopsStr();
+				String result = SharedPreferencesUtils.getValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)));
 				String[] min3wayUrls = result.split("###");
 				foreachMinurlResult(min3wayUrls);
 				break;
@@ -324,8 +330,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				break;
 			case R.id.btn_search:
 				if (FOREACH_MODE) {
-					spRecordMinUrlKey = md5Password(Shops.shops) + Constant.MIN_URL_RECORD;
-					minUrlShopNameRecordKey = md5Password(Shops.shops) + Constant.MIN_NAME_RECORD;
+					getShopsStr();
+					spRecordMinUrlKey = md5Password(shopsStr) + Constant.MIN_URL_RECORD;
+					minUrlShopNameRecordKey = md5Password(shopsStr) + Constant.MIN_NAME_RECORD;
 				} else {
 					String mUrl = initBeginUrl();
 					if (TextUtils.isEmpty(spRecordMinUrlKey)) {
@@ -362,11 +369,12 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					}
 				}
 				break;
-
 		}
 
 
 	}
+
+
 
 	private void foreachMinurlResult(String[] minUrls) {
 

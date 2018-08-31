@@ -113,6 +113,29 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_shop"
+            android:hint="shop"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:lines="1"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/et_split"
+            android:hint="split"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:lines="1"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
     <com.example.webtest.base.MyWebView
         android:id="@+id/wa_webview_list"
         android:layout_width="fill_parent"

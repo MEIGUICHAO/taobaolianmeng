@@ -3,9 +3,11 @@ package com.example.webtest.base;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -31,6 +33,8 @@ public class WA_BaseFragment extends Fragment
 {
 
 
+	protected EditText et_shop;
+	protected EditText et_split;
 	protected Button btn_split;
 	protected Button btnRefresh;
 	protected Button btnBack;
@@ -44,6 +48,7 @@ public class WA_BaseFragment extends Fragment
 	protected String minUrlRecord = "";
 	protected String minUrlShopNameRecord = "";
 	protected String spShopRecordKey = "";
+	protected String shopsStr = "";
 
 
 
@@ -243,6 +248,13 @@ public class WA_BaseFragment extends Fragment
 		String regex=".*[a-zA-Z]+.*";
 		Matcher m= Pattern.compile(regex).matcher(str);
 		return m.matches();
+	}
+
+	public void getShopsStr() {
+		shopsStr = et_shop.getText().toString();
+		if (TextUtils.isEmpty(shopsStr)) {
+			shopsStr = Shops.shops;
+		}
 	}
 
 }

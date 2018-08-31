@@ -855,7 +855,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 					SwitchMethod = Constant.WAY3_SAMESTYTLE;
 
 					SameLoadFinish = false;
-					SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+					SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)), minUrlRecord);
 
 					handler.postDelayed(new Runnable() {
 						@Override
@@ -1112,7 +1112,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 	protected void nextShop3Way() {
 		if (shopIndex < shops.length ) {
 			SwitchMethod = Constant.DEFAULT_WAY;
-			SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(Shops.shops)), minUrlRecord);
+			SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)), minUrlRecord);
 			loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
 		} else {
 			SwitchMethod = -1;
@@ -1204,10 +1204,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 	public void foreachShop() {
 		if (FIRST_TIME) {
 			FOREACH_MODE = true;
-			shops = Shops.shops.split("\n");
+			getShopsStr();
+			shops = shopsStr.split("\n");
 			FIRST_TIME = false;
-			spRecordMinUrlKey = md5Password(Shops.shops) + Constant.MIN_URL_RECORD;
-			minUrlShopNameRecordKey = md5Password(Shops.shops) + Constant.MIN_NAME_RECORD;
+			spRecordMinUrlKey = md5Password(shopsStr) + Constant.MIN_URL_RECORD;
+			minUrlShopNameRecordKey = md5Password(shopsStr) + Constant.MIN_NAME_RECORD;
 		}
 		String url = initForeachModeUrl();
 		LogUtil.e("~~~~~~~~~~url:\n"+url);
