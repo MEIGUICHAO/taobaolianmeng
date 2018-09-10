@@ -8,6 +8,7 @@ public interface Constant {
     String default_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR;
     String salesDesc_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR+"&sort=sale-desc";
     String renqi_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR+"&sort=renqi";
+    String credit_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR+"&sort=credit-desc";
 
 
 
@@ -56,6 +57,8 @@ public interface Constant {
 
     int RENQI_WAY = 0x9;
     int WAY3_SAMESTYTLE = 0x10;
+
+    int CREIDT_WAY = 0x11;
 
 
     String TITLE_ARRAY_SAVE = "TITLE_ARRAY_SAVE";

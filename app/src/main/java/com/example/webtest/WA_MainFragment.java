@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.webtest.base.Arith;
 import com.example.webtest.base.BidName;
 import com.example.webtest.base.Constant;
 import com.example.webtest.base.MyWebView;
@@ -27,6 +29,7 @@ import com.example.webtest.io.SharedPreferencesUtils;
 import com.example.webtest.io.WA_Parameters;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @desc 自动化Fragment主调页面
@@ -102,6 +105,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_biao1 = (Button) view.findViewById(R.id.btn_biao1);
 		btn_str_result = (Button) view.findViewById(R.id.btn_str_result);
 		btn_split = (Button) view.findViewById(R.id.btn_split);
+		btn_et_reset = (Button) view.findViewById(R.id.btn_et_reset);
 		et_shop = (EditText) view.findViewById(R.id.et_shop);
 		et_split = (EditText) view.findViewById(R.id.et_split);
 	}
@@ -215,6 +219,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		btn_str_result.setOnClickListener(this);
 		btn_way3Result.setOnClickListener(this);
 		btn_split.setOnClickListener(this);
+		btn_et_reset.setOnClickListener(this);
 	}
 
 	@Override
@@ -296,29 +301,101 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 }
 				break;
 			case R.id.btn_str_result:
-				String string = "地毯卧室卧室宜家米垫客厅飘窗床式床边地毯可厅毯防滑垫儿童宝宝宝爬行垫可定制";
 
-				String bidBrand = BidName.BrandName;
-				String bidStr = getSameStr(string, bidBrand);
-				String bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+				double Allmoney = 7200;
+				double money = 0;
+				double leijiMoney = 0;
+				double currentMoney = 0;
+				double buyNum = 0;
+				double leijibuyNum = 0;
+				double buyMoney = 10;
+				Boolean kuisun = true;
+
+				int zhang = 0;
+				int die = 0;
 
 
-				while (!TextUtils.isEmpty(bidStr)) {
-					bidBrand = bidBrand.replace(bidStr, "");
-					if (strLength("#" + bidStr + "#") == strLength(bidStrCompare)) {
-						string = string.replace(bidStr, "");
+				for (int j = 0; j < 100; j++) {
+					money = Arith.div(Arith.div(Allmoney,3), 24);
+					currentMoney = 0;
+					buyNum = 0;
+					leijibuyNum = 0;
+					kuisun = true;
+					for (int i = 0; i < 24; i++) {
+
+						Random random = new Random();
+
+
+						//涨跌幅
+						double gailv = Arith.div(Arith.sub(random.nextInt(100), 50), 10000);
+						if (gailv > 0) {
+							zhang++;
+						} else {
+							die++;
+						}
+						LogUtil.e("currentMoney涨跌幅:" + Arith.mul(gailv, 100));
+						//现价
+						buyMoney = Arith.mul(Arith.add(1, gailv), buyMoney);
+						buyNum = Arith.div(money, buyMoney);
+						Allmoney = Arith.sub(Allmoney, money);
+						leijibuyNum = leijibuyNum + buyNum;
+						LogUtil.e("currentMoney现价:" + buyMoney);
+						//每段时间的现有金额
+						currentMoney = Arith.mul(leijibuyNum, buyMoney);
+//						LogUtil.e("currentMoney每段时间的现有金额:" + currentMoney);
+						//累积投入
+						leijiMoney = Arith.mul(i + 1, money);
+//						LogUtil.e("currentMoney累积投入:" + leijiMoney);
+
+
+						if ((currentMoney - leijiMoney) > money) {
+							kuisun = false;
+//							LogUtil.e("currentMoney_break:" + currentMoney);
+							break;
+						}
+
+
 					}
-					bidStr = getSameStr(string, bidBrand);
-					bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+					Allmoney = Arith.add(Allmoney,currentMoney);
+//					LogUtil.e("currentMoney_end:" + Allmoney);
+//					if (kuisun) {
+//						LogUtil.e("currentMoney亏损盈利--------亏损");
+//					} else {
+//						LogUtil.e("currentMoney亏损盈利～～～～～～盈利");
+//
+//					}
+					LogUtil.e("Allmoney-------:"+Allmoney);
 				}
+
+				LogUtil.e("zhangdie-------:" + zhang + "," + die);
+
+
+
+
+//				String string = "地毯卧室卧室宜家米垫客厅飘窗床式床边地毯可厅毯防滑垫儿童宝宝宝爬行垫可定制";
+//
+//				String bidBrand = BidName.BrandName;
+//				String bidStr = getSameStr(string, bidBrand);
+//				String bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+//
+//
+//				while (!TextUtils.isEmpty(bidStr)) {
+//					bidBrand = bidBrand.replace(bidStr, "");
+//					if (strLength("#" + bidStr + "#") == strLength(bidStrCompare)) {
+//						string = string.replace(bidStr, "");
+//					}
+//					bidStr = getSameStr(string, bidBrand);
+//					bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
+//				}
 
 //				String bidStr = getSameStr(string, BidName.BrandName);
 //				if (strLength(bidStr) > 2) {
 //					string = string.replace(bidStr, "");
 //				}
-				LogUtil.e(string);
+//				LogUtil.e(string);
 
 //				foreachSearchTBLM();
+
 //				String[] split = BidName.BrandName.split("\n");
 //				String result123 = "";
 //				for (int i = 0; i < split.length; i++) {
@@ -348,27 +425,45 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 				break;
 			case R.id.btn_split:
+				if (TextUtils.isEmpty(splitStr)) {
+					splitStr = et_split.getText().toString();
+				}
 
-				String[] split = SplitStr.split.split("\n");
+				if (TextUtils.isEmpty(splitStr)) {
+					splitStr = SplitStr.split;
+				}
+				String[] split = splitStr.split("\n");
 				String splitReslt = "";
 				String link = "";
 				int splitNum = 0;
 				for (int i = 0; i < split.length; i++) {
 					splitReslt = "";
 					link = "";
-					if (split[i].contains("发布成功，新商品")) {
+					if (split[i].contains("发布成功，新商品")||split[i].contains("已经复制")) {
 						splitReslt = "********************************************************************************" + splitNum + "\n";
 						splitNum++;
 						String replace = split[i].split("】")[0].replace("【", "");
 						String value = SharedPreferencesUtils.getValue(getActivity(), replace);
-						link = split[i].split("发布成功，新商品:")[1].split("，")[0];
-						splitReslt = splitReslt + link + "\n" + value;
+						try {
+
+							link = split[i].split("发布成功，新商品:")[1].split("，")[0];
+						} catch (Exception e) {
+							link = split[i].split("已经复制，商品：")[1].split("，")[0];
+						}
+						splitReslt = splitReslt + link + "\n" + value ;
 					}
 					if (!TextUtils.isEmpty(splitReslt) && splitReslt.split("\n").length > 2) {
 						LogUtil.e(splitReslt);
 					}
 				}
 				break;
+			case R.id.btn_et_reset:
+				splitStr = "";
+				shopsStr = "";
+				et_shop.setText("");
+				et_split.setText("");
+				break;
+
 		}
 
 
@@ -415,6 +510,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					} catch (Exception e) {
                         LogUtil.e(e.toString());
 					}
+
 
 					titleArrayResult = titleArrayResult + "\n" + mTtile;
 					if (TextUtils.isEmpty(idsResult)) {
@@ -567,6 +663,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				way3SameUrl();
                 break;
             case Constant.DEFAULT_WAY:
+            case Constant.CREIDT_WAY:
             case Constant.SALES_DESC:
             case Constant.RENQI_WAY:
                 if (SwitchMethod == Constant.DEFAULT_WAY) {

@@ -133,6 +133,14 @@
             android:lines="1"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/btn_et_reset"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="重置" />
+
+
 
     </LinearLayout>
 

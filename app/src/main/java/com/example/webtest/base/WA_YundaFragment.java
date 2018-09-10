@@ -566,6 +566,13 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 
 		@JavascriptInterface
+		public void next3WayPage() {
+			handlerJs("find3WaySameStyle();", 1000);
+
+		}
+
+
+		@JavascriptInterface
 		public void pageNextStop()
 		{
 			pageNextStop = true;
@@ -688,29 +695,40 @@ public class WA_YundaFragment extends WA_BaseFragment
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					switch (SwitchMethod) {
-						case Constant.DEFAULT_WAY:
-							SwitchMethod = Constant.SALES_DESC;
-							loadUrl(Constant.salesDesc_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-							break;
-						case Constant.SALES_DESC:
-							SwitchMethod = Constant.RENQI_WAY;
-							loadUrl(Constant.renqi_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
-							break;
-						case Constant.RENQI_WAY:
-							SwitchMethod = Constant.WAY3_SAMESTYTLE;
-							link3WayIndex = 0;
-							shopIndex++;
-							LogUtil.e("links3WayList:" + links3WayList.size());
-							if (links3WayList.size() > 0) {
-								loadUrl(links3WayList.get(link3WayIndex));
-							} else {
-								SwitchMethod = Constant.DEFAULT_WAY;
-								if (shopIndex < shops.length) {
-									loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+
+					if (nextPageIndex > 3) {
+						nextPageIndex = 0;
+						switch (SwitchMethod) {
+							case Constant.DEFAULT_WAY:
+								SwitchMethod = Constant.CREIDT_WAY;
+								loadUrl(Constant.salesDesc_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+								break;
+							case Constant.CREIDT_WAY:
+								SwitchMethod = Constant.SALES_DESC;
+								loadUrl(Constant.credit_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+								break;
+							case Constant.SALES_DESC:
+								SwitchMethod = Constant.RENQI_WAY;
+								loadUrl(Constant.renqi_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+								break;
+							case Constant.RENQI_WAY:
+								SwitchMethod = Constant.WAY3_SAMESTYTLE;
+								link3WayIndex = 0;
+								shopIndex++;
+								LogUtil.e("links3WayList:" + links3WayList.size());
+								if (links3WayList.size() > 0) {
+									loadUrl(links3WayList.get(link3WayIndex));
+								} else {
+									SwitchMethod = Constant.DEFAULT_WAY;
+									if (shopIndex < shops.length) {
+										loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
+									}
 								}
-							}
-							break;
+								break;
+						}
+					} else {
+						nextPageIndex++;
+						handlerJs("next3WayPage();");
 					}
 				}
 			});
@@ -739,7 +757,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 				links3WayList = new ArrayList<String>();
 			}
 
-			if (SwitchMethod == Constant.DEFAULT_WAY) {
+			if (SwitchMethod == Constant.DEFAULT_WAY && nextPageIndex == 0) {
 				links3WayList.clear();
 			}
 			for (int i = 0; i < array.length; i++) {
@@ -1100,7 +1118,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 			bidStrCompare = getSameStr("#" + bidStr + "#", bidBrand);
 
 		}
-		mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", ""));
+		mTtile = mTtile.replace("【", "").replace("】", "").replace("  ", "".replace(" ", "")).replace("\n", "");
 //		LogUtil.e("mTtile:" + mTtile);
 	}
 

@@ -189,7 +189,7 @@ function js3WayGoSameUrl(array){
             }
         }
     }
-    if(maxPrices>accMul(1.8,minPrices)){
+    if(maxPrices>accMul(2,minPrices)){
 
         if(mTitleStr!="123"){
             localMethod.titleArrayList(mTitleStr,minPricesTitle);
@@ -578,6 +578,18 @@ function setSearchWord(shopword){
             setTimeout(function(){localMethod.getTargetIndex();},2000);
 
     },2000);
+}
+
+
+function next3WayPage(){
+    var as = document.getElementsByTagName("a");
+    for(var i=0;i<as.length;i++){
+        if(as[i].innerText=="下一页 "){
+           as[i].click();
+               localMethod.JI_LOG("as!!:"+as.length);
+               localMethod.next3WayPage();
+        }
+    }
 }
 
 //根据搜索词点击

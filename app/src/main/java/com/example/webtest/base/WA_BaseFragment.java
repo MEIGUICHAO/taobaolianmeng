@@ -35,6 +35,7 @@ public class WA_BaseFragment extends Fragment
 
 	protected EditText et_shop;
 	protected EditText et_split;
+	protected Button btn_et_reset;
 	protected Button btn_split;
 	protected Button btnRefresh;
 	protected Button btnBack;
@@ -45,10 +46,12 @@ public class WA_BaseFragment extends Fragment
 	protected Button btn_str_result;
 	protected MyWebView listWeb;
 	protected int SwitchMethod = -1;
+	protected int nextPageIndex = 0;
 	protected String minUrlRecord = "";
 	protected String minUrlShopNameRecord = "";
 	protected String spShopRecordKey = "";
 	protected String shopsStr = "";
+	protected String splitStr = "";
 
 
 
@@ -251,7 +254,9 @@ public class WA_BaseFragment extends Fragment
 	}
 
 	public void getShopsStr() {
-		shopsStr = et_shop.getText().toString();
+		if (TextUtils.isEmpty(shopsStr)) {
+			shopsStr = et_shop.getText().toString();
+		}
 		if (TextUtils.isEmpty(shopsStr)) {
 			shopsStr = Shops.shops;
 		}
