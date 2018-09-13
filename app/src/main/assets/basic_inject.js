@@ -149,10 +149,13 @@ function js3WayGoSameUrl(array){
 //    var text ="\n";
     var maxPrices = 0;
     var minPrices = 100000;
+    var minPingduoduoPrices = 100000;
     var minPricesTitle = "";
+    var minPingDuoDuoPricesTitle = "";
     var averPrices = 0;
     var averNum = 0;
     var minPricesUrl = "";
+    var minPingduoduoPricesUrl = "";
     var mTitleStr = "123";
 
 
@@ -161,7 +164,7 @@ function js3WayGoSameUrl(array){
 
     for(var i=0;i<itemnames.length;i++){
         if(comments[i].innerText!=""){
-            if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>2){
+            if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>5){
                 var price = prices[i].innerText.replace("￥","");
                 averPrices = accAdd(averPrices,price);
                 averNum = averNum +1;
@@ -191,19 +194,38 @@ function js3WayGoSameUrl(array){
     }
     if(maxPrices>accMul(2,minPrices)){
 
-        if(mTitleStr!="123"){
-            localMethod.titleArrayList(mTitleStr,minPricesTitle);
+        for(var i=0;i<itemnames.length;i++){
+            if(comments[i].innerText!=""){
+                if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>2){
+
+                    if(parseFloat(price)<parseFloat(minPingduoduoPrices)&&accMul(1.3,minPrices)>minPrices){
+    //
+                        minPingduoduoPrices = price;
+                        minPingDuoDuoPricesTitle = itemnames[i].innerText;
+                        minPingduoduoPricesUrl = mUrl[i].getElementsByTagName("a")[0];
+                    }
+                }
+            }
         }
-        localMethod.JI_LOG("minSameRecord b4");
-        var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
-        +"\n"+"minPricesUrl:"+minPricesUrl;
-        localMethod.JI_LOG("minSameRecord after");
-        localMethod.TBLM_LOG(minSameRecord);
-        localMethod.JI_LOG("getMinPricesUrl b4");
-        localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
-        localMethod.JI_LOG("getMinPricesUrl after");
+
+            if(mTitleStr!="123"){
+                localMethod.titleArrayList(mTitleStr,minPricesTitle);
+            }
+            localMethod.JI_LOG("minSameRecord b4");
+            var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+",minPingduoduoPrices:"+minPingduoduoPrices
+            +"\n"+"minPricesUrl:"+minPricesUrl;
+            localMethod.JI_LOG("minSameRecord after");
+            localMethod.TBLM_LOG(minSameRecord);
+            localMethod.JI_LOG("getMinPricesUrl b4");
+            localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
+            localMethod.JI_LOG("getMinPricesUrl after");
+            localMethod.getPingDuoDuoMinPricesUrl(minPingduoduoPricesUrl+"",minPingDuoDuoPricesTitle+"",minPricesUrl+"");
 
         }
+
+
+
+
     }
         localMethod.after3WaySameResult();
     localMethod.JI_LOG("after3WaySameResult:"+188);
@@ -230,10 +252,12 @@ function jsGoSameUrl(array){
 //    var text ="\n";
     var maxPrices = 0;
     var minPrices = 100000;
+    var minPingduoduoPrices = 100000;
     var minPricesTitle = "";
     var averPrices = 0;
     var averNum = 0;
     var minPricesUrl = "";
+    var minPingduoduoPricesUrl = "";
     var mTitleStr = "123";
 
 
@@ -274,10 +298,28 @@ function jsGoSameUrl(array){
         localMethod.titleArrayList(mTitleStr,minPricesTitle);
     }
 
-    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
-    +"\n"+"minPricesUrl:"+minPricesUrl;
-    localMethod.TBLM_LOG(minSameRecord);
     localMethod.getMinPricesUrl(minPricesUrl+"",minPricesTitle+"");
+
+
+    for(var i=0;i<itemnames.length;i++){
+        if(comments[i].innerText!=""){
+            if(paids[i].innerText.replace("人付款","")>10&&comments[i].innerText.replace("条评论","")>2){
+
+                if(parseFloat(price)<parseFloat(minPingduoduoPrices)&&accMul(1.3,minPrices)>minPrices){
+//
+                    minPingduoduoPrices = price;
+                    minPingduoduoPricesUrl = mUrl[i].getElementsByTagName("a")[0];
+                }
+            }
+        }
+    }
+
+    var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices
+    +"\n"+"minPricesUrl:"+minPricesUrl+",minPingduoduoPrices:"+minPingduoduoPrices;
+    localMethod.TBLM_LOG(minSameRecord);
+
+
+    localMethod.getPingDuoDuoMinPricesUrl(minPingduoduoPricesUrl+"");
 
     }
     localMethod.afterSameResult();

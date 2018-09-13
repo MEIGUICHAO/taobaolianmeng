@@ -696,7 +696,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 				@Override
 				public void run() {
 
-					if (nextPageIndex > 3) {
+					if (nextPageIndex > 9) {
 						nextPageIndex = 0;
 						switch (SwitchMethod) {
 							case Constant.DEFAULT_WAY:
@@ -862,6 +862,25 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 		}
 
+		@JavascriptInterface
+		public void getPingDuoDuoMinPricesUrl(String url,String title,String minUrl)
+		{
+			LogUtil.e("getPingDuoDuoMinPricesUrl:" + url + ",title:" + title + ",minUrl:" + minUrl);
+
+			if (!minPingDuoDuoUrlRecord.contains(url)) {
+				if (TextUtils.isEmpty(minPingDuoDuoUrlRecord)) {
+					minPingDuoDuoUrlRecord = url;
+				} else {
+					minPingDuoDuoUrlRecord = minPingDuoDuoUrlRecord + "###" + url;
+				}
+
+				SharedPreferencesUtils.putValue(getActivity(), url+Constant.PINGDUODUO_TITLE, title);
+				SharedPreferencesUtils.putValue(getActivity(), url+Constant.PINGDUODUO_MINURL, minUrl);
+
+			}
+
+		}
+
 
 		@JavascriptInterface
 		public void after3WaySameResult()
@@ -874,6 +893,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 
 					SameLoadFinish = false;
 					SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)), minUrlRecord);
+					SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)+Constant.PINGDUODUO), minPingDuoDuoUrlRecord);
 
 					handler.postDelayed(new Runnable() {
 						@Override
@@ -1131,6 +1151,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 		if (shopIndex < shops.length ) {
 			SwitchMethod = Constant.DEFAULT_WAY;
 			SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)), minUrlRecord);
+			SharedPreferencesUtils.putValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)+Constant.PINGDUODUO), minPingDuoDuoUrlRecord);
 			loadUrl(Constant.default_url.replace(Constant.SEIZE_STR, shops[shopIndex]));
 		} else {
 			SwitchMethod = -1;
@@ -1176,6 +1197,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 						SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
 						if (searIndex == currentPShopSize - 1) {
 							SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey, minUrlRecord);
+							SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey+Constant.PINGDUODUO, minPingDuoDuoUrlRecord);
 							SharedPreferencesUtils.putValue(getActivity(), minUrlShopNameRecordKey, minUrlShopNameRecord);
 						}
 						loadUrl(taoSearchList.get(searIndex));
@@ -1210,6 +1232,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 					SwitchMethod = Constant.FIND_SAMESTYLE_FROM_TBLM;
 					if (searIndex == currentPShopSize - 1) {
 						SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey, minUrlRecord);
+						SharedPreferencesUtils.putValue(getActivity(), spRecordMinUrlKey+Constant.PINGDUODUO, minPingDuoDuoUrlRecord);
 						SharedPreferencesUtils.putValue(getActivity(), minUrlShopNameRecordKey, minUrlShopNameRecord);
 					}
 					loadUrl(taoSearchList.get(searIndex));

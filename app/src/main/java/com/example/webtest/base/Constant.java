@@ -3,6 +3,9 @@ package com.example.webtest.base;
 public interface Constant {
 
     String SEIZE_STR = "@@##$$%%^^";
+    String PINGDUODUO = "PINGDUODUO";
+    String PINGDUODUO_TITLE = "PINGDUODUO_TITLE";
+    String PINGDUODUO_MINURL = "PINGDUODUO_MINURL";
 
 
     String default_url = "https://s.taobao.com/search?&uniq=imgo&q="+SEIZE_STR;

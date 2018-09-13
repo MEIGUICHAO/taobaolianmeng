@@ -48,6 +48,7 @@ public class WA_BaseFragment extends Fragment
 	protected int SwitchMethod = -1;
 	protected int nextPageIndex = 0;
 	protected String minUrlRecord = "";
+	protected String minPingDuoDuoUrlRecord = "";
 	protected String minUrlShopNameRecord = "";
 	protected String spShopRecordKey = "";
 	protected String shopsStr = "";

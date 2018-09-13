@@ -48,7 +48,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 	private boolean IS_INIT_LOAD = true;
 	private boolean IS_3WAT = false;
 	private Button btn_way3Result;
-
+	private ArrayList<String> pingDuoDuoSearchList;
 
 
 	/**  通过静态方法实例化自动化Fragment*/
@@ -238,7 +238,28 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
             case R.id.btn_way3Result:
 				getShopsStr();
 				String result = SharedPreferencesUtils.getValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr)));
+				String pingDuoDuoResult = SharedPreferencesUtils.getValue(getActivity(), Constant.default_url.replace(Constant.SEIZE_STR, md5Password(shopsStr))+Constant.PINGDUODUO);
 				String[] min3wayUrls = result.split("###");
+				String[] pingDuoDuoResultTitleMinurl = pingDuoDuoResult.split("###");
+				LogUtil.e("\n" + "---------------------------pingDuoDUO------------------------------------------");
+				ArrayList<String> pingDuoDuoList = new ArrayList<String>();
+				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
+					pingDuoDuoList.add(pingDuoDuoResultTitleMinurl[i]);
+				}
+				getMyMinList(pingDuoDuoList);
+				LogUtil.e("------------------------------------标题、低价链接------------------------------");
+				pingDuoDuoList = new ArrayList<String>();
+
+				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
+					String pingDuoDuoMinurl = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_MINURL);
+					String pingDuoDuoTitle = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_TITLE);
+					pingDuoDuoList.add(pingDuoDuoTitle + "\n" + pingDuoDuoMinurl);
+				}
+				getMyMinList(pingDuoDuoList);
+
+
+
+
 				foreachMinurlResult(min3wayUrls);
 				break;
             case R.id.btn_getchecked:
@@ -256,12 +277,20 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
                 spShopRecordKey = url + Constant.SHOP_LIST;
                 if (btn_biao1.getText().toString().equals("缓存")) {
                     minUrlRecord = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey);
-                    String shops = SharedPreferencesUtils.getValue(getActivity(), spShopRecordKey);
-                    String[] split = shops.split("###");
-                    taoSearchList = new ArrayList<String>();
-                    for (int i = 0; i < split.length; i++) {
+					minPingDuoDuoUrlRecord = SharedPreferencesUtils.getValue(getActivity(), spRecordMinUrlKey+Constant.PINGDUODUO);
+					String shops = SharedPreferencesUtils.getValue(getActivity(), spShopRecordKey);
+					String[] split = shops.split("###");
+					taoSearchList = new ArrayList<String>();
+					for (int i = 0; i < split.length; i++) {
 						taoSearchList.add(split[i]);
-                    }
+					}
+
+//					String shopsPingDuoDuo = SharedPreferencesUtils.getValue(getActivity(), spShopRecordKey);
+//					String[] splitPingDuoDuo = shopsPingDuoDuo.split("###");
+//                    pingDuoDuoSearchList = new ArrayList<String>();
+//                    for (int i = 0; i < splitPingDuoDuo.length; i++) {
+//						pingDuoDuoSearchList.add(split[i]);
+//                    }
                     foreachSearchTBLM();
 
                 } else {
