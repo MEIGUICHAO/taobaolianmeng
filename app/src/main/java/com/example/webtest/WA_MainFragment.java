@@ -480,10 +480,14 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 							link = link.split("id=")[1];
 						} catch (Exception e) {
 							link = split[i].split("已经复制，商品：")[1].split("，")[0];
+							link = link.split("，")[0];
+							link = link.split("id=")[1];
 						}
 						splitReslt = splitReslt + link + "\n" + value ;
+						SharedPreferencesUtils.putValue(getActivity(), link, value);
 					}
 					if (!TextUtils.isEmpty(splitReslt) && splitReslt.split("\n").length > 2) {
+
 						LogUtil.e(splitReslt);
 					}
 				}
@@ -532,8 +536,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 				shopName = shopName.replace(" ", "");
 				LogUtil.e("shopName:" + shopName);
+				mTitleList.clear();
 				for (int j = 0; j <split.length; j++) {
-					mTitleList.add(split[j].trim());
+					mTitleList.add("/" + split[j].trim());
 				}
 				for (int j = 0; j < 5; j++) {
 					try {

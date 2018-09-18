@@ -119,14 +119,14 @@ function jsCangkuGoNextPage(){
 //    }
 
 
-    var nexts = document.getElementsByClassName("next-page");
-    if(nexts.length>0){
-        var as = nexts[0].getElementsByTagName("a");
-        localMethod.JI_LOG(as[0].innerText)
-        as[0].click();
-    } else {
-        localMethod.cangkuForeach();
-    }
+//    var nexts = document.getElementsByClassName("next-page");
+//    if(nexts.length>0){
+//        var as = nexts[0].getElementsByTagName("a");
+//        localMethod.JI_LOG(as[0].innerText)
+//        as[0].click();
+//    } else {
+//        localMethod.cangkuForeach();
+//    }
 
 }
 

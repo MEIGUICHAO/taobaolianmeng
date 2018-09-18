@@ -394,14 +394,32 @@ public class WA_YundaFragment extends WA_BaseFragment
 		public void cangkuList(String cangkuids)
 		{
 
-			if (null == xiajiaRecordList || xiajiaRecordList.size() < 1) {
-				xiajiaRecordList = new ArrayList<String>();
-				shangjiaIndex = 0;
-			}
+//			if (null == xiajiaRecordList || xiajiaRecordList.size() < 1) {
+//				shangjiaIndex = 0;
+//			}
+			xiajiaRecordList = new ArrayList<String>();
 			final String[] split = cangkuids.split("###");
 			for (int i = 0; i < split.length; i++) {
 				xiajiaRecordList.add(split[i]);
 			}
+			ArrayList<String> editList = new ArrayList<String>();
+			for (int i = 0; i < xiajiaRecordList.size(); i++) {
+				String itemId = xiajiaRecordList.get(i);
+				String url = Constant.uploadUrl_CATID + itemId.split("@@@")[1] + Constant.uploadUrl_ITEMID + itemId.split("@@@")[0];
+				editList.add(url);
+			}
+
+			for (int i = 0; i < editList.size(); i++) {
+				String urls = "";
+				String key = editList.get(i).split(Constant.uploadUrl_ITEMID)[1];
+				String value = SharedPreferencesUtils.getValue(getActivity(), key);
+				urls = editList.get(i) + "\n" + value;
+				LogUtil.e(urls);
+
+			}
+
+
+
 		}
 
 
