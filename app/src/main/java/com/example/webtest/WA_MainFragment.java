@@ -242,20 +242,20 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				String[] min3wayUrls = result.split("###");
 				String[] pingDuoDuoResultTitleMinurl = pingDuoDuoResult.split("###");
 				LogUtil.e("\n" + "---------------------------pingDuoDUO------------------------------------------");
-				ArrayList<String> pingDuoDuoList = new ArrayList<String>();
-				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
-					pingDuoDuoList.add(pingDuoDuoResultTitleMinurl[i]);
-				}
-				getMyMinList(pingDuoDuoList);
-				LogUtil.e("------------------------------------标题、低价链接------------------------------");
-				pingDuoDuoList = new ArrayList<String>();
-
-				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
-					String pingDuoDuoMinurl = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_MINURL);
-					String pingDuoDuoTitle = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_TITLE);
-					pingDuoDuoList.add(pingDuoDuoTitle + "\n" + pingDuoDuoMinurl);
-				}
-				getMyMinList(pingDuoDuoList);
+//				ArrayList<String> pingDuoDuoList = new ArrayList<String>();
+//				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
+//					pingDuoDuoList.add(pingDuoDuoResultTitleMinurl[i]);
+//				}
+//				getMyMinList(pingDuoDuoList);
+//				LogUtil.e("------------------------------------标题、低价链接------------------------------");
+//				pingDuoDuoList = new ArrayList<String>();
+//
+//				for (int i = 0; i < pingDuoDuoResultTitleMinurl.length; i++) {
+//					String pingDuoDuoMinurl = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_MINURL);
+//					String pingDuoDuoTitle = SharedPreferencesUtils.getValue(getActivity(), pingDuoDuoResultTitleMinurl[i] + Constant.PINGDUODUO_TITLE);
+//					pingDuoDuoList.add(pingDuoDuoTitle + "\n" + pingDuoDuoMinurl);
+//				}
+//				getMyMinList(pingDuoDuoList);
 
 
 
@@ -313,7 +313,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				if (IS_3WAT) {
 					nextShop3Way();
 				} else {
-					listWeb.reload();
+				    listWeb.reload();
 				}
 
 				break;
@@ -476,6 +476,8 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 						try {
 
 							link = split[i].split("发布成功，新商品:")[1].split("，")[0];
+							link = link.split("，")[0];
+							link = link.split("id=")[1];
 						} catch (Exception e) {
 							link = split[i].split("已经复制，商品：")[1].split("，")[0];
 						}

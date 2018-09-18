@@ -211,6 +211,7 @@ function js3WayGoSameUrl(array){
             if(mTitleStr!="123"){
                 localMethod.titleArrayList(mTitleStr,minPricesTitle);
             }
+            localMethod.getSameUrl();
             localMethod.JI_LOG("minSameRecord b4");
             var minSameRecord = "maxPrices:"+maxPrices+",averPrices:"+accDiv(averPrices,averNum)+",minPrices:"+minPrices+",minPingduoduoPrices:"+minPingduoduoPrices
             +"\n"+"minPricesUrl:"+minPricesUrl;

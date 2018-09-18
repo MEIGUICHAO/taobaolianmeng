@@ -935,6 +935,19 @@ public class WA_YundaFragment extends WA_BaseFragment
 			LogUtil.e(TAG, "JI_LOG: " + content);
 		}
 
+		@JavascriptInterface
+		public void getSameUrl()
+		{
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					String url = listWeb.getUrl();
+					LogUtil.e(url);
+				}
+			});
+
+		}
+
 
 		@JavascriptInterface
 		public void TBLM_LOG(String content)
@@ -1097,11 +1110,11 @@ public class WA_YundaFragment extends WA_BaseFragment
 							sameStr = getSameStr(mTtile, titleArry);
 						}
 					}
-					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 100) {
-						mTiTleArrayList.add(titleArry);
-						mTtile = mTtile + titleArry;
+					if (strLength(mTtile) + strLength(titleArry) + strLength(shopName) < 120) {
+						mTiTleArrayList.add("/" + titleArry);
+						mTtile = mTtile  + titleArry;
 
-					} else if (strLength(mTtile) + strLength(shopName) < 80) {
+					} else if (strLength(mTtile) + strLength(shopName) < 90) {
 						continue;
 					} else {
 						break;
