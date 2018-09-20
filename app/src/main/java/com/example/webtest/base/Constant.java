@@ -68,4 +68,6 @@ public interface Constant {
     String TITLE_ARRAY_SAVE_SHOPNAME = "TITLE_ARRAY_SAVE_SHOPNAME";
     Integer MIN_URL_NUMS = 15;
 
+    int NEXT_PAGE_NUMS = 9;
+
 }

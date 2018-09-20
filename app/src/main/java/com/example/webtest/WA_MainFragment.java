@@ -510,6 +510,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 
 		String titleArrayResult;
 		ArrayList<String> myLinkList = new ArrayList<String>();
+		ArrayList<String> mUploadTitleList = new ArrayList<String>();
 
 		for (int i = 0; i < minUrls.length; i++) {
 //		for (int i = 12; i < 13; i++) {
@@ -538,7 +539,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 				LogUtil.e("shopName:" + shopName);
 				mTitleList.clear();
 				for (int j = 0; j <split.length; j++) {
-					mTitleList.add("/" + split[j].trim());
+					mTitleList.add(split[j].trim());
 				}
 				for (int j = 0; j < 5; j++) {
 					try {
@@ -548,6 +549,9 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 					}
 
 
+					if (j == 0) {
+						mUploadTitleList.add(mTtile);
+					}
 					titleArrayResult = titleArrayResult + "\n" + mTtile;
 					if (TextUtils.isEmpty(idsResult)) {
 						idsResult = mTtile;
@@ -563,6 +567,7 @@ public class WA_MainFragment extends WA_YundaFragment implements View.OnClickLis
 		}
 
 		getMyMinList(myLinkList);
+		getMyMinList(mUploadTitleList);
 
 
 	}

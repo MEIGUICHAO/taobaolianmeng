@@ -714,7 +714,7 @@ public class WA_YundaFragment extends WA_BaseFragment
 				@Override
 				public void run() {
 
-					if (nextPageIndex > 9) {
+					if (nextPageIndex > Constant.NEXT_PAGE_NUMS) {
 						nextPageIndex = 0;
 						switch (SwitchMethod) {
 							case Constant.DEFAULT_WAY:
@@ -1060,8 +1060,10 @@ public class WA_YundaFragment extends WA_BaseFragment
 		LogUtil.e(Constant.TBLMTAG + "minPricesTitle" + minPricesTitle);
 		String templeRecord = "123";
 		mTitleList = new ArrayList<String>();
+		titleArraySave = "";
 		for (int i = 0; i < titlesArray.length; i++) {
 			mTitleList.add(titlesArray[i]);
+			titleArraySave(titlesArray[i]);
 		}
 
 		int foreachSize = 10;
